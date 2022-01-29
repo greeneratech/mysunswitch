@@ -1,10 +1,11 @@
 <template>
   <v-app>
+    <NavMenu class="hidden-md-and-down" />
     <v-main style="margin-top:192px">
       <v-row no-gutters>
-           <v-col class="text-center hidden-md-and-down">
+           <v-col class="text-center">
           <v-img width="463px" height="343px" style="margin:auto" src="../assets/images/Mobile login-rafiki.svg" />
-          <h2 style="font-size:64px;color:#199958">Welcome Back </h2>
+          <h2 class="hidden-md-and-down" style="font-size:64px;color:#199958">Welcome Back </h2>
         </v-col>
         <v-col style="margin-top:-140px">
              <v-card class="ma-5">
@@ -21,40 +22,42 @@
               {{ error }}
             </v-alert>
 
-            <v-form @submit.prevent="pressed()">
+            <v-form @submit.prevent="login()">
             
-                  <v-form @submit.prevent="pressed()">
+                  <v-form @submit.prevent="login()">
                     <label>Email address</label>
                     <v-text-field
                       v-model="email"
                       outlined
+                      single-line
                       label="Email"
-                      type="text"
+                      type="email"
                       color="#f66c1f"
                       style="border-radius:8px;margin-bottom:-15px"
-                      @submit.prevent="pressed()"
+                      @submit.prevent="login()"
                     />
                   </v-form>
             
-              <v-form @submit.prevent="pressed()">
+              <v-form @submit.prevent="login()">
                   <label>Password</label>
                 <v-text-field
                   v-model="password"
                   outlined
+                  single-line
                   color="#f66c1f"
                   :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
                   :type="show ? 'text' : 'password'"
                   label="Password"
                   @click:append="show = !show"
                   style="border-radius:8px;margin-bottom:-16px"
-                  @submit.prevent="pressed()"
+                  @submit.prevent="login()"
                 />
               </v-form>
               <v-btn
                 block
                 color="#006838"
                 class="animate__animated animate__fadeInUp white--text"
-                @click="pressed"
+                @click="login"
                 x-large
                 style="border-radius:8px;font-size:14px; margin-top:-9px"
                 :loading="loading"
@@ -66,6 +69,12 @@
                 <div class="line"></div>
               </div> -->
             </v-form>
+
+            <router-link style="text-decoration:none" to="/reset-password"><p class="text-center mt-4" style="color:#FF7B00">
+              Forgot Password?
+            </p></router-link>
+
+
             <p
               class="text-center mt-6"
               style="font-size:14px;margin-bottom:0px;padding-bottom:0px"
@@ -87,8 +96,14 @@
 </template>
 
 <script>
+import axios from 'axios'
+import NavMenu from "../components/NavMenu.vue";
+
 export default {
   name: "Signup",
+  components: {
+    NavMenu,
+  },
   data() {
     return {
       loading: false,
@@ -98,43 +113,6 @@ export default {
       person: "",
       error: null,
       country: "",
-      currency: [
-        { country: "Nigeria", code: "NGN" },
-        { country: "America", code: "USD" },
-        { country: "Benin", code: "CFA" },
-        { country: "Burkina Faso", code: "CFA" },
-        { country: "Burundi", code: "BIF" },
-        { country: "Cameroon", code: "CFA" },
-        { country: "Canada", code: "CAD" },
-        { country: "Congo", code: "CDF" },
-        { country: "Cape Verde", code: "CVE" },
-        { country: "Dubai", code: "AED" },
-        { country: "Europe", code: "Euro" },
-        { country: "England", code: "GBP" },
-        { country: "Gambia", code: "GMD" },
-        { country: "Ghana", code: "GHS" },
-        { country: "Guinea", code: "GNF" },
-        { country: "Guinea Bissau", code: "CFA" },
-        { country: "Ivory Coast", code: "CFA" },
-        { country: "Kenya", code: "KES" },
-        { country: "Liberia", code: "LRD" },
-        { country: "Malawi", code: "MWK" },
-        { country: "Mali", code: "CFA" },
-        { country: "Malaysia", code: "MYR" },
-        { country: "Mozambique", code: "MZN" },
-        { country: "Niger", code: "CFA" },
-        { country: "Rwanda", code: "RWF" },
-        { country: "Sierra Leone", code: "SLL" },
-        { country: "Sao Tome", code: "STD" },
-        { country: "Saudi Arabia", code: "SAR" },
-        { country: "Senegal", code: "CFA" },
-        { country: "South Africa", code: "ZAR" },
-        { country: "Togo", code: "CFA" },
-        { country: "Uganda", code: "UGX" },
-        { country: "United States of America", code: "USD" },
-        { country: "Zambia", code: "ZMW" },
-        { country: "Zimbabwe", code: "ZWD" },
-      ],
       snackbar: false,
       timeout: 3000,
       y: "top",
@@ -156,6 +134,72 @@ export default {
   ////////
   //signing up with email and password and automatically creating user profile slug
   methods: {
+    login(){
+      this.loading = true
+    if(this.email ==""){
+           this.$swal({
+          title: "Error",
+          text: "Please enter email",
+          icon: "error",
+          confirmButtonText: "Ok",
+        })
+         this.loading = false
+      }
+      else if(this.password == ""){
+          this.$swal({
+          title: "Error",
+          text: "Please enter your password",
+          icon: "error",
+          confirmButtonText: "Ok",
+        })
+         this.loading = false
+      }
+      else{
+        axios({
+        method: "POST", 
+        url: "http://greeneratech.herokuapp.com/api/authenticate/signin",
+        data: {
+          email: this.email,
+          password: this.password,
+        },
+      }).then((response)=>{
+        console.log(response)
+        if(response.data.error.length==0){
+        //    this.$swal({
+        //   title: "Registration Successful!",
+        //   text: response.data.data.message,
+        //   icon: "success",
+        //   confirmButtonText: "Ok",
+        // });
+          this.loading = false
+          this.$router.push("/dashboard")
+        }
+
+
+        else if(response.data.error != [] || response.data.error.email != []){
+           this.$swal({
+          title: "Error",
+          text: response.data.error.email ?? response.data.error[0],
+          icon: "error",
+          confirmButtonText: "Ok",
+        });
+
+          this.loading = false
+        }
+      
+      
+      }).catch((error)=>{
+        console.log(error)
+          this.$swal({
+          title: "Error",
+          text: "The login details you entered is invalid",
+          icon: "error",
+          confirmButtonText: "Ok",
+        });
+        this.loading = false
+      })
+      }
+    }
   },
 };
 </script>

@@ -1,134 +1,162 @@
 <template>
   <v-app>
-      <NavMenu class="hidden-md-and-down"/>
-    <v-main style="margin-top:192px">
+    <NavMenu class="hidden-md-and-down" />
+    <v-main style="margin-top: 192px">
       <v-row no-gutters>
-           <v-col class="text-center hidden-md-and-down">
-          <v-img width="500px" height="460px" style="margin:auto" src="../assets/images/Sign up-amico.svg" />
-          <p style="margin:auto;width:60%;text-align:start;font-weight:700;font-size:64px;color:#828282">You are on your way to become part of the future of clean energy. </p>
+        <v-col class="text-center">
+          <v-img
+            width="500px"
+            height="460px"
+            style="margin: auto"
+            src="../assets/images/Sign up-amico.svg"
+          />
+          <p
+            class="hidden-md-and-down"
+            style="
+              margin: auto;
+              width: 60%;
+              text-align: start;
+              font-weight: 700;
+              font-size: 64px;
+              color: #828282;
+            "
+          >
+            You are on your way to become part of the future of clean energy.
+          </p>
         </v-col>
-        <v-col style="margin-top:-140px">
-             <v-card class="ma-5">
-          <v-container style="padding:10%">
-            <h1 style="font-size:48px;color:#FF7B00" class="font-weight-bold">
-              Sign up
-            </h1>
-
-            <p style="font-size:14px">
-              Enter your details correctly below, and proceed
-            </p>
-
-            <v-alert v-model="snackbar" type="error">
-              {{ error }}
-            </v-alert>
-
-            <v-form @submit.prevent="pressed()">
-
-                <v-form @submit.prevent="pressed()">
-                    <label>First Name</label>
-                    <v-text-field
-                      v-model="fName"
-                      outlined
-                      single-line
-                      label="First Name"
-                      type="text"
-                      color="#f66c1f"
-                      style="border-radius:8px;margin-bottom:-15px"
-                      @submit.prevent="pressed()"
-                    />
-                  </v-form>
-
-                <v-form @submit.prevent="pressed()">
-                    <label>Last Name</label>
-                    <v-text-field
-                      v-model="lName"
-                      outlined
-                      label="Last Name"
-                      single-line
-                      type="text"
-                      color="#f66c1f"
-                      style="border-radius:8px;margin-bottom:-15px"
-                      @submit.prevent="pressed()"
-                    />
-                  </v-form>
-            
-                  <v-form @submit.prevent="pressed()">
-                    <label>Email address</label>
-                    <v-text-field
-                      v-model="email"
-                      outlined
-                      single-line
-                      label="Email"
-                      type="text"
-                      color="#f66c1f"
-                      style="border-radius:8px;margin-bottom:-15px"
-                      @submit.prevent="pressed()"
-                    />
-                  </v-form>
-            
-              <v-form @submit.prevent="pressed()">
-                  <label>Password</label>
-                <v-text-field
-                  v-model="password"
-                  outlined
-                  single-line
-                  color="#f66c1f"
-                  :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
-                  :type="show ? 'text' : 'password'"
-                  label="Password"
-                  @click:append="show = !show"
-                  style="border-radius:8px;margin-bottom:-16px"
-                  @submit.prevent="pressed()"
-                />
-              </v-form>
-
-               <v-form @submit.prevent="pressed()">
-                  <label>Confirm Password</label>
-                <v-text-field
-                  v-model="password"
-                  outlined
-                  single-line
-                  color="#f66c1f"
-                  :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
-                  :type="show ? 'text' : 'password'"
-                  label="Password"
-                  @click:append="show = !show"
-                  style="border-radius:8px;margin-bottom:-16px"
-                  @submit.prevent="pressed()"
-                />
-              </v-form>
-
-
-              <v-btn
-                block
-                color="#FF7B00"
-                class="animate__animated animate__fadeInUp white--text"
-                @click="pressed"
-                x-large
-                style="border-radius:8px;font-size:14px; margin-top:-9px"
-                :loading="loading"
+        <v-col style="margin-top: -140px">
+          <v-card class="ma-5">
+            <v-container style="padding: 10%">
+              <h1
+                style="font-size: 48px; color: #ff7b00"
+                class="font-weight-bold"
               >
-                Proceed
-              </v-btn>
-              <!-- <div class="or">
+                Sign up
+              </h1>
+
+              <p style="font-size: 14px">
+                Enter your details correctly below, and proceed
+              </p>
+
+              <v-alert v-model="snackbar" type="error">
+                {{ error }}
+              </v-alert>
+
+              <v-form @submit.prevent="signup()">
+                <v-form @submit.prevent="signup()">
+                  <label>First Name</label>
+                  <v-text-field
+                    v-model="fName"
+                    outlined
+                    single-line
+                    label="First Name"
+                    type="text"
+                    color="#f66c1f"
+                    style="border-radius: 8px; margin-bottom: -15px"
+                    @submit.prevent="signup()"
+                  />
+                </v-form>
+
+                <v-form @submit.prevent="signup()">
+                  <label>Last Name</label>
+                  <v-text-field
+                    v-model="lName"
+                    outlined
+                    label="Last Name"
+                    single-line
+                    type="text"
+                    color="#f66c1f"
+                    style="border-radius: 8px; margin-bottom: -15px"
+                    @submit.prevent="signup()"
+                  />
+                </v-form>
+
+                <v-form @submit.prevent="signup()">
+                  <label>Email address</label>
+                  <v-text-field
+                    v-model="email"
+                    outlined
+                    single-line
+                    label="Email"
+                    type="email"
+                    color="#f66c1f"
+                    style="border-radius: 8px; margin-bottom: -15px"
+                    @submit.prevent="signup()"
+                  />
+                </v-form>
+
+                <v-form @submit.prevent="signup()">
+                  <label>Password</label>
+                  <v-text-field
+                    v-model="password"
+                    outlined
+                    single-line
+                    color="#f66c1f"
+                    :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+                    :type="show ? 'text' : 'password'"
+                    label="Password"
+                    @click:append="show = !show"
+                    style="border-radius: 8px; margin-bottom: -16px"
+                    @submit.prevent="signup()"
+                  />
+                </v-form>
+
+                <v-form @submit.prevent="signup()">
+                  <label>Confirm Password</label>
+                  <v-text-field
+                    v-model="confirmPassword"
+                    outlined
+                    single-line
+                    color="#f66c1f"
+                    :append-icon="showConfirm ? 'mdi-eye' : 'mdi-eye-off'"
+                    :type="showConfirm ? 'text' : 'password'"
+                    label="Password"
+                    @click:append="showConfirm = !showConfirm"
+                    style="border-radius: 8px; margin-bottom: -16px"
+                    @submit.prevent="signup()"
+                  />
+                </v-form>
+
+                <v-btn
+                  block
+                  color="#FF7B00"
+                  class="animate__animated animate__fadeInUp white--text"
+                  @click="signup"
+                  x-large
+                  style="border-radius: 8px; font-size: 14px; margin-top: -9px"
+                  :loading="loading"
+                >
+                  Sign up
+                </v-btn>
+                <!-- <div class="or">
                 <h2 class="orText">OR</h2>
                 <div class="line"></div>
               </div> -->
-            </v-form>
-            <p
-              class="text-center mt-6"
-              style="font-size:14px;margin-bottom:0px;padding-bottom:0px"
-              to="/login"
-            >
-              Already have an account? <router-link style="text-decoration:none;color:#199958" to="/login">Sign in</router-link>
-            </p>
-            <v-btn outlined to="/login" large style="color:#199958;border-radius:12px;margin-top:10px" block color="#FF7B00">
-            Sign in
-
-            </v-btn>
-
-          </v-container>
-             </v-card>
+              </v-form>
+              <p
+                class="text-center mt-6"
+                style="font-size: 14px; margin-bottom: 0px; padding-bottom: 0px"
+                to="/login"
+              >
+                Already have an account?
+                <router-link
+                  style="text-decoration: none; color: #199958"
+                  to="/login"
+                  >Sign in</router-link
+                >
+              </p>
+              <v-btn
+                outlined
+                to="/login"
+                large
+                style="color: #199958; border-radius: 12px; margin-top: 10px"
+                block
+                color="#FF7B00"
+              >
+                Sign in
+              </v-btn>
+            </v-container>
+          </v-card>
         </v-col>
       </v-row>
     </v-main>
@@ -136,21 +164,23 @@
 </template>
 
 <script>
-import NavMenu from "../components/NavMenu.vue"
+import NavMenu from "../components/NavMenu.vue";
+import axios from "axios";
 
 export default {
   name: "Signup",
-  components:{
-    NavMenu
+  components: {
+    NavMenu,
   },
   data() {
     return {
       loading: false,
-      fName:"",
-      lName:"",
+      fName: "",
+      lName: "",
       email: "",
       displayName: "",
       password: "",
+      confirmPassword: "",
       person: "",
       error: null,
       country: "",
@@ -158,6 +188,7 @@ export default {
       timeout: 3000,
       y: "top",
       show: false,
+      showConfirm:false,
       slug: "",
       rules: {
         required: (value) => !!value || "Required.",
@@ -169,12 +200,97 @@ export default {
     window.scrollTo(0, 0);
   },
   // Signing in with social media accounts
-  mounted() {
-  },
-  //signing with social media ends
-  ////////
-  //signing up with email and password and automatically creating user profile slug
+  mounted() {},
   methods: {
+    signup() {
+      this.loading = true
+      if(this.fName == ""){
+         this.$swal({
+          title: "Error",
+          text: "Please enter your first Name",
+          icon: "error",
+          confirmButtonText: "Ok",
+        })
+         this.loading = false
+      }
+      else if(this.lName == ""){
+          this.$swal({
+          title: "Error",
+          text: "Please enter your last name",
+          icon: "error",
+          confirmButtonText: "Ok",
+        })
+         this.loading = false
+      }
+
+      else if(this.email ==""){
+           this.$swal({
+          title: "Error",
+          text: "Please enter email",
+          icon: "error",
+          confirmButtonText: "Ok",
+        })
+         this.loading = false
+      }
+      else if(this.password == ""){
+          this.$swal({
+          title: "Error",
+          text: "Please enter your password",
+          icon: "error",
+          confirmButtonText: "Ok",
+        })
+         this.loading = false
+      }
+
+      else if(this.confirmPassword != this.password){
+         this.$swal({
+          title: "Error",
+          text: "Please confirm your password",
+          icon: "error",
+          confirmButtonText: "Ok",
+        })
+         this.loading = false
+      }
+
+      else{
+        axios({
+        method: "POST",
+        url: "http://greeneratech.herokuapp.com/api/authenticate/signup",
+        data: {
+          firstName: this.fName,
+          lastName: this.lName,
+          password: this.password,
+          email: this.email,
+          password_confirmation: this.confirmPassword,
+        },
+      }).then((response)=>{
+        if(response.data.error.length==0){
+           this.$swal({
+          title: "Registration Successful!",
+          text: response.data.data.message,
+          icon: "success",
+          confirmButtonText: "Ok",
+        });
+          this.loading = false
+        }
+
+
+        else if(response.data.error != [] || response.data.error.email != []){
+           this.$swal({
+          title: "Error",
+          text: response.data.error.email ?? response.data.error[0],
+          icon: "error",
+          confirmButtonText: "Ok",
+        });
+
+          this.loading = false
+        }
+      
+      
+      })
+      }
+      
+    },
   },
 };
 </script>

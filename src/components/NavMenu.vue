@@ -1,9 +1,11 @@
 <template>
   <v-card flat color="#E5E5E5">
-    <div class="d-flex  ma-4 mx-9">
+    <div class="d-flex justify-space-around  ma-4 mx-9">
     <div class="mr-">
     <div>
+      <a href="/">
         <img src="../assets/images/Rectangle (3).png" />
+        </a>
     </div>
     </div>
     <div class="d-flex justify-center mt-5">

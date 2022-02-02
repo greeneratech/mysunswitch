@@ -1,7 +1,7 @@
 <template>
   <v-app>
-    <NavMenu class="hidden-md-and-down" />
-    <v-main style="margin-top: 192px">
+    <NavMenu />
+    <v-main style="margin-top: 2px">
       <v-row no-gutters>
         <v-col class="text-center">
           <v-img
@@ -11,20 +11,19 @@
             src="../assets/images/Sign up-amico.svg"
           />
           <p
-            class="hidden-md-and-down"
             style="
               margin: auto;
-              width: 60%;
+              width: 70%;
               text-align: start;
               font-weight: 700;
-              font-size: 64px;
+              font-size: 30px;
               color: #828282;
             "
           >
             You are on your way to become part of the future of clean energy.
           </p>
         </v-col>
-        <v-col style="margin-top: -140px">
+        <v-col >
           <v-card class="ma-5">
             <v-container style="padding: 10%">
               <h1
@@ -255,7 +254,7 @@ export default {
       else{
         axios({
         method: "POST",
-        url: "http://greeneratech.herokuapp.com/api/authenticate/signup",
+        url: "https://greeneratech.herokuapp.com/api/authenticate/signup",
         data: {
           firstName: this.fName,
           lastName: this.lName,

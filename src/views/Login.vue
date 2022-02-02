@@ -1,14 +1,14 @@
 <template>
   <v-app>
-    <NavMenu class="hidden-md-and-down" />
-    <v-main style="margin-top:192px">
-      <v-row no-gutters>
-           <v-col class="text-center">
+    <NavMenu/>
+    <v-main>
+      <v-row no-gutters style="margin-top:90px">
+           <v-col class="hidden-md-and-down text-center">
           <v-img width="463px" height="343px" style="margin:auto" src="../assets/images/Mobile login-rafiki.svg" />
           <h2 class="hidden-md-and-down" style="font-size:64px;color:#199958">Welcome Back </h2>
         </v-col>
-        <v-col style="margin-top:-140px">
-             <v-card class="ma-5">
+        <v-col>
+             <v-card style="margin:auto;max-width:500px" class="ma-auto">
           <v-container style="padding:10%">
             <h1 style="font-size:48px" class="font-weight-bold">
               Sign in

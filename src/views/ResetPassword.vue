@@ -1,21 +1,23 @@
 <template>
   <v-app>
-    <NavMenu class="hidden-md-and-down" />
+    <NavMenu/>
     <v-main>
+      <v-row style="margin-top:20px">
+      <v-col class="text-center">
+      <v-img  style="margin:auto;width:100%" class="hidden-lg-and-up" src="../assets/images/Forgot password-amico.svg" />
+      <v-img  style="margin:auto;width:60%" class="hidden-md-and-down" src="../assets/images/Forgot password-amico.svg" />
+      <h2 style="font-size:34px">Lost Password?</h2>
+      <p style="color:#FFA710">Don’t worry, we’ll help you reset it</p>
+      </v-col>
+      <v-col>
       <v-container>
-            <v-card style="border-radius:20px;max-width:500px;margin:4% auto 10% auto;">
+            <v-card >
             <v-row no-gutters>
                 <v-col style="padding:10%">
-                <v-btn width="5%" text @click="goBack()">
+                <v-btn class="mb-6" width="5%" text @click="goBack()">
                 <v-icon class="mr-2">mdi-arrow-left</v-icon>
                 Back
                 </v-btn>
-                  <p
-                    class="font-weight-black my-6"
-                    style="text-align:left; font-size:40px"
-                  >
-                   Reset Password
-                  </p>
                   <p style="font-size:16px; text-align:left; margin-top:-20px">
                     Enter the email associated with your Greenera account:
                   </p>
@@ -47,6 +49,21 @@
                     >
                       Send Email
                     </v-btn>
+                      <p
+              class="text-center mt-6"
+              style="font-size:14px;margin-bottom:0px;padding-bottom:0px"
+              to="/login"
+            >
+              Don't have an account? <router-link style="text-decoration:none;color:#FF7B00" to="/signup">Create Account</router-link>
+            </p>
+            <v-btn outlined large to="/signup" style="border-radius:12px;margin-top:10px" block color="#FF7B00">
+             Create Account
+
+            </v-btn>
+
+
+
+
                   <v-dialog v-model="success" width="500px" height="500px" :timeout="timeout">
                   <v-card color="#2d860f" style="margin:auto" class="pa-7 text-center">
                   <v-icon size="100px" color="white" fab>mdi-email-check</v-icon>
@@ -75,6 +92,8 @@
               </v-row>
             </v-card>
       </v-container>
+      </v-col>
+      </v-row>
     </v-main>
   </v-app>
 </template>

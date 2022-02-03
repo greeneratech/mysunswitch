@@ -3,7 +3,9 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Signup from "../views/Signup.vue"
+import Dashboard from "../views/Dashboard.vue"
 import ResetPassword from "../views/ResetPassword.vue"
+import Error from "../views/Error.vue"
 
 Vue.use(VueRouter)
 
@@ -24,9 +26,19 @@ const routes = [
     component: Login
   },
   {
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: Dashboard
+  },
+  {
     path: '/reset-password',
     name: 'ResetPassword',
     component: ResetPassword
+  },
+  {
+    path: '/:id',
+    name: 'Error',
+    component: Error
   }
 ]
 

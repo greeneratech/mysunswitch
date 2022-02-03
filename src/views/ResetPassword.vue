@@ -2,7 +2,7 @@
   <v-app>
     <NavMenu/>
     <v-main>
-      <v-row style="margin-top:20px">
+      <v-row style="margin-top:20px" class="noSide">
       <v-col class="text-center">
       <v-img  style="margin:auto;width:100%" class="hidden-lg-and-up" src="../assets/images/Forgot password-amico.svg" />
       <v-img  style="margin:auto;width:60%" class="hidden-md-and-down" src="../assets/images/Forgot password-amico.svg" />
@@ -11,7 +11,7 @@
       </v-col>
       <v-col>
       <v-container>
-            <v-card >
+            <v-card stylee="border-radius:20px">
             <v-row no-gutters>
                 <v-col style="padding:10%">
                 <v-btn class="mb-6" width="5%" text @click="goBack()">
@@ -145,7 +145,7 @@ export default {
       else{
         axios({
         method: "POST", 
-        url: "http://greeneratech.herokuapp.com/api/password/email",
+        url: "https://greeneratech.herokuapp.com/api/password/email",
         data: {
           email: this.email,
         },

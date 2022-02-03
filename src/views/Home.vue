@@ -77,6 +77,10 @@ export default {
     margin:auto auto 40px auto
   }
 
+   .welcomeBack{
+    font-size:64px
+  }
+
   .statistics{
     margin-top:180px;
     width:50%;
@@ -115,7 +119,7 @@ export default {
     font-weight:800;
     font-size:47px;
     width:80%;
-     margin:-400px auto 0px auto;
+     margin:-100px auto 0px auto;
   }
   .buySolar{
     font-size:20px;
@@ -133,7 +137,11 @@ export default {
     height:170px;
     width:170px;
   }
+  .noSide{
+    display:block
+  }
 }
+
 
 /* On screens that are 600px wide or less, make the columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
@@ -153,13 +161,18 @@ export default {
   .dashboard{
     width:90%
   }
+
+   .welcomeBack{
+    font-size:30px
+  }
+
   .sunshine{
     color:#FF7B00;
     font-weight:800;
     font-size:40px;
     width:100%;
     padding:20px;
-    margin:-400px auto 0px auto;
+    margin:0px auto 0px auto;
   }
   .buySolar{
     font-size:20px;
@@ -182,6 +195,9 @@ export default {
   }
   .hideLine{
     display:none
+  }
+  .welcomeBack{
+    font-size:30px
   }
 
    .statistics{

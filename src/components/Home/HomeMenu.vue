@@ -57,10 +57,10 @@
             <v-list-item-title>About Us</v-list-item-title>
           </v-list-item>
           <v-list-item>
-            <v-btn color="#f66c1f">Sign up</v-btn>
+            <v-btn color="#f66c1f" to="/signup">Sign up</v-btn>
           </v-list-item>
             <v-list-item>
-            <v-btn color="#006838" class="white--text">Sign in</v-btn>
+            <v-btn color="#006838" class="white--text" to="/login">Sign in</v-btn>
           </v-list-item>
         </v-list-item-group>
       </v-list>

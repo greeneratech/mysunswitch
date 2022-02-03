@@ -54,42 +54,39 @@
 
         <v-main style="margin-top:90px" class="hidden-lg-and-up mx-auto">
             <div class="text-center mb-9">
-             <p style="font-size:30px" class="white--text font-weight-bold">SERVICES</p>
-              <p style="font-size:30px" class="white--text font-weight-bold">PROJECTS</p>
-               <p style="font-size:30px" class="white--text font-weight-bold">ABOUT US</p>
-                <p style="font-size:30px" class="white--text font-weight-bold">T'S & C'S</p>
+             <p style="font-size:20px" class="white--text font-weight-bold">SERVICES</p>
+              <p style="font-size:20px" class="white--text font-weight-bold">PROJECTS</p>
+               <p style="font-size:20px" class="white--text font-weight-bold">ABOUT US</p>
+                <p style="font-size:20px" class="white--text font-weight-bold">T'S & C'S</p>
                 </div>
                  <hr/>
             <div style="text-align:center;padding:30px;margin:auto">
-                <v-btn x-large icon class="mr-15">
-                <v-icon x-large class="white--text">mdi-twitter</v-icon>
+                <v-btn  icon>
+                <v-icon class="white--text">mdi-twitter</v-icon>
                 </v-btn>
 
-                <v-btn x-large icon class="mr-15">
-                <v-icon x-large class="white--text">mdi-instagram</v-icon>
+                <v-btn  icon>
+                <v-icon class="white--text">mdi-instagram</v-icon>
                 </v-btn>
 
-                <v-btn x-large icon class="mr-15">
-                <v-icon x-large class="white--text">mdi-linkedin</v-icon>
+                <v-btn  icon>
+                <v-icon class="white--text">mdi-linkedin</v-icon>
                 </v-btn>
-                <v-btn x-large icon class="mr-15">
-                <v-icon x-large class="white--text">mdi-facebook</v-icon>
+                <v-btn icon>
+                <v-icon class="white--text">mdi-facebook</v-icon>
                 </v-btn>
                 </div>
 
                 <div class="text-center">
-                <h2 class="text-xl white--text mb-3"><v-icon x-large class="white--text">mdi-phone</v-icon> +234 703 377 1639, +234 816 553 3706</h2>
+                <p class="white--text mb-3"><v-icon class="white--text">mdi-phone</v-icon> +234 703 377 1639, +234 816 553 3706</p>
 
-                 <h2 class="white--text"><v-icon x-large class="white--text">mdi-email</v-icon> greeneratech@gmail.com</h2>
+                 <p class="white--text"><v-icon class="white--text">mdi-email</v-icon> greeneratech@gmail.com</p>
             </div>
-            <div style="padding:20px;margin:0px 00px 0px 0px;position:absolute;background:white;bottom:0;width:100%">
-                <div style="margin:auto;width:10%">
+            <div class="hidden-md-and-up" style="padding:20px;margin:0px 00px 0px 0px;position:absolute;background:white;bottom:0;width:100%">
+                <div style="margin:auto;width:20%">
                 <img  src="../../assets/images/Rectangle (3).png"/>
                 </div>
             </div>
-            <v-main>
-                
-            </v-main>
         </v-main>
     </v-app>
 </template>

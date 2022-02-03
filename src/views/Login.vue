@@ -1,14 +1,14 @@
 <template>
   <v-app>
     <NavMenu/>
-    <v-main>
-      <v-row no-gutters style="margin-top:90px">
-           <v-col class="hidden-md-and-down text-center">
+    <v-main class="mb-12">
+      <v-row class="noSide" no-gutters style="margin-top:90px">
+           <v-col class="text-center">
           <v-img width="463px" height="343px" style="margin:auto" src="../assets/images/Mobile login-rafiki.svg" />
-          <h2 class="hidden-md-and-down" style="font-size:64px;color:#199958">Welcome Back </h2>
+          <h2 class="welcomeBack" style="color:#199958">Welcome Back </h2>
         </v-col>
         <v-col>
-             <v-card style="margin:auto;max-width:500px" class="ma-auto">
+             <v-card style="margin:auto;max-width:500px;border-radius:20px" class="ma-auto">
           <v-container style="padding:10%">
             <h1 style="font-size:48px" class="font-weight-bold">
               Sign in
@@ -157,7 +157,7 @@ export default {
       else{
         axios({
         method: "POST", 
-        url: "http://greeneratech.herokuapp.com/api/authenticate/signin",
+        url: "https://greeneratech.herokuapp.com/api/authenticate/signin",
         data: {
           email: this.email,
           password: this.password,
@@ -203,43 +203,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.or {
-  text-align: center;
-}
-.line {
-  height: 1px;
-  background: black;
-}
-.orText {
-  position: relative;
-  top: 10px;
-  color: black;
-  font-size: 13px;
-  background: white;
-  display: inline-block;
-  padding: 0 20px;
-  border-radius: 30px;
-}
-.floating {
-  animation-name: floating;
-  animation-duration: 3s;
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
-  margin-left: 30px;
-  margin-top: 5px;
-  color: white;
-}
-@keyframes floating {
-  0% {
-    transform: translate(0, 0px);
-  }
-  50% {
-    transform: translate(0, 15px);
-  }
-  100% {
-    transform: translate(0, -0px);
-  }
-}
-</style>

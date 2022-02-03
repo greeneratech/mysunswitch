@@ -2,7 +2,7 @@
   <v-app>
     <NavMenu />
     <v-main style="margin-top: 2px">
-      <v-row no-gutters>
+      <v-row no-gutters class="noSide">
         <v-col class="text-center">
           <v-img
             width="500px"

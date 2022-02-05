@@ -163,7 +163,7 @@ export default {
       else{
         axios({
         method: "POST", 
-        url: "http://greeneratech.herokuapp.com/api/authenticate/signin",
+        url: "https://greeneratech.herokuapp.com/api/authenticate/signin",
         data: {
           email: this.email,
           password: this.password,

@@ -24,7 +24,7 @@
           </p>
         </v-col>
         <v-col >
-          <v-card class="ma-5">
+          <v-card class="ma-5" style="border-radius:20px">
             <v-container style="padding: 10%">
               <h1
                 style="font-size: 48px; color: #ff7b00"

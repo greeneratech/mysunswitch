@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <NavMenu/>
-    <v-main>
+    <v-main class="pa-4">
       <v-row style="margin-top:20px" class="noSide">
       <v-col class="text-center">
       <v-img  style="margin:auto;width:100%" class="hidden-lg-and-up" src="../assets/images/Forgot password-amico.svg" />
@@ -11,7 +11,7 @@
       </v-col>
       <v-col>
       <v-container>
-            <v-card stylee="border-radius:20px">
+            <v-card style="border-radius:20px">
             <v-row no-gutters>
                 <v-col style="padding:10%">
                 <v-btn class="mb-6" width="5%" text @click="goBack()">
@@ -24,12 +24,12 @@
                   <v-form ref="form" v-model="valid" :lazy-validation="lazy">
                     <v-text-field
                       v-model="email"
-                      color="black"
+                      color="#2d860f"
                       :rules="emailRules"
                       label="Email Address"
                       required
                       outlined
-                      style="height:67px;border-radius:8px"
+                      style="height:65px;border-radius:8px"
                       
                     />
                   </v-form>

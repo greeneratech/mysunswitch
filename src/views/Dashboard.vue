@@ -10,19 +10,23 @@
       <v-col lg=8 md=8 class="mx-auto">
       <h1>Hi, {{name}}</h1>
       <p>The sun is up, the rest is up to you </p>
+       <div class="dashboardCard"> 
+        <div class="cardColumn">
           <v-card class="pa-7 gradient mb-7">
               <p class="white--text">Wallet Balance </p>
              <h2 class="walletBalance"> NGN {{walletBalance}}</h2>
           </v-card>
-
+        </div>
+        <div class="cardColumn">
           <v-card class="pa-7" style="border-radius:10px" color="#199958">
               <p class="white--text">CAP POINTS </p>
              <h2 class="walletBalance d-flex justify-space-between">
                  <span>{{capBalance}}</span>
                  <span>CAPS</span>
-
                  </h2>
           </v-card>
+          </div>
+          </div>
 
           <div class="mt-7 d-flex overflow-x-auto">
               <v-btn color="#006838" class="mr-3 white--text radius6" x-large>

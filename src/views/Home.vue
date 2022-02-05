@@ -38,6 +38,14 @@ export default {
 
 
 @media screen and (min-width: 993px) {
+  .dashboardCard{
+    display:flex
+  }
+
+  .cardColumn{
+    margin:0px 30px 0px 0px;
+    width:50%
+  }
   .loginCard{
     display:flex
   }

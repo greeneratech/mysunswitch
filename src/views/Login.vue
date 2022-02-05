@@ -98,6 +98,7 @@
 <script>
 import axios from 'axios'
 import NavMenu from "../components/NavMenu.vue";
+import {mapState} from "vuex"
 
 export default {
   name: "Signup",
@@ -123,6 +124,11 @@ export default {
         emailMatch: () => "The email and password you entered don't match",
       },
     };
+  },
+  computed:{
+    ...mapState({
+      user:"user"
+    })
   },
   created() {
     window.scrollTo(0, 0);
@@ -157,7 +163,7 @@ export default {
       else{
         axios({
         method: "POST", 
-        url: "https://greeneratech.herokuapp.com/api/authenticate/signin",
+        url: "http://greeneratech.herokuapp.com/api/authenticate/signin",
         data: {
           email: this.email,
           password: this.password,
@@ -173,6 +179,8 @@ export default {
         // });
           this.loading = false
           this.$router.push("/dashboard")
+          console.log(response.data)
+          this.store.dispatch("fetchUser",response.data)
         }
 
 

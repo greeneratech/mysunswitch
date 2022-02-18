@@ -8,20 +8,20 @@
       </v-col>
 
       <v-col lg=8 md=8 class="mx-auto">
-      <h1>Hi, {{name}}</h1>
+      <h1>Hi, {{user.firstName}}</h1>
       <p>The sun is up, the rest is up to you </p>
        <div class="dashboardCard"> 
         <div class="cardColumn">
           <v-card class="pa-7 gradient mb-7">
               <p class="white--text">Wallet Balance </p>
-             <h2 class="walletBalance"> NGN {{walletBalance}}</h2>
+             <h2 class="walletBalance"> {{user.currency}} {{user.accountBalance}}</h2>
           </v-card>
         </div>
         <div class="cardColumn">
           <v-card class="pa-7" style="border-radius:10px" color="#199958">
               <p class="white--text">CAP POINTS </p>
              <h2 class="walletBalance d-flex justify-space-between">
-                 <span>{{capBalance}}</span>
+                 <span>{{user.capPoint}}</span>
                  <span>CAPS</span>
                  </h2>
           </v-card>
@@ -82,6 +82,7 @@
 <script>
 import SideNav from '../components/SideNav.vue'
 import UserMenu from '../components/UserMenu.vue'
+import {mapState} from "vuex"
 
 export default {
     components:{
@@ -90,7 +91,6 @@ export default {
     },
     data(){
         return{
-           name:"Emeka",
            walletBalance:0,
            url:window.location.pathname.slice(1),
            capBalance:0,
@@ -98,14 +98,17 @@ export default {
            startDate:"17/05/2021",
            endDate:"17/06/2021",
            drawer: false,
-        items: [
-          { title: 'Home', icon: 'mdi-home-city' },
-          { title: 'My Account', icon: 'mdi-account' },
-          { title: 'Users', icon: 'mdi-account-group-outline' },
-        ],
         mini: false,
         }
     },
+    computed:{
+        ...mapState({
+            user:"user"
+        })
+    },
+    created(){
+        this.$store.dispatch("fetchUser")
+    }
 
 }
 

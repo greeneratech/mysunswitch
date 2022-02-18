@@ -180,11 +180,11 @@ export default {
           this.loading = false
           this.$router.push("/dashboard")
           console.log(response.data)
-          this.store.dispatch("fetchUser",response.data)
+          this.$store.dispatch("fetchUser",response.data)
         }
 
 
-        else if(response.data.error != [] || response.data.error.email != []){
+        else if(response.data.error.length == 0 || response.data.error.email != []){
            this.$swal({
           title: "Error",
           text: response.data.error.email ?? response.data.error[0],

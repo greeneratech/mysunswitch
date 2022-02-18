@@ -21,7 +21,7 @@
                   <p style="font-size:16px; text-align:left; margin-top:-20px">
                     Enter the email associated with your Greenera account:
                   </p>
-                  <v-form ref="form" v-model="valid" :lazy-validation="lazy">
+                  <v-form ref="form" v-model="valid" @submit.prevent="resetPassword" :lazy-validation="lazy">
                     <v-text-field
                       v-model="email"
                       color="#2d860f"

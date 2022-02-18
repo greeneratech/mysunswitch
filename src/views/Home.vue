@@ -46,6 +46,12 @@ export default {
     margin:0px 30px 0px 0px;
     width:50%
   }
+
+  .profileButtons{
+    padding:0px 50px 0px 50px
+  }
+
+
   .loginCard{
     display:flex
   }
@@ -149,6 +155,12 @@ export default {
     display:block
   }
 }
+
+input[type=text]:focus{
+   outline:none;
+   border:none
+}
+
 
 
 /* On screens that are 600px wide or less, make the columns stack on top of each other instead of next to each other */

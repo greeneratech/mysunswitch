@@ -8,7 +8,7 @@
           :key="item.title"
           active-class="activeLink"
         >
-        <v-card :to="'/'+item.link" class="d-flex pa-1 px-3 mt-4" width="200px" >
+        <v-card :href="item.link" class="d-flex pa-1 px-3 mt-4" width="200px" >
           <v-list-item-icon>
             <v-icon :color="url == item.class ? '#FF7B00':'#006838'">{{ item.icon }}</v-icon>
           </v-list-item-icon>
@@ -32,11 +32,11 @@ export default {
         return{
         drawer: false,
         items: [
-          { title: 'Home', icon: 'mdi-home',link:'/dashboard',class:"dashboard" },
-          { title: 'Profile', icon: 'mdi-account',link:'/profile',class:"profile" },
-          { title: 'Projects', icon: 'mdi-lightning-bolt-outline',link:'/projects',class:"projects" },
-          { title: 'Balance', icon: 'mdi-cash', link:'/wallet', class:"balance"},
-          { title: 'History', icon: 'mdi-history', link:'/history',class:"history" },
+          { title: 'Home', icon: 'mdi-home',link:'dashboard',class:"dashboard" },
+          { title: 'Profile', icon: 'mdi-account',link:'profile',class:"profile" },
+          { title: 'Projects', icon: 'mdi-lightning-bolt-outline',link:'projects',class:"projects" },
+          { title: 'Balance', icon: 'mdi-cash', link:'wallet', class:"balance"},
+          { title: 'History', icon: 'mdi-history', link:'history',class:"history" },
         ],
         mini: false,
         }

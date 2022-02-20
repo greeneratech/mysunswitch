@@ -4,6 +4,62 @@
   </div>
 </template>
 
+
+
+
+<script>
+import { unslugify } from "unslugify"
+export default {
+  name: 'App',
+  components: {
+  },
+  data: () => ({
+    //
+  }),
+  computed:{
+   pageTitle() {
+      return unslugify(this.$route.params.id);
+    },
+  },
+ metaInfo() {
+    return {
+      title: this.pageTitle,
+      titleTemplate: "%s | Greenera",
+      meta: [
+        {
+          name: "description",
+          content:
+            "Invest in Solar energy devices"
+        },
+        {
+          property: "og:title",
+          content:this.pageTitle + "| Greenera"
+        },
+        { property: "og:site_name", content: "Greenera" },
+        {
+          property: "og:description",
+          content:
+            "Invest in Solar energy devices"
+        },
+        { property: "og:type", content: "profile" },
+        {
+          property: "og:url",
+          content: "https://greeneratech.com"
+        },
+        { property: "og:image", content: "" }
+      ]
+    };
+  },
+  created() {
+    if (JSON.parse(localStorage.getItem('nightmode')) == true){
+       this.$vuetify.theme.dark = true
+    } else{
+       this.$vuetify.theme.dark = false
+    }
+  }
+};
+</script>
+
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

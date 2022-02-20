@@ -6,6 +6,8 @@ import Signup from "../views/Signup.vue"
 import Dashboard from "../views/Dashboard.vue"
 import ResetPassword from "../views/ResetPassword.vue"
 import Profile from "../views/Profile.vue"
+import Balance from "../views/Balance.vue"
+import Projects from "../views/Projects.vue"
 import Error from "../views/Error.vue"
 
 Vue.use(VueRouter)
@@ -40,6 +42,16 @@ const routes = [
     path: '/reset-password',
     name: 'ResetPassword',
     component: ResetPassword
+  },
+  {
+    path: '/wallet',
+    name: 'Balance',
+    component: Balance
+  },
+  {
+    path: '/projects',
+    name: 'Projects',
+    component: Projects
   },
   {
     path: '/:id',

@@ -42,9 +42,58 @@ export default {
     display:flex
   }
 
+  .rightSpace{   
+    margin:0px 30px 0px 0px
+  }
+
+  .cardHeight{
+    height:264px;
+    margin:0px 0px 20px 0px
+  }
+
+  .balanceBalance{
+    padding:0px !important;
+    margin:0px !important;
+    font-size:60px !important;
+    color:white
+  }
+
+  .balanceName{
+    padding-top:20px;
+    font-size: 25px !important;
+    color:white
+  }
+
+   .capHeight{
+    height:148px;
+    margin:0px 0px 30px 0px
+  }
+
+
+
   .cardColumn{
     margin:0px 30px 0px 0px;
     width:50%
+  }
+
+  .capColumn{
+    margin:0px 30px 0px 0px;
+    width:59%
+  }
+
+   .moneyColumn{
+    margin:0px 30px 0px 0px;
+    width:41%
+  }
+
+  .projectColumn{
+    margin:0px 30px 0px 0px;
+    width:61%
+  }
+
+    .upcomingColumn{
+    margin:0px 60px 0px 60px;
+    width:34%
   }
 
   .profileButtons{
@@ -156,10 +205,40 @@ export default {
   }
 }
 
+  .capText{
+    padding:0px !important;
+    margin:0px !important;
+    font-size:12px !important;
+    color:white !important
+  }
+  .walletValue{
+    padding:0px !important;
+    margin:0px !important;
+  }
+
+  .capValue{
+    color:white;
+    font-size:19px
+  }
+
+ .balanceName{
+    font-size: 15px;
+    color:white;
+    padding:0px;
+    margin:0px;
+  }
+
 input[type=text]:focus{
    outline:none;
    border:none
 }
+
+.balanceBalance{
+    font-size:35px;
+    color:white;
+    padding:0px !important;
+    margin:0px !important;
+  }
 
 
 
@@ -180,6 +259,16 @@ input[type=text]:focus{
   }
   .dashboard{
     width:90%
+  }
+
+   .cardHeight{
+    height:152px;
+    margin:0px 0px 19px 0px
+  }
+
+   .capHeight{
+    height:88px;
+    margin:0px 0px 19px 0px
   }
 
    .welcomeBack{
@@ -218,6 +307,14 @@ input[type=text]:focus{
   }
   .welcomeBack{
     font-size:30px
+  }
+
+   .cardHeight{
+    height:152px
+  }
+
+  .capHeight{
+    height:88px
   }
 
    .statistics{

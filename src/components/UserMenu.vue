@@ -4,7 +4,8 @@
     <div>
     <div>
       <a href="/">
-        <img src="../assets/images/Rectangle (3).png" />
+        <img height="69px"
+          width="69px" src="../assets/images/Greenera_logo_svg.svg" />
         </a>
     </div>
     </div>

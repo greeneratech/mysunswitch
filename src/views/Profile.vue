@@ -122,6 +122,7 @@
                     class="my-7 white--text"
                     x-large
                     block
+                    :loading="loading"
                     >Save Changes</v-btn
                   >
                 </v-form>
@@ -181,6 +182,7 @@
 import UserMenu from "../components/UserMenu.vue";
 import SideNav from "../components/SideNav.vue";
 import { mapState } from "vuex";
+import axios from "axios"
 
 export default {
   data() {
@@ -191,6 +193,7 @@ export default {
       email: "",
       phone: "",
       location: "",
+      loading:false
     };
   },
   computed: {
@@ -209,6 +212,30 @@ export default {
     goBack() {
       this.$router.go(-1);
     },
+    updateProfile(){
+      this.loading = true
+      axios({
+        method: "POST", 
+        url: "http://greeneratech.herokuapp.com/api/user/update",
+        data: {
+          firstName: this.user.firstName,
+          lastName: this.user.lastName,
+          email:this.user.email,
+          phoneNumber:this.user.phone,
+          location:this.user.location,
+          photo:"https://i.ibb.co/PD6B8zm/pngkey-com-avatar-png-1150152.png"
+        },
+        headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}` 
+        }
+      }).then((response)=>{
+       console.log(response)
+       this.loading = false
+      }).catch((error)=>{
+        this.loading = false
+        console.log(error)
+      })
+    }
   },
 };
 </script>

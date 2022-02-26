@@ -84,7 +84,7 @@
             </div>
             <div class="hidden-md-and-up" style="padding:20px;margin:0px 00px 0px 0px;position:absolute;background:white;bottom:0;width:100%">
                 <div style="margin:auto;width:20%">
-                <img  src="../../assets/images/Rectangle (3).png"/>
+                <img  src="../../assets/images/Greenera_logo_svg.svg"/>
                 </div>
             </div>
         </v-main>

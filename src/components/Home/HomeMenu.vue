@@ -7,7 +7,7 @@
           style="margin-left:14.6px"
           height="69px"
           width="69px"
-          src="../../assets/images/Rectangle (3).png"
+          src="../../assets/images/Greenera_logo_svg.svg"
         />
         </a>
       </div>

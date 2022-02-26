@@ -39,7 +39,7 @@
                   Deposit
               </v-btn>
 
-               <v-btn color="#FF7B00" class="radius6" x-large>
+               <v-btn @click="refresh" color="#FF7B00" class="radius6" x-large>
                    <v-icon>mdi-sync</v-icon>
                   Refresh
               </v-btn>
@@ -108,6 +108,12 @@ export default {
     },
     created(){
         this.$store.dispatch("fetchUser")
+    },
+    methods:{
+       refresh(){
+           alert('page refreshed')
+           this.$store.dispatch("fetchUser")
+       }
     }
 
 }

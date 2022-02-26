@@ -163,7 +163,7 @@ export default {
       else{
         axios({
         method: "POST", 
-        url: "https://greeneratech.herokuapp.com/api/authenticate/signin",
+        url: "http://greeneratech.herokuapp.com/api/authenticate/signin",
         data: {
           email: this.email,
           password: this.password,
@@ -181,6 +181,7 @@ export default {
           this.$router.push("/dashboard")
           console.log(response.data)
           this.$store.dispatch("fetchUser",response.data)
+          localStorage.setItem('token',response.data.token)
         }
 
 

@@ -3,46 +3,56 @@
          <UserMenu />
       <v-main class="pa-8 mb-8">
       <v-row no-gutters>
-      <v-col class="hidden-md-and-down" lg=3 md=3 >
+      <v-col class="hidden-md-and-down" lg=2 md=2 >
       <SideNav :url="url"/>
       </v-col>
 
-      <v-col lg=8 md=8 class="mx-auto">
-      <h1>Hi, {{user.firstName}}</h1>
+      <v-col lg=9 md=9 class="mx-auto">
+      <h1 style="color:#006838" class="text-h3 font-weight-bold">Hi, {{user.firstName}}</h1>
       <p>The sun is up, the rest is up to you </p>
        <div class="dashboardCard"> 
-        <div class="cardColumn">
-          <v-card class="pa-7 gradient mb-7">
-              <p class="white--text">Wallet Balance </p>
-             <h2 class="walletBalance"> {{user.currency}} {{user.accountBalance}}</h2>
+         <div class="dashboardColumn">
+          <v-card height="180px" class="pa-7 gradient mb-5">
+              <p class="white--text text-center">Wallet Balance ({{user.currency}}) </p>
+             <h2 class="walletBalance text-center"> {{user.accountBalance}}</h2>
           </v-card>
-        </div>
-        <div class="cardColumn">
-          <v-card class="pa-7" style="border-radius:10px" color="#199958">
-              <p class="white--text">CAP POINTS </p>
-             <h2 class="walletBalance d-flex justify-space-between">
+          <v-card class="pa-7" height="140px" style="border-radius:10px" color="#199958">
+              <p class="white--text text-center">CAP POINTS (CAPS)</p>
+             <h2 class="walletBalance  text-center">
                  <span>{{user.capPoint}}</span>
-                 <span>CAPS</span>
                  </h2>
           </v-card>
-          </div>
-          </div>
-
-          <div class="mt-7 d-flex overflow-x-auto">
-              <v-btn color="#006838" class="mr-3 white--text radius6" x-large>
-                  <v-icon>mdi-cash-minus</v-icon>
-                  Withdraw
+          <div class="hidden-md-and-down">
+           <div class="mt-7 d-flex">
+              <v-btn color="white" style="color:#006838;width:50%" class="mr-3 radius6" x-large>
+                  <v-icon class="mr-3">mdi-cash-plus</v-icon>
+                 Deposit
               </v-btn>
-
-                <v-btn  color="#006838" class="mr-3 white--text radius6" x-large>
-                    <v-icon>mdi-cash-plus</v-icon>
-                  Deposit
+           
+                <v-btn style="width:50%" color="#006838" class="mr-3 white--text radius6" x-large>
+                    <v-icon class="mr-3">mdi-cash-minus</v-icon>
+                  Withdrawal
               </v-btn>
+        </div>
+        </div>
 
-               <v-btn @click="refresh" color="#FF7B00" class="radius6" x-large>
-                   <v-icon>mdi-sync</v-icon>
-                  Refresh
-              </v-btn>
+
+         <div class="hidden-lg-and-up mt-6">
+            <v-card class="pa-6 py-6" style="border-radius:10px" elevation="4">
+                <v-img src="../assets/images/homepage.png" />
+                
+            
+                 <div class="mt-3">
+                     <div>
+                         <h2>
+                             New Owerri Town
+                         </h2>
+                         <p>To be part of the ongoing project, kindly click the button below</p>
+                    </div>
+                    <v-btn color="#199958" block x-large class="white--text" style="border-radius:10px"><v-icon class="mr-5">mdi-account-cash-outline</v-icon> Buy solar cells</v-btn>
+                 </div>
+
+            </v-card>
         </div>
 
         <div class="mt-6">
@@ -69,6 +79,50 @@
 
             </v-card>
         </div>
+
+        <div class="hidden-lg-and-up mt-7">
+            <div class="mb-4">
+              <v-btn color="white" block style="color:#006838" class="mr-3 radius6" x-large>
+                  <v-icon class="mr-3">mdi-cash-plus</v-icon>
+                 Deposit
+              </v-btn>
+              </div>
+               
+            <div>
+                <v-btn  block color="#006838" class="mr-3 white--text radius6" x-large>
+                    <v-icon class="mr-3">mdi-cash-minus</v-icon>
+                  Withdrawal
+              </v-btn>
+            </div>
+        </div>
+
+
+         </div>
+         <div class="smallColumn hidden-md-and-down">
+             <div>
+            <v-card class="pa-6 py-6" style="border-radius:10px" elevation="4">
+                <v-img src="../assets/images/homepage.png" />
+                
+            
+                 <div class="mt-3">
+                     <div>
+                         <h2>
+                             New Owerri Town
+                         </h2>
+                         <p>To be part of the ongoing project, kindly click the button below</p>
+                    </div>
+                    <v-btn color="#199958" block x-large class="white--text" style="border-radius:10px"><v-icon class="mr-5">mdi-account-cash-outline</v-icon> Buy solar cells</v-btn>
+                 </div>
+
+            </v-card>
+        </div>
+
+
+
+
+
+        </div>
+         </div>
         </v-col>
         </v-row>
       </v-main>

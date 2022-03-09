@@ -8,6 +8,7 @@ import ResetPassword from "../views/ResetPassword.vue"
 import Profile from "../views/Profile.vue"
 import Balance from "../views/Balance.vue"
 import Projects from "../views/Projects.vue"
+import History from "../views/History.vue"
 import Error from "../views/Error.vue"
 
 Vue.use(VueRouter)
@@ -52,6 +53,11 @@ const routes = [
     path: '/projects',
     name: 'Projects',
     component: Projects
+  },
+  {
+    path: '/history',
+    name: 'History',
+    component: History
   },
   {
     path: '/:id',

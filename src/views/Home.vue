@@ -74,7 +74,14 @@ export default {
   .cardColumn{
     margin:0px 30px 0px 0px;
     width:50%
+  } 
+
+  .dashboardColumn{
+    margin:0px 30px 0px 0px;
+    width:80%
   }
+
+ 
 
   .capColumn{
     margin:0px 30px 0px 0px;

@@ -3,11 +3,11 @@
     <UserMenu />
     <v-main class="pa-8 mb-8">
       <v-row no-gutters>
-        <v-col class="hidden-md-and-down" lg="3" md="3">
+        <v-col class="hidden-md-and-down" lg="2" md="2">
           <SideNav :url="url" />
         </v-col>
 
-        <v-col lg="8" md="8" class="mx-auto">
+        <v-col lg="9" md="9" class="mx-auto">
           <div class="d-flex justify-space-between mb-5">
             <h2>Profile</h2>
             <v-btn text @click="goBack"

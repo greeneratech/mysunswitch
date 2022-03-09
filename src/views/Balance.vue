@@ -3,7 +3,7 @@
          <UserMenu />
       <v-main class="pa-8 mb-8">
       <v-row no-gutters>
-      <v-col class="hidden-md-and-down" lg=3 md=3 >
+      <v-col class="hidden-md-and-down" lg=2 md=2 >
       <SideNav :url="url"/>
       </v-col>
 

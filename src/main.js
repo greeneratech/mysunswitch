@@ -3,6 +3,7 @@ import App from './App.vue'
 import VueMeta from 'vue-meta'
 import vuetify from './plugins/vuetify'
 import VueSweetalert2 from 'vue-sweetalert2';
+import Flutterwave from 'vue-flutterwave'
 import 'sweetalert2/dist/sweetalert2.min.css';
 import router from './router'
 import store from './store'
@@ -15,6 +16,7 @@ const options = {
 };
 
 Vue.use(VueSweetalert2,options)
+Vue.use(Flutterwave, { publicKey: 'FLWPUBK-7162dd26aa9cc5bc0b4d5df920486832-X' });
 Vue.use(VueMeta);
 
 

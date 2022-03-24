@@ -8290,6 +8290,13 @@ vue-eslint-parser@^7.0.0:
     lodash "^4.17.21"
     semver "^6.3.0"
 
+vue-flutterwave@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/vue-flutterwave/-/vue-flutterwave-1.0.0.tgz#d991038b8352dd2ca81d328b101834957fd76547"
+  integrity sha512-MAbTkt6CPGGxhTakTkp/+Pyhm1Rjs/t6ESEYPilWTKtZIB1QBVwtrURWd5dXz9V1grTB9R+jBod90LjH6PKRgw==
+  dependencies:
+    vue "^2.6.7"
+
 vue-hot-reload-api@^2.3.0:
   version "2.3.4"
   resolved "https://registry.npmjs.org/vue-hot-reload-api/-/vue-hot-reload-api-2.3.4.tgz"

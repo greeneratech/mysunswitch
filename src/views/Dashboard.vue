@@ -24,7 +24,7 @@
           </v-card>
           <div class="hidden-md-and-down">
            <div class="mt-7 d-flex">
-              <v-btn color="white" style="color:#006838;width:50%" class="mr-3 radius6" x-large>
+              <v-btn @click="modal=true" color="white" style="color:#006838;width:50%" class="mr-3 radius6" x-large>
                   <v-icon class="mr-3">mdi-cash-plus</v-icon>
                  Deposit
               </v-btn>
@@ -82,7 +82,7 @@
 
         <div class="hidden-lg-and-up mt-7">
             <div class="mb-4">
-              <v-btn color="white" block style="color:#006838" class="mr-3 radius6" x-large>
+              <v-btn @click="modal=true" color="white" block style="color:#006838" class="mr-3 radius6" x-large>
                   <v-icon class="mr-3">mdi-cash-plus</v-icon>
                  Deposit
               </v-btn>
@@ -118,6 +118,15 @@
         </div>
 
 
+        <!-- My Models -->
+
+        <v-dialog class="pa-3 mx-auto" max-width="400px" height="400px" v-model="modal">
+            <Deposit />
+        </v-dialog>
+
+
+
+
 
 
 
@@ -137,11 +146,13 @@
 import SideNav from '../components/SideNav.vue'
 import UserMenu from '../components/UserMenu.vue'
 import {mapState} from "vuex"
+import Deposit from "../components/Payments/Deposit.vue"
 
 export default {
     components:{
       SideNav,
-      UserMenu
+      UserMenu,
+      Deposit
     },
     data(){
         return{
@@ -152,7 +163,9 @@ export default {
            startDate:"17/05/2021",
            endDate:"17/06/2021",
            drawer: false,
-        mini: false,
+          mini: false,
+          modal:false
+
         }
     },
     computed:{

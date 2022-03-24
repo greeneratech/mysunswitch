@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import VuexPersistence from 'vuex-persist'
-// import axios from 'axios'
+import axios from 'axios'
 
 
 Vue.use(Vuex)
@@ -23,7 +23,10 @@ const vuexLocal = new VuexPersistence({
 export default new Vuex.Store({
   state: {
       user:"",
-      name:""
+      name:"",
+      projects:"",
+      loading:true,
+      history:""
   },
   getters: {
     
@@ -37,12 +40,67 @@ export default new Vuex.Store({
         }
         
       },
+
+      fetchProjects(state){
+        state.loading = true
+        axios({
+          method:"GET",
+          url:"https://greeneratech.herokuapp.com/api/user/investments/all",
+          headers: {
+            ContentType: "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          }
+        }).then((response)=>{
+          state.projects = response.data.data
+          console.log(state.projects)
+          state.loading = false
+        })
+      },
+
+      fetchMyProjects(state){
+        state.loading = true
+        axios({
+          method:"GET",
+          url:"https://greeneratech.herokuapp.com/api/user/investments/mine",
+          headers: {
+            ContentType: "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          }
+        }).then((response)=>{
+          state.projects = response.data.data
+          console.log(state.projects)
+        })
+      },
+
+      fetchHistory(state){
+        state.loading = true
+        axios({
+          method:"GET",
+          url:"https://greeneratech.herokuapp.com/api/user/history",
+          headers: {
+            ContentType: "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          }
+        }).then((response)=>{
+          state.history = response.data.data.reverse()
+          console.log(state.history)
+          state.loading = false
+        })
+      },
+
+
       RESTORE_MUTATION: vuexLocal.RESTORE_MUTATION,
   },
   actions: {
      fetchUser: (context,value) => {
         context.commit("fetchUser",value);
       },
+      fetchProjects(context){
+        context.commit("fetchProjects")
+      },
+      fetchHistory(context){
+        context.commit("fetchHistory")
+      }
   },
   plugins: [vuexLocal.plugin]
 })

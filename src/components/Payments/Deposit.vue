@@ -1,7 +1,7 @@
 <template>
     <v-card rounded="8" class="pa-5 pt-12 mx-auto" max-width="400px" height="400px">
         <h2 class="mb-8">Enter the amount you would like to deposit:</h2>
-        <v-text-field outlined label="Enter amount" v-model="amount" />
+        <v-text-field color="#006838" type="number" @keyup="enableButton"  outlined label="Enter amount" v-model="amount" />
          <flutterwave
             :is-production="isProduction"
             name="Toheeb"
@@ -13,7 +13,9 @@
             :close="close"
             currency="NGN"
             country="NG"
+            :loading="loading"
             :payment_method="paymentMethod"
+            :disabled="disabled"
           />
     </v-card>
 </template>
@@ -22,12 +24,17 @@
 
 <script>
 import Flutterwave from "./FlutterwaveModal.vue"
+import axios from "axios"
 
 export default{
     data(){
         return{
             amount:"",
             flutterwaveRef: "",
+            loading:false,
+            paymentMethod:"card",
+            isProduction:true,
+            disabled:true
         }
     },
     components:{
@@ -52,6 +59,36 @@ export default{
       callbackFlutter(response) {
       this.flutterwaveRef = response.referenceFlutter;
     },
+
+    enableButton(){
+      if(this.amount > 0 || this.amount == " " || this.amount == null){
+        this.disabled = false
+        console.log(this.amount)
+      } else{
+        this.disabled = true
+        console.log(this.amount)
+      }
+    },
+
+     changesInDatabase(){
+       this.loading = true
+       axios({
+         method:"POST",
+         url:"https://greeneratech.herokuapp.com/api/user/deposit",
+         data:{
+           amount:this.amount
+         },
+         headers: {
+          ContentType: "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+       }).then((response)=>{
+         console.log(response)
+         sessionStorage.setItem('vuex',JSON.stringify(response.data.user))
+         this.loading = false
+         location.reload()
+       })
+     },
 
      close: () => {
       console.log("You closed checkout page");

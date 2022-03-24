@@ -43,11 +43,11 @@
           v-for="(item,i) in transactions"
           :key="i"
         >
-          <td>{{ item.date }} {{ item.time }}</td>
-          <td>{{ item.name }}</td>
-           <td>{{ item.price }}</td>
+          <td>{{item.created_at.slice(0,10)}} {{ item.created_at.slice(11,16) }}</td>
+          <td>{{ item.type }}</td>
+           <td>{{item.baseCurrency}} {{item.baseAmount}}</td>
            <td>
-               <v-btn width="120px" depressed class="white--text" :color="item.status == 'pending' ? '#FF7B00':'#006838'">{{item.status}}</v-btn>
+               <v-btn width="120px" depressed class="white--text" :color="item.status == 'PENDING' ? '#FF7B00':'#006838'">{{item.status}}</v-btn>
                </td>
         </tr>
       </tbody>
@@ -65,19 +65,19 @@
                            <div class="pa-2 py-4">
                            <div class="d-flex justify-space-between">
                               <div class="font-weight-medium">
-                              <span>{{transaction.date}}</span> <span>{{transaction.time}}</span>
+                              <span>{{transaction.created_at.slice(0,10)}}</span> <span>{{transaction.created_at.slice(11,16)}}</span>
                               </div>
                               <div class="font-weight-bold">
-                                  {{transaction.price}}
+                                  {{transaction.baseCurrency}} {{transaction.baseAmount}}
                               </div>
                               </div>
                               <div class="d-flex mt-6 justify-space-between">
                                   <div style="font-size:15px; width:60%">
-                                  {{transaction.name}}
+                                  {{transaction.type}}
                                   </div>
 
                                   <div>
-                                      <v-btn depressed class="white--text" :color="transaction.status == 'pending' ? '#FF7B00':'#006838'">{{transaction.status}}</v-btn>
+                                      <v-btn depressed class="white--text" :color="transaction.status == 'PENDING' ? '#FF7B00':'#006838'">{{transaction.status}}</v-btn>
                                   </div>
                               </div>
                               </div>
@@ -102,6 +102,12 @@
           </div>
         </v-col>
         </v-row>
+         <v-overlay :value="loading">
+        <v-progress-circular
+        indeterminate
+        size="64"
+      ></v-progress-circular>
+      </v-overlay>
       </v-main>
     </v-app>
 </template>
@@ -130,26 +136,34 @@ export default {
            endDate:"17/06/2021",
            drawer: false,
         mini: false,
-        transactions:[
-            {date:"10/02/23",time:"14:23",price:"NGN 5600",name:"OBINZE Crowdsale Funding",status:"pending"},
-            {date:"10/02/23",time:"14:23",price:"NGN 5600",name:"Withdrawal",status:"completed"},
-            {date:"10/02/23",time:"14:23",price:"NGN 5600",name:"Deposit",status:"completed"},
-            {date:"10/02/23",time:"14:23",price:"NGN 5600",name:"OBINZE Crowdsale Funding",status:"completed"},
-            {date:"10/02/23",time:"14:23",price:"NGN 5600",name:"OBINZE Crowdsale Funding",status:"completed"},
-            {date:"10/02/23",time:"14:23",price:"NGN 5600",name:"OBINZE Crowdsale Funding",status:"completed"},
-            {date:"10/02/23",time:"14:23",price:"NGN 5600",name:"OBINZE Crowdsale Funding",status:"completed"},
-            {date:"10/02/23",time:"14:23",price:"NGN 5600",name:"OBINZE Crowdsale Funding",status:"completed"},
+        // transactions:[
+        //     {date:"10/02/23",time:"14:23",price:"NGN 5600",name:"OBINZE Crowdsale Funding",status:"pending"},
+        //     {date:"10/02/23",time:"14:23",price:"NGN 5600",name:"Withdrawal",status:"completed"},
+        //     {date:"10/02/23",time:"14:23",price:"NGN 5600",name:"Deposit",status:"completed"},
+        //     {date:"10/02/23",time:"14:23",price:"NGN 5600",name:"OBINZE Crowdsale Funding",status:"completed"},
+        //     {date:"10/02/23",time:"14:23",price:"NGN 5600",name:"OBINZE Crowdsale Funding",status:"completed"},
+        //     {date:"10/02/23",time:"14:23",price:"NGN 5600",name:"OBINZE Crowdsale Funding",status:"completed"},
+        //     {date:"10/02/23",time:"14:23",price:"NGN 5600",name:"OBINZE Crowdsale Funding",status:"completed"},
+        //     {date:"10/02/23",time:"14:23",price:"NGN 5600",name:"OBINZE Crowdsale Funding",status:"completed"},
 
-        ]
+        // ]
         }
     },
     computed:{
         ...mapState({
-            user:"user"
-        })
+            user:"user",
+            transactions:"history",
+            loading:"loading"
+        }),
+     
+
+        historyData(){
+          return this.transactions
+        }
     },
     created(){
         this.$store.dispatch("fetchUser")
+        this.$store.dispatch("fetchHistory")
     }
 
 }

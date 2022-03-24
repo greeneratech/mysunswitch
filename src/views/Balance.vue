@@ -21,11 +21,11 @@
             <div class="capColumn">
             <v-card class="capHeight pa-7 gradient">
               <p class="white--text capText">CAP POINTS </p>
-             <h2 class="capValue"> {{user.accountBalance}} <span style="float:right;color:white"> CAPS</span></h2>
+             <h2 class="capValue"> {{user.capPoint}} <span style="float:right;color:white"> CAPS</span></h2>
           </v-card>
           </div>
           <div class="moneyColumn">
-            <v-btn block x-large height="64px" elevation=5 color="white mb-5" style="color:#199958;border-radius:12px"><v-icon>mdi-cash</v-icon> Deposit</v-btn>
+            <v-btn  @click="modal = true" block x-large height="64px" elevation=5 color="white mb-5" style="color:#199958;border-radius:12px"><v-icon>mdi-cash</v-icon> Deposit</v-btn>
             <v-btn block x-large height="64px"  elevation=5 class="gradient" style="color:white;border-radius:12px"><v-icon>mdi-cash</v-icon> Withdraw</v-btn>
           </div>
           
@@ -34,6 +34,16 @@
         </v-col>
         </v-row>
       </v-main>
+
+
+        <!-- My Models -->
+        <v-dialog class="pa-3 mx-auto" max-width="400px" height="400px" v-model="modal">
+            <Deposit />
+        </v-dialog>
+
+
+
+
     </v-app>
 </template>
 
@@ -45,11 +55,13 @@
 import SideNav from '../components/SideNav.vue'
 import UserMenu from '../components/UserMenu.vue'
 import {mapState} from "vuex"
+import Deposit from "../components/Payments/Deposit.vue"
 
 export default {
     components:{
       SideNav,
-      UserMenu
+      UserMenu,
+      Deposit
     },
     data(){
         return{
@@ -60,7 +72,8 @@ export default {
            startDate:"17/05/2021",
            endDate:"17/06/2021",
            drawer: false,
-        mini: false,
+            mini: false,
+            modal:false
         }
     },
     computed:{

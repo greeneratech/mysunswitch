@@ -55,7 +55,7 @@
             </v-card>
         </div>
 
-        <div class="mt-6">
+        <!-- <div class="mt-6">
             <v-card class="pa-6 py-10" style="border-radius:10px" elevation="4">
                  <p class="orangeText">Current Project </p>
                  <h1 style="color:#006838">{{projectName}}</h1>
@@ -78,7 +78,7 @@
                  </div>
 
             </v-card>
-        </div>
+        </div> -->
 
         <div class="hidden-lg-and-up mt-7">
             <div class="mb-4">

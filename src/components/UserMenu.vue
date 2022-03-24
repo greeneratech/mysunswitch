@@ -87,6 +87,11 @@
             <v-list-item-title>Balance</v-list-item-title>
           </v-list-item>
 
+          <v-list-item to="/account">
+             <v-list-item-icon><v-icon>mdi-cash</v-icon></v-list-item-icon>
+            <v-list-item-title>Account</v-list-item-title>
+          </v-list-item>
+
            <v-list-item to="/history">
              <v-list-item-icon><v-icon>mdi-history</v-icon></v-list-item-icon>
             <v-list-item-title>History</v-list-item-title>
@@ -115,7 +120,7 @@ export default {
 
 methods:{
     logOut(){
-    alert('how do you sleep when you lie to me?')
+    alert('Logging out API o')
 }
 }
 

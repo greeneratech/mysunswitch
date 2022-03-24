@@ -36,6 +36,7 @@ export default {
           { title: 'Profile', icon: 'mdi-account',link:'profile',class:"profile" },
           { title: 'Projects', icon: 'mdi-lightning-bolt-outline',link:'projects',class:"projects" },
           { title: 'Balance', icon: 'mdi-cash', link:'wallet', class:"wallet"},
+           { title: 'Account Info', icon: 'mdi-cash', link:'account', class:"account"},
           { title: 'History', icon: 'mdi-history', link:'history',class:"history" },
         ],
         mini: false,

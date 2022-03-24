@@ -7,9 +7,11 @@ import Dashboard from "../views/Dashboard.vue"
 import ResetPassword from "../views/ResetPassword.vue"
 import Profile from "../views/Profile.vue"
 import Balance from "../views/Balance.vue"
+import Account from "../views/Account.vue"
 import Projects from "../views/Projects.vue"
 import History from "../views/History.vue"
 import Error from "../views/Error.vue"
+
 
 Vue.use(VueRouter)
 
@@ -48,6 +50,11 @@ const routes = [
     path: '/wallet',
     name: 'Balance',
     component: Balance
+  },
+  {
+    path: '/account',
+    name: 'Account',
+    component: Account
   },
   {
     path: '/projects',

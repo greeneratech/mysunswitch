@@ -494,6 +494,12 @@
           </div>
         </v-col>
       </v-row>
+      <v-overlay :value="loading">
+        <v-progress-circular
+        indeterminate
+        size="64"
+      ></v-progress-circular>
+      </v-overlay>
     </v-main>
   </v-app>
 </template>
@@ -519,23 +525,23 @@ export default {
       endDate: "17/06/2021",
       drawer: false,
       mini: false,
-      projects: [
-        {
-          name: "Dominican Estate",
-          image:
-            "https://images.theconversation.com/files/96959/original/image-20151001-23072-142qtha.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=926&fit=clip",
-        },
-        {
-          name: "New Owerri Town",
-          image:
-            "https://guardian.ng/wp-content/uploads/2016/05/solar-energy.jpg",
-        },
-        {
-          name: "New Owerri Town",
-          image:
-            "https://guardian.ng/wp-content/uploads/2016/05/solar-energy.jpg",
-        },
-      ],
+      // projects: [
+      //   {
+      //     name: "Dominican Estate",
+      //     image:
+      //       "https://images.theconversation.com/files/96959/original/image-20151001-23072-142qtha.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=926&fit=clip",
+      //   },
+      //   {
+      //     name: "New Owerri Town",
+      //     image:
+      //       "https://guardian.ng/wp-content/uploads/2016/05/solar-energy.jpg",
+      //   },
+      //   {
+      //     name: "New Owerri Town",
+      //     image:
+      //       "https://guardian.ng/wp-content/uploads/2016/05/solar-energy.jpg",
+      //   },
+      // ],
 
       headers: [
         {
@@ -581,10 +587,13 @@ export default {
   computed: {
     ...mapState({
       user: "user",
+      projects:"projects",
+      loading:"loading"
     }),
   },
   created() {
     this.$store.dispatch("fetchUser");
+    this.$store.dispatch("fetchProjects")
   },
   methods: {
     goBack() {

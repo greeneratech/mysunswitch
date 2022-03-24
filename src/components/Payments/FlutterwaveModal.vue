@@ -1,6 +1,6 @@
 <template>
   <div class="flw">
-    <v-btn x-large style="border-radius:10px" block color="#006838" class="button white--text" @click="makePayment">
+    <v-btn :loading="loading" :disabled="disabled" x-large style="border-radius:10px" block color="#006838" class="button white--text" @click="makePayment">
       Make Payment
     </v-btn>
   </div>
@@ -61,6 +61,12 @@ export default {
     paymentMethod: {
       type: String,
       default: "card,mobilemoney,ussd"
+    },
+    loading:{
+      type:Boolean
+    },
+     disabled:{
+      type:Boolean
     }
   },
   created() {

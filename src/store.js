@@ -100,7 +100,7 @@ export default new Vuex.Store({
       },
       fetchHistory(context){
         context.commit("fetchHistory")
-      }
+      },
   },
   plugins: [vuexLocal.plugin]
 })

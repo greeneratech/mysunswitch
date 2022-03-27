@@ -50,13 +50,6 @@ export default {
       ]
     };
   },
-  created() {
-    if (JSON.parse(localStorage.getItem('nightmode')) == true){
-       this.$vuetify.theme.dark = true
-    } else{
-       this.$vuetify.theme.dark = false
-    }
-  }
 };
 </script>
 

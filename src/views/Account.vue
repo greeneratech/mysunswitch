@@ -45,6 +45,7 @@
                       item-value="code"
                       item-text="name"
                       solo
+                      :readonly="readonly"
                     />
                   </div>
                 </v-card>
@@ -62,6 +63,7 @@
                         v-model="accountNumber"
                         style="width:100%"
                         @keyup="checkBank()"
+                        :readonly="readonly"
                       />
                     </div>
                   </v-card>
@@ -84,7 +86,7 @@
                     </div>
                   </v-card>
 
-                  <v-btn color="#828282" style="border-radius:10px" class="white--text" x-large block >
+                  <v-btn :disabled="readonly" @click="submitBank()" color="#828282" style="border-radius:10px" class="white--text" x-large block >
                       Submit
                   </v-btn>
               </v-card>
@@ -129,11 +131,13 @@ export default {
       startDate: "17/05/2021",
       endDate: "17/06/2021",
       drawer: false,
+      bank:"",
       mini: false,
       modal: false,
       loading:false,
       accountName:"",
       accountNumber:"",
+      readonly:false,
       banks: [
         { id: "1", name: "Access Bank", code: "044" },
         { id: "2", name: "Citibank", code: "023" },
@@ -165,9 +169,30 @@ export default {
     ...mapState({
       user: "user",
     }),
+    bankName(){
+      return this.banks.filter((bank)=>bank.code == this.bank)[0].name
+    }
   },
   created() {
-    this.$store.dispatch("fetchUser");
+    this.$store.dispatch("fetchUser")
+     this.loading = true
+        axios({
+          method:"GET",
+          url:"https://greeneratech.herokuapp.com/api/user/bank-details",
+          headers: {
+            ContentType: "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          }
+        }).then((response)=>{
+          this.loading = false
+          this.accountName = response.data.data.accountName
+          this.accountNumber = response.data.data.accountNumber
+          this.bank = response.data.data.bankCode
+          if(this.accountName != ""){
+            this.readonly = true
+          }
+        })
+
   },
   methods:{
       checkBank() {
@@ -175,6 +200,7 @@ export default {
         this.resolveBank();
       }
     },
+
     resolveBank() {
       this.opacity = 1
       this.loading = true;
@@ -187,6 +213,30 @@ export default {
         this.loading = false;
       });
     },
+    submitBank(){
+      this.loading = true
+      axios({
+        method:"POST",
+        url:"https://greeneratech.herokuapp.com/api/user/bank",
+         data:{
+           bankName:this.bankName, 
+           bankCode:this.bank, 
+           accountName:this.accountName, 
+           accountNumber:this.accountNumber
+         },
+         headers: {
+          ContentType: "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      }).then(()=>{
+         this.$swal({
+          title: "Account added successfully",
+          text: "Your bank details have successfully been added to your account",
+          icon: "success",
+          confirmButtonText: "Ok",
+        })
+      })
+    }
   }
 };
 </script>

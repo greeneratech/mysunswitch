@@ -210,6 +210,9 @@ export default {
     buySolar(p){
         this.price = p;
         this.buyModal = true;
+    },
+    closeModal(){
+      this.buyModal = false;
     }
   },
 };

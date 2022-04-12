@@ -80,6 +80,7 @@
                         style="border-radius: 10px"
                         block
                         x-large
+                        @click="buyModal =true"
                         ><v-icon>mdi-cash</v-icon>Buy Solar cells</v-btn
                       >
                     </v-card>
@@ -470,10 +471,6 @@
                       </div>
                     </v-card>
 
-      
-
-
-
                   </div>
                   <div>
                     <v-card class="pa-7" style="border-radius: 10px">
@@ -501,6 +498,18 @@
         size="64"
       ></v-progress-circular>
       </v-overlay>
+
+      <v-dialog persistent fullscreen class="pa-2 mx-auto" max-width="400px" height="400px" v-model="buyModal">
+          
+            <v-card>
+                    <div class="pa-9 d-flex justify-end">
+                       <v-btn small fab @click="buyModal = false"><v-icon>mdi-close</v-icon></v-btn>
+                    </div>
+            <div class="centerBuySolar">
+            <BuySolar :currency="user.currency" :price="price" :accountBalance="user.accountBalance" @closeModal="closeModal"/>
+            </div>
+            </v-card>
+        </v-dialog>
     </v-main>
   </v-app>
 </template>
@@ -508,12 +517,14 @@
 <script>
 import SideNav from "../../components/SideNav.vue";
 import UserMenu from "../../components/UserMenu.vue";
+import BuySolar from "../../components/Payments/BuySolar.vue";
 import { mapState } from "vuex";
 
 export default {
   components: {
     SideNav,
     UserMenu,
+    BuySolar
   },
   data() {
     return {
@@ -526,6 +537,8 @@ export default {
       endDate: "17/06/2021",
       drawer: false,
       mini: false,
+      price:200,
+      buyModal:false,
       // projects: [
       //   {
       //     name: "Dominican Estate",
@@ -602,6 +615,9 @@ export default {
     },
     goProject(i){
       this.$router.push('/project/'+i);
+    },
+    closeModal(){
+      this.buyModal = false;
     }
   },
 };

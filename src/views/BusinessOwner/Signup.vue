@@ -98,6 +98,20 @@
                   />
                 </v-form>
 
+                 <v-form @submit.prevent="signup()">
+                  <label>Amount of Business Power (in kvA)</label>
+                  <v-text-field
+                    v-model="businessPower"
+                    outlined
+                    single-line
+                    label="Business Power"
+                    type="number"
+                    color="#f66c1f"
+                    style="border-radius: 8px; margin-bottom: -15px"
+                    @submit.prevent="signup()"
+                  />
+                </v-form>
+
                 <v-form @submit.prevent="signup()">
                   <label>Password</label>
                   <v-text-field
@@ -263,6 +277,21 @@ export default {
           text: "Please confirm your password",
           icon: "error",
           confirmButtonText: "Ok",
+        })
+         this.loading = false
+      }
+
+
+       else if(this.businessPower < 3){
+         this.$swal({
+          title: "Error",
+          text: "We crowdsale only for 4kva and above power needs. It's better you get one-off purchase solar system. Tap the button below instead to own solar cells and earn passive income from it...the more you buy, the more you earn!",
+          icon: "error",
+          confirmButtonText: "Ok",
+        }).then((result)=>{
+          if(result.isConfirmed){
+            this.$router.push("/signup")
+          }
         })
          this.loading = false
       }

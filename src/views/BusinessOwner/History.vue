@@ -117,8 +117,8 @@
 
 
 <script>
-import SideNav from '../components/SideNav.vue'
-import UserMenu from '../components/UserMenu.vue'
+import SideNav from '../../components/BusinessSideNav.vue'
+import UserMenu from '../../components/UserMenu.vue'
 import {mapState} from "vuex"
 
 export default {
@@ -163,7 +163,7 @@ export default {
     },
     created(){
         this.$store.dispatch("fetchUser")
-        this.$store.dispatch("fetchHistory")
+        this.$store.dispatch("fetchBusinessHistory")
     }
 
 }

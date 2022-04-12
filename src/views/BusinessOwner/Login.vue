@@ -4,8 +4,8 @@
     <v-main class="mb-12">
       <v-row class="noSide" no-gutters style="margin-top:90px">
            <v-col class="text-center">
-          <v-img width="463px" height="343px" style="margin:auto" src="../assets/images/Mobile login-rafiki.svg" />
-          <h2 class="welcomeBack" style="color:#199958">Welcome Back </h2>
+          <v-img width="463px" height="343px" style="margin:auto" src="../../assets/images/Mobile login-rafiki.svg" />
+          <h2 class="welcomeBack" style="color:#199958">Business Owners</h2>
         </v-col>
         <v-col>
              <v-card style="margin:auto;max-width:500px;border-radius:20px" class="ma-auto">
@@ -80,9 +80,9 @@
               style="font-size:14px;margin-bottom:0px;padding-bottom:0px"
               to="/login"
             >
-              Don't have an account? <router-link style="text-decoration:none;color:#FF7B00" to="/signup">Create Account</router-link>
+              Don't have an account? <router-link style="text-decoration:none;color:#FF7B00" to="/business/signup">Create Account</router-link>
             </p>
-            <v-btn outlined large to="/signup" style="border-radius:12px;margin-top:10px" block color="#FF7B00">
+            <v-btn outlined large to="/business/signup" style="border-radius:12px;margin-top:10px" block color="#FF7B00">
              Create Account
 
             </v-btn>
@@ -97,7 +97,7 @@
 
 <script>
 import axios from 'axios'
-import NavMenu from "../components/NavMenu.vue";
+import NavMenu from "../../components/NavMenu.vue";
 import {mapState} from "vuex"
 
 export default {
@@ -178,7 +178,12 @@ export default {
         //   confirmButtonText: "Ok",
         // });
           this.loading = false
+          if(response.data.user.isBusiness==true){
+          this.$router.push("/business/dashboard")
+          }
+          else{
           this.$router.push("/dashboard")
+          }
           console.log(response.data)
           this.$store.dispatch("fetchUser",response.data)
           localStorage.setItem('token',response.data.token)

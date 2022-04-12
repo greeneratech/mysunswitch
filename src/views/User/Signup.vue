@@ -8,7 +8,7 @@
             width="500px"
             height="460px"
             style="margin: auto"
-            src="../assets/images/Sign up-amico.svg"
+            src="../../assets/images/Sign up-amico.svg"
           />
           <p
             style="
@@ -163,7 +163,7 @@
 </template>
 
 <script>
-import NavMenu from "../components/NavMenu.vue";
+import NavMenu from "../../components/NavMenu.vue";
 import axios from "axios";
 
 export default {

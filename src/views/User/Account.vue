@@ -110,10 +110,10 @@
 </template>
 
 <script>
-import SideNav from "../components/SideNav.vue";
-import UserMenu from "../components/UserMenu.vue";
+import SideNav from "../../components/SideNav.vue";
+import UserMenu from "../../components/UserMenu.vue";
 import { mapState } from "vuex";
-import Deposit from "../components/Payments/Deposit.vue";
+import Deposit from "../../components/Payments/Deposit.vue";
 import axios from 'axios'
 
 export default {
@@ -185,10 +185,12 @@ export default {
           }
         }).then((response)=>{
           this.loading = false
+          console.log(response)
           this.accountName = response.data.data.accountName
           this.accountNumber = response.data.data.accountNumber
           this.bank = response.data.data.bankCode
-          if(this.accountName != ""){
+          console.log(this.accountName)
+          if(this.accountName != undefined){
             this.readonly = true
           }
         })
@@ -234,6 +236,11 @@ export default {
           text: "Your bank details have successfully been added to your account",
           icon: "success",
           confirmButtonText: "Ok",
+        }).then((result)=>{
+          if(result.isConfirmed){
+            this.loading = false
+            location.reload()
+          }
         })
       })
     }

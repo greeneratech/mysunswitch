@@ -74,7 +74,7 @@ export default{
        this.loading = true
        axios({
          method:"POST",
-         url:"https://greeneratech.herokuapp.com/api/user/deposit",
+         url:"https://greeneratech.herokuapp.com/api/business/deposit",
          data:{
            amount:this.amount
          },

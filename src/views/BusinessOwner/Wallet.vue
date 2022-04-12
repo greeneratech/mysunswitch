@@ -52,10 +52,10 @@
 
 
 <script>
-import SideNav from '../components/SideNav.vue'
-import UserMenu from '../components/UserMenu.vue'
+import SideNav from '../../components/BusinessSideNav.vue'
+import UserMenu from '../../components/UserMenu.vue'
 import {mapState} from "vuex"
-import Deposit from "../components/Payments/Deposit.vue"
+import Deposit from "../../components/Payments/BusinessDeposit.vue"
 
 export default {
     components:{

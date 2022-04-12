@@ -32,13 +32,10 @@ export default {
         return{
         drawer: false,
         items: [
-          { title: 'Dashboard', icon: 'mdi-home',link:'/dashboard',class:"dashboard" },
-          { title: 'Profile', icon: 'mdi-account',link:'/profile',class:"profile" },
-          { title: 'Projects', icon: 'mdi-lightning-bolt-outline',link:'/projects',class:"projects" },
-          { title: 'Balance', icon: 'mdi-cash', link:'/wallet', class:"wallet"},
-           { title: 'Account Info', icon: 'mdi-cash', link:'/account', class:"account"},
-          { title: 'History', icon: 'mdi-history', link:'/history',class:"history" },
-          
+          { title: 'Dashboard', icon: 'mdi-home',link:'dashboard',class:"business/dashboard" },
+          { title: 'Profile', icon: 'mdi-account',link:'profile',class:"business/profile" },
+          { title: 'Balance', icon: 'mdi-cash', link:'wallet', class:"business/wallet"},
+          { title: 'History', icon: 'mdi-history', link:'history',class:"business/history" },
         ],
         mini: false,
         }

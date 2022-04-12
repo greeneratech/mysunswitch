@@ -20,17 +20,19 @@
               <v-card style="border-radius:10px" class="pa-7 profile mb-7 pb-12">
                 <div class="text-center mb-10">
                   <v-avatar size="160" color="#EBEBEB">
-                    <span class="white--text text-h5">OA</span>
+                    <v-img :src="image" />
                   </v-avatar>
 
                   <div>
 
-                  <v-btn text class="grey--text mt-9"
+                  <v-btn @click="uploadImage" text class="grey--text mt-9"
                     >Change Photo
                     <v-icon color="#FF7B00" class="ml-3"
                       >mdi-camera</v-icon
                     ></v-btn
                   >
+
+                  <input type="file" @change="onFileChanged" hidden ref="image" accept="image/*"/>
                    </div>
 
                 </div>
@@ -163,6 +165,7 @@
                 x-large
                 color="#FF7B00"
                 style="border-radius: 9px; color: white;height:66px"
+                @click="logOut"
                 ><v-icon color="white" class="mr-7">mdi-logout</v-icon>
                 <span>
                 Sign
@@ -179,8 +182,8 @@
 </template>
 
 <script>
-import UserMenu from "../components/UserMenu.vue";
-import SideNav from "../components/SideNav.vue";
+import UserMenu from "../../components/UserMenu.vue";
+import SideNav from "../../components/BusinessSideNav.vue";
 import { mapState } from "vuex";
 import axios from "axios"
 
@@ -193,6 +196,7 @@ export default {
       email: "",
       phone: "",
       location: "",
+      image:"",
       loading:false
     };
   },
@@ -235,7 +239,65 @@ export default {
         this.loading = false
         console.log(error)
       })
-    }
+    },
+    uploadImage(){
+      this.$refs.image.click()
+    },
+     onFileChanged(event){
+       var input = event.target;
+      if (input.files) {
+        var reader = new FileReader();
+        reader.onload = (e) => {
+          this.image = e.target.result;
+        }
+        // this.uploadImage= event.target.files;
+        reader.readAsDataURL(input.files[0]);
+      }
+      //  this.loading = true
+      //  this.file = this.$refs.file.files[0];
+      //  let formData = new FormData();
+      //  formData.append("file", this.file);
+      //  let token = localStorage.getItem("yududuToken");
+      //  axios.post( 'https://yududu-api.herokuapp.com/api/v1/profile/upload',
+      //           formData,
+      //           {
+      //           headers: {
+      //               'Content-Type': 'multipart/form-data',
+      //                Authorization:"Bearer " + token
+      //           },
+      //         }
+      //       ).then((response) =>{
+      //     this.loading = false
+      //     this.success = true
+      //     this.title = 'Image Updated!'
+      //     this.message = response.data.message
+      // }).catch((error) =>{
+      //     this.loading = false
+      //     this.failure = true
+      //     this.title = 'Image Not Updated!'
+      //     this.message = error.message
+      //   });
+       
+    },
+     logOut(){
+    axios({
+      method:"POST",
+      url:"http://greeneratech.herokuapp.com/api/authenticate/signout",
+      data:{
+        token:localStorage.getItem("token")
+      },
+      headers:{
+        "Content-Type":"application/json",
+        "Authorization":"Bearer "+localStorage.getItem("token")
+      }
+    }).then(()=>{
+      localStorage.removeItem("token")
+      this.$router.push("/login")
+      sessionStorage.removeItem("vuex")
+
+    })
+}
+
   },
 };
 </script>

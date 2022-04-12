@@ -240,19 +240,6 @@ input[type=text]:focus{
    border:none
 }
 
-input[type=number]{
-   font-size:40px;
-   text-align:center;
-   width:50%;
-   margin:auto
-}
-
-
-input[type=number]:focus{
-   outline:none;
-   border:none
-}
-
 .balanceBalance{
     font-size:35px;
     color:white;

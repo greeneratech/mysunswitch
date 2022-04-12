@@ -26,7 +26,8 @@ export default new Vuex.Store({
       name:"",
       projects:"",
       loading:true,
-      history:""
+      history:"",
+      single:""
   },
   getters: {
     
@@ -52,9 +53,15 @@ export default new Vuex.Store({
           }
         }).then((response)=>{
           state.projects = response.data.data
-          console.log(state.projects)
           state.loading = false
         })
+      },
+
+       fetchSingleProject(state,i){
+        state.loading = true
+        state.single = state.projects.filter((project)=>
+          project.id = i).slice(0,1)
+        state.loading = false
       },
 
       fetchMyProjects(state){
@@ -68,7 +75,6 @@ export default new Vuex.Store({
           }
         }).then((response)=>{
           state.projects = response.data.data
-          console.log(state.projects)
         })
       },
 
@@ -83,7 +89,23 @@ export default new Vuex.Store({
           }
         }).then((response)=>{
           state.history = response.data.data.reverse()
-          console.log(state.history)
+          
+          state.loading = false
+        })
+      },
+
+      fetchBusinessHistory(state){
+        state.loading = true
+        axios({
+          method:"GET",
+          url:"https://greeneratech.herokuapp.com/api/business/history",
+          headers: {
+            ContentType: "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          }
+        }).then((response)=>{
+          state.history = response.data.data.reverse()
+         
           state.loading = false
         })
       },
@@ -98,8 +120,14 @@ export default new Vuex.Store({
       fetchProjects(context){
         context.commit("fetchProjects")
       },
+      fetchSingleProject(context,i){
+        context.commit("fetchSingleProject",i)
+      },
       fetchHistory(context){
         context.commit("fetchHistory")
+      },
+      fetchBusinessHistory(context){
+        context.commit("fetchBusinessHistory")
       },
   },
   plugins: [vuexLocal.plugin]

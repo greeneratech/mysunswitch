@@ -12,9 +12,22 @@
       <p>The sun is up, the rest is up to you </p>
        <div class="dashboardCard"> 
          <div class="dashboardColumn">
-          <v-card height="180px" class="pa-7 gradient mb-5">
-              <p class="white--text text-center">Wallet Balance ({{user.currency}}) </p>
-             <h2 class="walletBalance text-center"> {{user.accountBalance}}</h2>
+          <v-card height="230px" class="pa-7 gradient mb-5">
+              <p class="mb-0 pb-0 white--text text-center">Wallet Balance ({{user.currency}}) </p>
+             <h2 class="mt-0 pt-0 mb-3 walletBalance text-center"> {{user.accountBalance}}</h2>
+
+             <div class="buttonPadding">
+           <div class="d-flex">
+              <v-btn @click="modal=true" color="white" style="color:#006838;width:50%" class="mr-3 radius6" x-large>
+                 
+                 Deposit
+              </v-btn>
+           
+                <v-btn style="width:50%" color="#199958" class="mr-3 white--text radius6" x-large>
+                  Withdrawal
+              </v-btn>
+        </div>
+        </div>
           </v-card>
           <v-card class="pa-7" height="140px" style="border-radius:10px" color="#199958">
               <p class="white--text text-center">CAP POINTS (CAPS)</p>
@@ -22,24 +35,12 @@
                  <span>{{user.capPoint}}</span>
                  </h2>
           </v-card>
-          <div class="hidden-md-and-down">
-           <div class="mt-7 d-flex">
-              <v-btn @click="modal=true" color="white" style="color:#006838;width:50%" class="mr-3 radius6" x-large>
-                  <v-icon class="mr-3">mdi-cash-plus</v-icon>
-                 Deposit
-              </v-btn>
-           
-                <v-btn style="width:50%" color="#006838" class="mr-3 white--text radius6" x-large>
-                    <v-icon class="mr-3">mdi-cash-minus</v-icon>
-                  Withdrawal
-              </v-btn>
-        </div>
-        </div>
+          
 
 
          <div class="hidden-lg-and-up mt-6">
             <v-card class="pa-6 py-6" style="border-radius:10px" elevation="4">
-                <v-img src="../assets/images/homepage.png" />
+                <v-img src="../../assets/images/homepage.png" />
                 
             
                  <div class="mt-3">
@@ -80,7 +81,7 @@
             </v-card>
         </div> -->
 
-        <div class="hidden-lg-and-up mt-7">
+        <!-- <div class="hidden-lg-and-up mt-7">
             <div class="mb-4">
               <v-btn @click="modal=true" color="white" block style="color:#006838" class="mr-3 radius6" x-large>
                   <v-icon class="mr-3">mdi-cash-plus</v-icon>
@@ -94,14 +95,14 @@
                   Withdrawal
               </v-btn>
             </div>
-        </div>
+        </div> -->
 
 
          </div>
          <div class="smallColumn hidden-md-and-down">
              <div>
             <v-card class="pa-6 py-6" style="border-radius:10px" elevation="4">
-                <v-img src="../assets/images/homepage.png" />
+                <v-img src="../../assets/images/homepage.png" />
                 
             
                  <div class="mt-3">
@@ -133,7 +134,7 @@
                        <v-btn small fab @click="buyModal = false"><v-icon>mdi-close</v-icon></v-btn>
                     </div>
             <div class="centerBuySolar">
-            <BuySolar :currency="user.currency" :accountBalance="user.accountBalance" @closeModal="closeModal"/>
+            <BuySolar :currency="user.currency" :price="price" :accountBalance="user.accountBalance" @closeModal="closeModal"/>
             </div>
             </v-card>
         </v-dialog>
@@ -157,11 +158,11 @@
 
 
 <script>
-import SideNav from '../components/SideNav.vue'
-import UserMenu from '../components/UserMenu.vue'
+import SideNav from '../../components/SideNav.vue'
+import UserMenu from '../../components/UserMenu.vue'
 import {mapState} from "vuex"
-import Deposit from "../components/Payments/Deposit.vue"
-import BuySolar from "../components/Payments/BuySolar.vue"
+import Deposit from "../../components/Payments/Deposit.vue"
+import BuySolar from "../../components/Payments/BuySolar.vue"
 
 export default {
     components:{
@@ -181,7 +182,8 @@ export default {
            drawer: false,
           mini: false,
           modal:false,
-          buyModal:false
+          buyModal:false,
+          price:200
 
         }
     },
@@ -252,6 +254,16 @@ export default {
     .centerBuySolar{
     width:90%;
     margin:auto
+    }
+}
+
+@media screen and (min-width:1000px){
+    .centerBuySolar{
+    width:90%;
+    margin:auto
+    }
+    .buttonPadding{
+        padding:0px 60px
     }
 }
 

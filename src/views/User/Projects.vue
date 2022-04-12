@@ -41,6 +41,7 @@
                             />
                             <p>{{ project.name }}</p>
                             <v-btn width="60%" text color="#FF7B00"
+                            @click="goProject(project.id)"
                               >View Details<v-icon
                                 >mdi-arrow-right</v-icon
                               ></v-btn
@@ -79,7 +80,7 @@
                         style="border-radius: 10px"
                         block
                         x-large
-                        ><v-icon>mdi-cash</v-icon> Invest</v-btn
+                        ><v-icon>mdi-cash</v-icon>Buy Solar cells</v-btn
                       >
                     </v-card>
                   </div>
@@ -102,7 +103,7 @@
                       <div class=" d-flex mt-4 text-center">
                               <div class="pa-4 text-center">
                                 <v-img
-                                  src="../assets/images/Vector.svg"
+                                  src="../../assets/images/Vector.svg"
                                   style="margin: auto"
                                   height="30px"
                                   width="30px"
@@ -157,7 +158,7 @@
                             
                                 <div class="pa-4 mt-3 text-center">
                                   <v-img
-                                    src="../assets/images/cells.svg"
+                                    src="../../assets/images/cells.svg"
                                     style="margin: auto"
                                     height="30px"
                                     width="30px"
@@ -210,7 +211,7 @@
 
                               <div class="pa-4 text-center">
                                 <v-img
-                                  src="../assets/images/Piechart.svg"
+                                  src="../../assets/images/Piechart.svg"
                                   style="margin: auto"
                                   height="30px"
                                   width="30px"
@@ -286,7 +287,7 @@
                             <v-col>
                               <div class="text-center">
                                 <v-img
-                                  src="../assets/images/Vector.svg"
+                                  src="../../assets/images/Vector.svg"
                                   style="margin: auto"
                                   height="30px"
                                   width="30px"
@@ -348,7 +349,7 @@
                               <v-col>
                                 <div class="text-center">
                                   <v-img
-                                    src="../assets/images/cells.svg"
+                                    src="../../assets/images/cells.svg"
                                     style="margin: auto"
                                     height="30px"
                                     width="30px"
@@ -408,7 +409,7 @@
                             <v-col>
                               <div class="text-center">
                                 <v-img
-                                  src="../assets/images/Piechart.svg"
+                                  src="../../assets/images/Piechart.svg"
                                   style="margin: auto"
                                   height="30px"
                                   width="30px"
@@ -505,8 +506,8 @@
 </template>
 
 <script>
-import SideNav from "../components/SideNav.vue";
-import UserMenu from "../components/UserMenu.vue";
+import SideNav from "../../components/SideNav.vue";
+import UserMenu from "../../components/UserMenu.vue";
 import { mapState } from "vuex";
 
 export default {
@@ -599,6 +600,9 @@ export default {
     goBack() {
       this.$route.go(-1);
     },
+    goProject(i){
+      this.$router.push('/project/'+i);
+    }
   },
 };
 </script>

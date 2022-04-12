@@ -69,7 +69,7 @@
         >
           <v-list-item to="/dashboard">
              <v-list-item-icon><v-icon>mdi-home</v-icon></v-list-item-icon>
-            <v-list-item-title>Home</v-list-item-title>
+            <v-list-item-title>Dashboard</v-list-item-title>
           </v-list-item>
 
           <v-list-item to="/profile">
@@ -96,20 +96,33 @@
              <v-list-item-icon><v-icon>mdi-history</v-icon></v-list-item-icon>
             <v-list-item-title>History</v-list-item-title>
           </v-list-item>
+
+           <v-list-item @click="logOut">
+             <v-list-item-icon><v-icon>mdi-logout</v-icon></v-list-item-icon>
+            <v-list-item-title>Logout</v-list-item-title>
+          </v-list-item>
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
+
+    <v-overlay :value="loading" absolute>
+      <v-progress-circular indeterminate></v-progress-circular>
+    </v-overlay>
 
 
   </v-card>
 </template>
 
 <script>
+import axios from 'axios'
+
+
 export default {
   data(){
     return{
       drawer:false,
-      group:null
+      group:null,
+      loading:false
     }
   },
   watch: {
@@ -120,7 +133,24 @@ export default {
 
 methods:{
     logOut(){
-    alert('Logging out API o')
+      this.loading = true
+    axios({
+      method:"POST",
+      url:"http://greeneratech.herokuapp.com/api/authenticate/signout",
+      data:{
+        token:localStorage.getItem("token")
+      },
+      headers:{
+        "Content-Type":"application/json",
+        "Authorization":"Bearer "+localStorage.getItem("token")
+      }
+    }).then(()=>{
+      localStorage.removeItem("token")
+      this.$router.push("/login")
+      sessionStorage.removeItem("vuex")
+      this.loading = false
+
+    })
 }
 }
 

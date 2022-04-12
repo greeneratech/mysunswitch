@@ -19,7 +19,7 @@
 
               <div class="mt-8">
                <p class="text-h5 font-weight-bold text-center">ESTIMATED COST (NGN)</p>
-               <p class="font-weight-bold text-h4 text-center">{{cells*250}}</p>
+               <p class="font-weight-bold text-h4 text-center">{{cells*price}}</p>
 
                <p style="margin:auto" class="mt-7 d-flex pa-3 justify-center">
                   <v-icon class="mr-2">mdi-information-outline</v-icon>make sure there is enough funds in your wallet to complete your transaction
@@ -60,6 +60,9 @@ export default {
      },
      currency:{
          type:String
+     },
+     price:{
+         type:[String,Number]
      }
     },
     methods:{
@@ -67,7 +70,7 @@ export default {
             this.$emit("closeModal")
         },
         makePayment(){
-            if(this.cells != 0 && this.accountBalance>this.cells*250 ){
+            if(this.cells != 0 &&  this.accountBalance>this.cells*250 ){
                 this.loading = true
                 axios({
                     method:"POST",
@@ -111,3 +114,21 @@ export default {
 
 
 </script>
+
+<style scoped>
+
+input[type=number]{
+   font-size:40px;
+   text-align:center;
+   width:50%;
+   margin:auto
+}
+
+
+input[type=number]:focus{
+   outline:none;
+   border:none
+}
+
+
+</style>

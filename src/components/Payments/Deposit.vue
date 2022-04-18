@@ -4,8 +4,8 @@
         <v-text-field color="#006838" type="number" @keyup="enableButton"  outlined label="Enter amount" v-model="amount" />
          <flutterwave
             :is-production="isProduction"
-            name="Toheeb"
-            email="tobilobaojuolape@gmail.com"
+            :name="name"
+            :email="email"
             :amount="amount"
             :reference="referenceFlutter"
             flw-key="FLWPUBK-7162dd26aa9cc5bc0b4d5df920486832-X"
@@ -29,12 +29,14 @@ import axios from "axios"
 export default{
     data(){
         return{
-            amount:"",
+            amount:0,
             flutterwaveRef: "",
             loading:false,
             paymentMethod:"card",
             isProduction:true,
-            disabled:true
+            disabled:true,
+            email:"",
+            name:""
         }
     },
     components:{
@@ -54,6 +56,11 @@ export default{
       flutterwaveRef() {
       this.changesInDatabase();
     },
+    },
+    created(){
+      let user = JSON.parse(sessionStorage.getItem('vuex'))
+      this.email = user.email
+      this.name = user.firstName
     },
     methods:{
       callbackFlutter(response) {

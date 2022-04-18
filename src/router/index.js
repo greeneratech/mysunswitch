@@ -6,6 +6,7 @@ import BusinessLogin from "../views/BusinessOwner/Login.vue"
 import Signup from "../views/User/Signup.vue"
 import BusinessSignup from "../views/BusinessOwner/Signup.vue"
 import Dashboard from "../views/User/Dashboard.vue"
+import AdminDashboard from "../views/Admin/Dashboard.vue"
 import BusinessDashboard from "../views/BusinessOwner/Dashboard.vue"
 import BusinessProfile from "../views/BusinessOwner/Profile.vue"
 import ResetPassword from "../views/ResetPassword.vue"
@@ -52,6 +53,11 @@ const routes = [
     path: '/dashboard',
     name: 'Dashboard',
     component: Dashboard
+  },
+  {
+    path: '/admin/dashboard',
+    name: 'AdminDashboard',
+    component: AdminDashboard
   },
   {
     path: '/business/dashboard',

@@ -282,7 +282,7 @@ export default {
      logOut(){
     axios({
       method:"POST",
-      url:"http://greeneratech.herokuapp.com/api/authenticate/signout",
+      url:"https://greeneratech.herokuapp.com/api/authenticate/signout",
       data:{
         token:localStorage.getItem("token")
       },

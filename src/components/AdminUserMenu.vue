@@ -11,16 +11,7 @@
     </div>
     <div class="hidden-md-and-down">
     <div class="d-flex justify-space-around">
-    <div class="mt-3">
-        <v-btn medium icon class="mr-8">
-            <v-badge color="#C4C4C4" dot overlap>
-            <v-icon>
-            mdi-bell
-            </v-icon>
-            </v-badge>
-            </v-btn>
-    </div>
-
+        <div class="ma-4"><p>Welcome, <router-link style="text-decoration:none;color:#FF7B00" to="/profile">Admin ABC</router-link></p></div>
     <div>
         <v-btn medium class="accountBorder" elevation="1" fab><v-icon color="#C4C4C4">mdi-account</v-icon></v-btn>
         <v-menu
@@ -47,6 +38,21 @@
             </v-list>
           </v-menu>
     </div>
+
+
+
+
+    <div class="mt-3">
+        <v-btn medium icon class="mr-8">
+            <v-badge color="#C4C4C4" dot overlap>
+            <v-icon>
+            mdi-bell
+            </v-icon>
+            </v-badge>
+            </v-btn>
+    </div>
+
+
     </div>
     </div>
     <div class="hidden-lg-and-up justify-end mt-2">

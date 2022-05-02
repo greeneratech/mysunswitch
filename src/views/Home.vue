@@ -240,6 +240,22 @@ input[type=text]:focus{
    border:none
 }
 
+input[type=number]:focus{
+   outline:none;
+   border:none
+}
+
+input[type=date]:focus{
+   outline:none;
+   border:none
+}
+
+textarea[type=text]:focus{
+   outline:none;
+   border:none;
+   height:130px
+}
+
 .balanceBalance{
     font-size:35px;
     color:white;

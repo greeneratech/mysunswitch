@@ -6,7 +6,10 @@ import BusinessLogin from "../views/BusinessOwner/Login.vue"
 import Signup from "../views/User/Signup.vue"
 import BusinessSignup from "../views/BusinessOwner/Signup.vue"
 import Dashboard from "../views/User/Dashboard.vue"
+import AdminLogin from "../views/Admin/Login.vue"
 import AdminDashboard from "../views/Admin/Dashboard.vue"
+import AdminProjects from "../views/Admin/Projects.vue"
+import AdminAddProject from "../views/Admin/AddProject.vue"
 import BusinessDashboard from "../views/BusinessOwner/Dashboard.vue"
 import BusinessProfile from "../views/BusinessOwner/Profile.vue"
 import ResetPassword from "../views/ResetPassword.vue"
@@ -55,9 +58,24 @@ const routes = [
     component: Dashboard
   },
   {
+    path: '/admin/login',
+    name: 'AdminLogin',
+    component: AdminLogin
+  },
+  {
     path: '/admin/dashboard',
     name: 'AdminDashboard',
     component: AdminDashboard
+  },
+  {
+    path: '/admin/projects',
+    name: 'AdminProjects',
+    component: AdminProjects
+  },
+  {
+    path: '/admin/addproject',
+    name: 'AdminAddProject',
+    component: AdminAddProject
   },
   {
     path: '/business/dashboard',

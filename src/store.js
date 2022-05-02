@@ -1,33 +1,24 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import VuexPersistence from 'vuex-persist'
 import axios from 'axios'
 
 
 Vue.use(Vuex)
 
-const badMutations = [
-  'SET_USER',
-  'vuexfireMutations'
-]
 
-
-const vuexLocal = new VuexPersistence({
-  strictMode: true, 
-  storage: window.sessionStorage,
-  reducer: (state) => state.user,
-  filter: (mutation) => (badMutations.indexOf(mutation.type) === -1)
-})
 
 
 export default new Vuex.Store({
   state: {
       user:"",
+      users:[],
       name:"",
       projects:"",
       loading:true,
       history:"",
-      single:""
+      single:"",
+      projectLoading:false,
+      allProjects:[]
   },
   getters: {
     
@@ -37,9 +28,19 @@ export default new Vuex.Store({
         if(sessionStorage.getItem('vuex')!= null){
           state.user = JSON.parse(sessionStorage.getItem('vuex'))
         } else{
-        state.user = value.user
+        state.user = value
+        sessionStorage.setItem('vuex',JSON.stringify(value))
+        } 
+      },
+
+      adminUsers(state,value){
+        if(sessionStorage.getItem("users")!=null){
+          state.users = JSON.parse(sessionStorage.getItem("users"))
+        }else{
+          state.users = value
+          console.log(value)
+          sessionStorage.setItem("users",JSON.stringify(value))
         }
-        
       },
 
       fetchProjects(state){
@@ -78,6 +79,32 @@ export default new Vuex.Store({
         })
       },
 
+      fetchAllProjects(state){
+        state.projectLoading = true
+        axios({
+          method:"GET",
+          url:"https://greeneratech.herokuapp.com/api/admin/investments/get",
+          headers: {
+            ContentType: "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          }
+        }).then((response)=>{
+          console.log(response)
+          state.allProjects = response.data.data.reverse()
+          state.projectLoading = false
+        })
+      },
+
+      sortByName(state) {
+        state.users.sort((a, b) =>
+          a.firstName > b.firstName
+            ? 1
+            : b.firstName > a.firstName
+            ? -1
+            : 0
+        );
+      },
+
       fetchHistory(state){
         state.loading = true
         axios({
@@ -110,15 +137,22 @@ export default new Vuex.Store({
         })
       },
 
-
-      RESTORE_MUTATION: vuexLocal.RESTORE_MUTATION,
   },
   actions: {
      fetchUser: (context,value) => {
         context.commit("fetchUser",value);
       },
+      adminUsers:(context,value) => {
+        context.commit("adminUsers",value);
+      },
+      sortByName: (context) => {
+        context.commit("sortByName");
+      },
       fetchProjects(context){
         context.commit("fetchProjects")
+      },
+      fetchAllProjects(context){
+        context.commit("fetchAllProjects")
       },
       fetchSingleProject(context,i){
         context.commit("fetchSingleProject",i)
@@ -130,5 +164,4 @@ export default new Vuex.Store({
         context.commit("fetchBusinessHistory")
       },
   },
-  plugins: [vuexLocal.plugin]
 })

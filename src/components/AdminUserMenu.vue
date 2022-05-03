@@ -73,34 +73,44 @@
         <v-list-item-group
           v-model="group"
         >
-          <v-list-item to="/dashboard">
-             <v-list-item-icon><v-icon>mdi-home</v-icon></v-list-item-icon>
-            <v-list-item-title>Dashboard</v-list-item-title>
+          <v-list-item to="/admin/dashboard">
+             <v-list-item-icon><v-icon>mdi-account-cog</v-icon></v-list-item-icon>
+            <v-list-item-title>Manage Users</v-list-item-title>
           </v-list-item>
 
-          <v-list-item to="/profile">
-               <v-list-item-icon><v-icon>mdi-account</v-icon></v-list-item-icon>
-            <v-list-item-title>Profile</v-list-item-title>
-          </v-list-item>
-
-          <v-list-item to="/projects">
-             <v-list-item-icon><v-icon>mdi-lightning-bolt-outline</v-icon></v-list-item-icon>
+          <v-list-item to="/admin/projects">
+               <v-list-item-icon><v-icon>mdi-lightning-bolt</v-icon></v-list-item-icon>
             <v-list-item-title>Projects</v-list-item-title>
           </v-list-item>
 
-          <v-list-item to="/wallet">
+          <v-list-item to="/admin/payments">
              <v-list-item-icon><v-icon>mdi-cash</v-icon></v-list-item-icon>
-            <v-list-item-title>Balance</v-list-item-title>
+            <v-list-item-title>View Payments</v-list-item-title>
           </v-list-item>
 
-          <v-list-item to="/account">
-             <v-list-item-icon><v-icon>mdi-cash</v-icon></v-list-item-icon>
-            <v-list-item-title>Account</v-list-item-title>
+          <v-list-item to="/admin/faqs">
+             <v-list-item-icon><v-icon>mdi-frequently-asked-questions</v-icon></v-list-item-icon>
+            <v-list-item-title>Manage FAQs</v-list-item-title>
           </v-list-item>
 
-           <v-list-item to="/history">
-             <v-list-item-icon><v-icon>mdi-history</v-icon></v-list-item-icon>
-            <v-list-item-title>History</v-list-item-title>
+          <v-list-item to="/admin/disclaimers">
+             <v-list-item-icon><v-icon>mdi-file-table-box-multiple-outline</v-icon></v-list-item-icon>
+            <v-list-item-title>Manage Disclaimers</v-list-item-title>
+          </v-list-item>
+
+            <v-list-item to="/admin/t-and-c">
+             <v-list-item-icon><v-icon>mdi-file-cog-outline</v-icon></v-list-item-icon>
+            <v-list-item-title>Manage T & C's</v-list-item-title>
+          </v-list-item>
+
+            <v-list-item to="/admin/team">
+             <v-list-item-icon><v-icon>mdi-account-multiple-plus-outline</v-icon></v-list-item-icon>
+            <v-list-item-title>Update Team Details</v-list-item-title>
+          </v-list-item>
+
+           <v-list-item to="/admin/bank">
+             <v-list-item-icon><v-icon>mdi-cash-multiple</v-icon></v-list-item-icon>
+            <v-list-item-title>Manage Bank Account</v-list-item-title>
           </v-list-item>
 
            <v-list-item @click="logOut">

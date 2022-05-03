@@ -18,7 +18,15 @@ export default new Vuex.Store({
       history:"",
       single:"",
       projectLoading:false,
-      allProjects:[]
+      allProjects:[],
+      payments:[],
+      paymentLoading:false,
+      faqLoading:false,
+      faqs:[],
+      disclaimerLoading:false,
+      disclaimers:[],
+      termsLoading:false,
+      terms:[]
   },
   getters: {
     
@@ -34,13 +42,82 @@ export default new Vuex.Store({
       },
 
       adminUsers(state,value){
-        if(sessionStorage.getItem("users")!=null){
-          state.users = JSON.parse(sessionStorage.getItem("users"))
-        }else{
-          state.users = value
-          console.log(value)
+        if(sessionStorage.getItem("users") == null ){
           sessionStorage.setItem("users",JSON.stringify(value))
+        }else{
+          state.users = JSON.parse(sessionStorage.getItem("users"))
         }
+      },
+
+      fetchFaqs(state){
+        state.faqLoading = true
+        axios({
+          method: "GET",
+          url:"https://greeneratech.herokuapp.com/api/admin/faqs",
+          headers: {
+            ContentType: "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          }
+        }).then((response) =>{
+          state.faqLoading = false
+          console.log(state.faqLoading)
+          state.faqs = response.data.faqs
+          
+        })
+      },
+
+
+      fetchDisclaimers(state){
+        state.disclaimerLoading = true
+        axios({
+          method: "GET",
+          url:"https://greeneratech.herokuapp.com/api/admin/disclaimers",
+          headers: {
+            ContentType: "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          }
+        }).then((response) =>{
+          state.disclaimerLoading = false
+          console.log(response)
+          state.disclaimers = response.data.disclaimers
+          
+        })
+      },
+
+
+      fetchTandC(state){
+        state.termsLoading = true
+        axios({
+          method: "GET",
+          url:"https://greeneratech.herokuapp.com/api/admin/terms",
+          headers: {
+            ContentType: "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          }
+        }).then((response) =>{
+          state.termsLoading = false
+          console.log(response)
+          state.terms = response.data.terms
+          
+        })
+      },
+
+
+
+      fetchPayments(state){
+      state.paymentLoading = true
+       axios({
+         method:"GET",
+         url:"https://greeneratech.herokuapp.com/api/admin/userPayments",
+         headers: {
+          ContentType: "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        }
+       }).then((response)=>{
+         console.log(response)
+         state.payments = response.data
+         state.paymentLoading = false
+       })
       },
 
       fetchProjects(state){
@@ -105,6 +182,16 @@ export default new Vuex.Store({
         );
       },
 
+      sortByEmail(state) {
+        state.payments.sort((a, b) =>
+          a.user.email > b.user.email
+            ? 1
+            : b.user.email > a.user.email
+            ? -1
+            : 0
+        );
+      },
+
       fetchHistory(state){
         state.loading = true
         axios({
@@ -148,11 +235,26 @@ export default new Vuex.Store({
       sortByName: (context) => {
         context.commit("sortByName");
       },
+      sortByEmail:(context)=>{
+        context.commit("sortByEmail")
+      },
       fetchProjects(context){
         context.commit("fetchProjects")
       },
       fetchAllProjects(context){
         context.commit("fetchAllProjects")
+      },
+      fetchPayments(context){
+        context.commit("fetchPayments")
+      },
+      fetchFaqs(context){
+        context.commit("fetchFaqs")
+      },
+      fetchDisclaimers(context){
+        context.commit("fetchDisclaimers")
+      },
+      fetchTandC(context){
+        context.commit("fetchTandC")
       },
       fetchSingleProject(context,i){
         context.commit("fetchSingleProject",i)

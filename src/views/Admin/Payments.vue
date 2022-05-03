@@ -9,9 +9,9 @@
 
       <v-col lg=8 md=8 class="mx-auto">
           <v-card class="rounded-lg pb-7">
-              <h2 style="color:white;background:#006838;padding:10px">Manage Projects </h2>
-              <!-- <div class="d-flex pa-5">
-              <v-text-field v-model="search" label="Search" color="#006838" class="rounded-xl" outlined prepend-inner-icon="mdi-magnify"/>
+              <h2 style="color:white;background:#006838;padding:10px">Payments </h2>
+              <div class="d-flex pa-5">
+              <v-text-field v-model="search" label="Search by email" color="#006838" class="rounded-xl" outlined prepend-inner-icon="mdi-magnify"/>
               <v-btn text class="mt-2"><v-icon>mdi-filter</v-icon>Sort by</v-btn>
               <v-menu
       transition="slide-x-transition"
@@ -24,35 +24,38 @@
       </template>
 
       <v-list>
+          <v-list-item-group>
         <v-list-item
           v-for="(item, i) in items"
           :key="i"
         >
-          <v-list-item-title>{{ item.title }}</v-list-item-title>
+          <v-list-item-title @click="sortByEmail">{{ item.title }}</v-list-item-title>
         </v-list-item>
+          </v-list-item-group>
       </v-list>
     </v-menu>
-              </div> -->
+              </div>
 
-          <div v-for="(project,i) in allProjects" :key="i">
+          <div v-for="(payment,i) in filteredPayments" :key="i">
             <v-card class="ma-5  pa-5 flexLarge rounded-xl">
-                <iframe width="280px" style="border-radius:20px;margin:0px 50px 0px 0px"  :src="project.descriptionMediaLink">
-</iframe>
-              
-              <div class="pt-12">
-                <h2>{{project.name}}</h2>
-                <p class="projectDescription">{{project.description}}</p>
-                <div class="d-flex mt-9 justify-end">
-                  <v-btn @click="viewProject(project)" width="10px" class="mr-4" text><v-icon class="mr-2">mdi-eye-outline</v-icon>View</v-btn>
-                   <v-btn @click="editProject(project)" text><v-icon class="mr-2">mdi-square-edit-outline</v-icon>Edit</v-btn>
-                   <v-btn @click="areYouSure(project)" text color="#EB5757"><v-icon class="mr-2">mdi-delete-outline</v-icon>Delete</v-btn>
+              <div class="py-6" style="width:100%">
+                <div class="pa-0 ma-0 d-flex justify-space-between">
+                    <div>
+                    <p class="pa-0 ma-0">{{payment.user.email}} | {{payment.user.phoneNumber}}</p>
+                    <p :style="`color:${payment.transaction.type =='WITHDRAW'? '#FF7B00':'#006838'}`" class="pa-0 ma-0 projectDescription">{{payment.transaction.type.toLowerCase()}}</p>
+
+                        </div>
+                       
+                    <div class="mr-2">
+                        <p class="pa-0 ma-0">{{payment.transaction.created_at.slice(0,10)}}</p>
+                        <p class="pa-0 ma-0 font-weight-bold">NGN {{payment.transaction.baseAmount}}</p>
+
+                        </div>
                 </div>
               </div>
             </v-card>
           </div>
-          <div class="pa-5 text-right">
-          <v-btn to="/admin/addproject" large color="#199958" class="white--text rounded-lg"><v-icon class="mr-3">mdi-plus</v-icon>Add New Project</v-btn>
-          </div>
+       
 
           </v-card>
           <div class="mt-5 text-right">
@@ -61,7 +64,7 @@
         </v-col>
         </v-row>
       </v-main>
-      <v-overlay v-if="loading" class="text-center">
+      <v-overlay v-if="paymentLoading" class="text-center">
         <v-progress-circular indeterminate :size="50"></v-progress-circular>
         <p>Loading...</p>
       </v-overlay>
@@ -120,7 +123,7 @@ export default {
           buyModal:false,
           usage:60,
           items: [
-        { title: 'By Name' },
+        { title: 'By Email' },
         { title: 'By recent activities' },
       ],
       suspendLoading:false,
@@ -140,30 +143,36 @@ export default {
             users:"users",
             allProjects:"allProjects",
             loading:"projectLoading",
+            payments:"payments",
+            paymentLoading:"paymentLoading"
         }),
 
-        filteredUsers(){
-      const searchUser = this.search.toLowerCase().trim();
-      const users = this.users
-      if (!users) return this.users;
+        filteredPayments(){
+      const searchPayment = this.search.toLowerCase().trim();
+      const payments = this.payments
+      if (!payments) return this.payments;
 
-      return this.users.filter(
-        (user) => user.firstName.toLowerCase().indexOf(searchUser) > -1
+      return this.payments.filter(
+        (payment) => payment.user.email.toLowerCase().indexOf(searchPayment) > -1
       );
     },
     },
     created(){
         this.$store.dispatch("fetchUser")
         this.$store.dispatch("adminUsers")
-        if(this.allProjects.length == 0){
-        this.$store.dispatch("fetchAllProjects")
-        }
+       
+        this.$store.dispatch("fetchPayments")
+        
     },
     methods:{
+        sortByEmail(){
+            console.log("sort by email")
+            this.$store.dispatch("sortByEmail")
+        },
        refresh(){
-           alert('page refreshed')
            this.$store.dispatch("fetchUser")
-           this.$store.dispatch("fetchAllProjects")
+           this.$store.dispatch("fetchPayments")
+           alert('page refreshed')
        },
        areYouSure(project){
          this.singleProject = project
@@ -293,6 +302,10 @@ export default {
     .centerBuySolar{
     width:90%;
     margin:auto
+    }
+
+    .hideLine{
+        display:none
     }
 
   .projectImage{

@@ -173,6 +173,7 @@ export default {
           this.loading = false
           console.log(response.data.users)
           console.log(response.data.admin)
+          console.log(response.data.token)
           this.$store.dispatch("fetchUser",response.data.admin)
           this.$store.dispatch("adminUsers",response.data.users)
           localStorage.setItem('token',response.data.token)

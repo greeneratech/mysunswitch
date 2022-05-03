@@ -10,6 +10,11 @@ import AdminLogin from "../views/Admin/Login.vue"
 import AdminDashboard from "../views/Admin/Dashboard.vue"
 import AdminProjects from "../views/Admin/Projects.vue"
 import AdminAddProject from "../views/Admin/AddProject.vue"
+import AdminPayments from "../views/Admin/Payments.vue"
+import AdminFaqs from "../views/Admin/Faqs.vue"
+import AdminDisclaimers from "../views/Admin/Disclaimer.vue"
+import AdminTandC from "../views/Admin/TandC.vue"
+import AdminTeam from "../views/Admin/TeamMembers.vue"
 import BusinessDashboard from "../views/BusinessOwner/Dashboard.vue"
 import BusinessProfile from "../views/BusinessOwner/Profile.vue"
 import ResetPassword from "../views/ResetPassword.vue"
@@ -78,10 +83,36 @@ const routes = [
     component: AdminAddProject
   },
   {
+    path: '/admin/payments',
+    name: 'AdminPayments',
+    component: AdminPayments
+  },
+  {
+    path: '/admin/faqs',
+    name: 'AdminFaqs',
+    component: AdminFaqs
+  },
+  {
+    path: '/admin/disclaimers',
+    name: 'AdminDisclaimers',
+    component: AdminDisclaimers
+  },
+  {
+    path: '/admin/t-and-c',
+    name: 'AdminTandC',
+    component: AdminTandC
+  },
+  {
+    path: '/admin/team',
+    name: 'AdminTeam',
+    component: AdminTeam
+  },
+  {
     path: '/business/dashboard',
     name: 'BusinessDashboard',
     component: BusinessDashboard
   },
+  
   {
     path: '/profile',
     name: 'Profile',

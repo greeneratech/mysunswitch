@@ -9,7 +9,7 @@
 
       <v-col lg=8 md=8 class="mx-auto">
           <v-card class="rounded-lg pb-7">
-              <h2 style="color:white;background:#006838;padding:10px">Manage Users </h2>
+              <h2 style="color:white;background:#006838;padding:10px">Team Members </h2>
               <div class="d-flex pa-5">
               <v-text-field label="Search" v-model="search" color="#006838" class="rounded-xl" outlined prepend-inner-icon="mdi-magnify"/>
               <v-btn text class="mt-2"><v-icon>mdi-filter</v-icon>Sort by</v-btn>
@@ -45,11 +45,8 @@
               <div class="pt-12">
                 <h2>{{user.firstName}} {{user.lastName}}</h2>
                 <p>{{user.email}}</p>
-                <div class="largeFlex mt-9">
-                  <v-btn width="10px" class="mr-4" text><v-icon class="mr-2">mdi-eye-outline</v-icon>View</v-btn>
-                   <v-btn @click="suspendUser(user)" text color="#FF7B00"><v-icon class="mr-2">mdi-dots-horizontal-circle-outline</v-icon>Suspend</v-btn>
-                   <v-btn @click="areYouSure(user)" text color="#EB5757"><v-icon class="mr-2">mdi-delete-outline</v-icon>Delete</v-btn>
-                </div>
+                <p>{{user.position}}</p>
+                
               </div>
             </v-card>
           </div>

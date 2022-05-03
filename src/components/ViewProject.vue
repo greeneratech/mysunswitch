@@ -9,9 +9,9 @@
       <v-col lg=8 md=8 class="mx-auto">
           <v-card class="rounded-lg pb-7">
            
-              <h2 style="color:white;background:#006838;padding:10px">Edit Project </h2>
+              <h2 style="color:white;background:#006838;padding:10px">View Project </h2>
                <v-form style="max-width:900px;margin:auto;padding:30px">
-                  <v-btn text @click="closeModal"><v-icon>mdi-arrow-left</v-icon>Back</v-btn>
+                  <v-btn text @click="closeView"><v-icon>mdi-arrow-left</v-icon>Back</v-btn>
                   <v-card
                     class="py-6 px-6"
                     style="margin: 0px 0px 24px 0px; border-radius: 20px"
@@ -24,6 +24,7 @@
                         placeholder="Video link here"
                         v-model="singleProject.descriptionMediaLink"
                         style="width:100%"
+                        readonly
                       />
                     </div>
                   </v-card>
@@ -40,6 +41,7 @@
                         placeholder="Project Name"
                         v-model="singleProject.name"
                         style="width:100%"
+                        readonly
                       />
                     </div>
                   </v-card>
@@ -57,6 +59,7 @@
                         placeholder="Description"
                         v-model="singleProject.description"
                         style="width:100%"
+                        readonly
                       />
                     </div>
                   </v-card>
@@ -73,6 +76,7 @@
                         placeholder="Number of Cell(s) Available"
                         v-model="singleProject.numberOfCells"
                         style="width:100%"
+                        readonly
                       />
                     </div>
                   </v-card>
@@ -89,6 +93,7 @@
                         placeholder="Price per cell (NGN)"
                         v-model="singleProject.cellPrice"
                         style="width:100%"
+                        readonly
                       />
                     </div>
                   </v-card>
@@ -105,10 +110,11 @@
                         placeholder="Profit per cell (NGN)"
                         v-model="singleProject.cellProfit"
                         style="width:100%"
+                        readonly
                       />
                     </div>
                   </v-card>
-                   <p class="ma-0 pa-0">Current Start Date: {{singleProject.endDate.slice(0,10)}}</p>
+    
                   <v-card
                     class="py-6 px-6"
                     style="margin: 0px 0px 24px 0px; border-radius: 20px"
@@ -116,17 +122,12 @@
                     <div>
                       <label>Start Date (DD/MM/YYYY)</label>
                       <br/>
-                      <input
-                        type="date"
-                        placeholder="Start Date (DD/MM/YYYY)"
-                        v-model="singleProject.startDate"
-                        style="width:100%"
-                      />
+                      {{singleProject.endDate.slice(0,10)}}
                     </div>
                   </v-card>
                
 
-                    <p class="ma-0 pa-0">Current End Date: {{singleProject.endDate.slice(0,10)}}</p>
+            
                    <v-card
                     class="py-6 px-6"
                     style="margin: 0px 0px 24px 0px; border-radius: 20px"
@@ -134,16 +135,11 @@
                     <div>
                       <label>End Date (DD/MM/YYYY)</label>
                       <br/>
-                      <input
-                        type="date"
-                        placeholder="End Date (DD/MM/YYYY)"
-                        v-model="singleProject.endDate"
-                        style="width:100%"
-                      />
+                     {{singleProject.endDate.slice(0,10)}}
                     </div>
                   </v-card>
                    
-                    <p class="ma-0 pa-0">Current Next payment due: {{singleProject.nextPaymentDueOn.slice(0,10)}}</p>
+                   
                     <v-card
                     class="py-6 px-6"
                     style="margin: 0px 0px 24px 0px; border-radius: 20px"
@@ -151,17 +147,13 @@
                     <div>
                       <label>Next payment Due on (DD/MM/YYYY)</label>
                       <br/>
-                      <input
-                        type="date"
-                        placeholder="End Date (DD/MM/YYYY)"
-                        v-model="singleProject.nextPayment"
-                        style="width:100%"
-                      />
+                      {{singleProject.nextPaymentDueOn.slice(0,10)}}
                     </div>
                   </v-card>
                 
 
-                  <v-btn :loading="createLoading" @click="createProject" class="rounded-lg black--text mt-5" block x-large color="#FF7B00"><v-icon class="mr-5">mdi-content-save-outline</v-icon>Save Project</v-btn>
+                  <v-btn :loading="createLoading" @click="editSingleProject" class="rounded-lg black--text" block x-large color="white"><v-icon class="mr-5">mdi-pen</v-icon>Edit Project</v-btn>
+                  <v-btn :loading="createLoading" @click="closeView" class="rounded-lg black--text mt-5" block x-large color="#FF7B00"><v-icon class="mr-5">mdi-content-save-outline</v-icon>Close View</v-btn>
 
 
 
@@ -189,7 +181,6 @@
 //import SideNav from '../../components/AdminSideNav.vue'
 // import UserMenu from '../../components/AdminUserMenu.vue'
 import {mapState} from "vuex"
-import axios from "axios"
 
 export default {
     components:{
@@ -245,57 +236,11 @@ export default {
         this.$store.dispatch("fetchAllProjects")
     },
     methods:{
-      createProject(){
-        this.createLoading = true
-        axios({
-          method:"PUT",
-          url:"https://greeneratech.herokuapp.com/api/admin/investments/update/"+this.singleProject.id,
-          headers:{
-            "Content-Type":"application/json",
-            "Authorization":"Bearer "+localStorage.getItem("token")
-          },
-          data:{
-            name:this.singleProject.name,
-            description:this.singleProject.description,
-            descriptionMediaLink:this.singleProject.descriptionMediaLink,
-            startDate:this.singleProject.startDate.slice(0,10),
-            endDate:this.singleProject.endDate.slice(0,10),
-            numberOfCells:this.singleProject.numberOfCells,
-            cellPrice:this.singleProject.cellPrice,
-            cellProfit:this.singleProject.cellProfit,
-            nextPaymentDueOn:this.singleProject.nextPaymentDueOn.slice(0,10)
-          }
-        }).then((response)=>{
-          console.log(response)
-          this.createLoading = false
-          this.$swal({
-            title: "Project Updated",
-            text: "Project has been updated successfully",
-            type: "success",
-            icon:"success",
-            confirmButtonText: "OK"
-          }).then((result)=>{
-            if(result.isConfirmed){
-              location.reload()
-            }
-          })
-          this.$store.dispatch("fetchAllProject")
-        }).catch((error)=>{
-          console.log(error)
-          this.$swal({
-            type:"error",
-            icon:"error",
-            title:"Error",
-            text:"An error occured while creating project"
-          }).then((result)=>{
-            if(result.isConfirmed){
-              this.createLoading = false
-            }
-          })
-        })
+      editSingleProject(){
+          this.$emit("editSingleProject")
       },
-       closeModal(){
-           this.$emit("closeModal")
+       closeView(){
+           this.$emit("closeView")
        }
     }
 

@@ -9,20 +9,20 @@
       <v-col lg=8 md=8 class="mx-auto">
           <v-card class="rounded-lg pb-7">
            
-              <h2 style="color:white;background:#006838;padding:10px">Edit Term</h2>
+              <h2 style="color:white;background:#006838;padding:10px">Add Team Member</h2>
                <v-form style="max-width:900px;margin:auto;padding:30px">
-                  <v-btn text @click="closeTerm"><v-icon>mdi-arrow-left</v-icon>Back</v-btn>
+                  <v-btn text @click="closeTeam"><v-icon>mdi-arrow-left</v-icon>Back</v-btn>
                   <v-card
                     class="py-6 px-6"
                     style="margin: 0px 0px 24px 0px; border-radius: 20px"
                   >
                     <div>
-                      <label>Term</label>
+                      <label>Name</label>
                       <br/>
                       <input
                         type="text"
-                        placeholder="Term title"
-                        v-model="singleTerm.title"
+                        placeholder="Name"
+                        v-model="name"
                         style="width:100%"
                       />
                     </div>
@@ -32,16 +32,32 @@
 
                    <v-card
                     class="py-6 px-6"
-                    height="200px"
                     style="margin: 0px 0px 24px 0px; border-radius: 20px"
                   >
                     <div>
-                      <label>Detail</label>
+                      <label>Email</label>
                       <br/>
-                      <textarea
+                      <input
                         type="text"
-                        placeholder="Description"
-                        v-model="singleTerm.detail"
+                        placeholder="Email"
+                        v-model="email"
+                        style="width:100%"
+                      />
+                    </div>
+                  </v-card>
+
+
+                  <v-card
+                    class="py-6 px-6"
+                    style="margin: 0px 0px 24px 0px; border-radius: 20px"
+                  >
+                    <div>
+                      <label>Position</label>
+                      <br/>
+                      <input
+                        type="text"
+                        placeholder="Position"
+                        v-model="position"
                         style="width:100%"
                       />
                     </div>
@@ -54,8 +70,7 @@
                   
         
 
-                  <v-btn :loading="termloading" @click="editTerm" class="rounded-lg white--text mt-5" block x-large color="#199958"><v-icon class="mr-5">mdi-pen</v-icon>Edit Term</v-btn>
-
+                  <v-btn :loading="teamloading" @click="createTeam" class="rounded-lg white--text mt-5" block x-large color="#199958"><v-icon class="mr-5">mdi-plus</v-icon>{{name}}</v-btn>
 
 
 
@@ -107,20 +122,21 @@ export default {
       suspendLoading:false,
       search:"",
       projectVideo:"",
-      title:"",
-      description:"",
+      name:"",
+      email:"",
+      position:"",
       startDate:"",
       endDate:"",
       cellNumber:0,
       cellPrice:0,
       cellProfit:0,
       nextPayment:"",
-      termloading:false
+      teamloading:false
 
         }
     },
     props:{
-        singleTerm:{
+        singleProject:{
             type:Object,
             default:null
         }
@@ -128,14 +144,15 @@ export default {
     computed:{
     },
     methods:{
-        editTerm(){
-            this.termloading = true
+        createTeam(){
+            this.teamloading = true
             axios({
-                method:"PUT",
-                url:"https://greeneratech.herokuapp.com/api/admin/terms/update/"+this.singleTerm.id,
+                method:"POST",
+                url:"https://greeneratech.herokuapp.com/api/admin/team/create",
                 data:{
-                    title:this.singleTerm.title,
-                    detail:this.singleTerm.detail
+                    name:this.name,
+                    email:this.email,
+                    position:this.position
                 },
                 headers:{
             "Content-Type":"application/json",
@@ -143,21 +160,31 @@ export default {
           },
             }).then((response)=>{
                 console.log(response)
-                this.termloading = false
+                this.teamloading = false
                 this.$swal({
                     title: "Success!",
-                    text: "Term updated successfully",
+                    text: "Team member created successfully",
                     type: "success",
                     confirmButtonText: "OK",
                     icon:"success"
                   }).then(() => {
-                    this.$router.push("/admin/t-and-c")
+                    this.$store.dispatch("fetchTeam")
+                    this.$router.push("/admin/team")
                   });
+            }).catch((error)=>{
+                this.$swal({
+                    title: "Error!",
+                    text: error.message,
+                    type: "error",
+                    confirmButtonText: "OK",
+                    icon:"error"
+                })
+                this.teamloading = false
             })
         },
      
-       closeTerm(){
-           this.$emit("closeTerm")
+       closeTeam(){
+           this.$emit("closeTeam")
        }
     }
 

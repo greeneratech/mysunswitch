@@ -26,7 +26,9 @@ export default new Vuex.Store({
       disclaimerLoading:false,
       disclaimers:[],
       termsLoading:false,
-      terms:[]
+      teamLoading:false,
+      terms:[],
+      team:[]
   },
   getters: {
     
@@ -99,6 +101,22 @@ export default new Vuex.Store({
           console.log(response)
           state.terms = response.data.terms
           
+        })
+      },
+
+      fetchTeam(state){
+        state.teamLoading = true
+        axios({
+          method: "GET",
+          url:"https://greeneratech.herokuapp.com/api/admin/team",
+          headers: {
+            ContentType: "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          }
+        }).then((response) =>{
+          state.teamLoading = false
+          console.log(response)
+          state.team = response.data.teams
         })
       },
 
@@ -255,6 +273,9 @@ export default new Vuex.Store({
       },
       fetchTandC(context){
         context.commit("fetchTandC")
+      },
+      fetchTeam(context){
+        context.commit("fetchTeam")
       },
       fetchSingleProject(context,i){
         context.commit("fetchSingleProject",i)

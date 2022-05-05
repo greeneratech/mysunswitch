@@ -39,7 +39,7 @@
           <div v-for="(payment,i) in filteredPayments" :key="i">
             <v-card class="ma-5  pa-5 flexLarge rounded-xl">
               <div class="py-6" style="width:100%">
-                <div class="pa-0 ma-0 d-flex justify-space-between">
+                <div class="pa-0 ma-0 flexLarge justify-space-between">
                     <div>
                     <p class="pa-0 ma-0">{{payment.user.email}} | {{payment.user.phoneNumber}}</p>
                     <p :style="`color:${payment.transaction.type =='WITHDRAW'? '#FF7B00':'#006838'}`" class="pa-0 ma-0 projectDescription">{{payment.transaction.type.toLowerCase()}}</p>

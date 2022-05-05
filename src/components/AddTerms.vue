@@ -11,7 +11,7 @@
            
               <h2 style="color:white;background:#006838;padding:10px">New Terms and Conditions</h2>
                <v-form style="max-width:900px;margin:auto;padding:30px">
-                  <v-btn text @click="closeTerms"><v-icon>mdi-arrow-left</v-icon>Back</v-btn>
+                  <v-btn text @click="closeTerm"><v-icon>mdi-arrow-left</v-icon>Back</v-btn>
                   <v-card
                     class="py-6 px-6"
                     style="margin: 0px 0px 24px 0px; border-radius: 20px"
@@ -41,7 +41,7 @@
                       <textarea
                         type="text"
                         placeholder="Details"
-                        v-model="description"
+                        v-model="detail"
                         style="width:100%"
                       />
                     </div>
@@ -114,7 +114,8 @@ export default {
       cellPrice:0,
       cellProfit:0,
       nextPayment:"",
-      termloading:false
+      termloading:false,
+      detail:""
 
         }
     },
@@ -139,7 +140,7 @@ export default {
                 url:"https://greeneratech.herokuapp.com/api/admin/terms/create",
                 data:{
                     title:this.title,
-                    details:this.description
+                    detail:this.detail
                 },
                 headers:{
             "Content-Type":"application/json",
@@ -155,7 +156,8 @@ export default {
                     confirmButtonText: "OK",
                     icon:"success"
                   }).then(() => {
-                    this.$router.push("/admin/tandc")
+                    this.$store.dispatch("fetchTandC")
+                    this.$router.push("/admin/t-and-c")
                   });
             }).catch((error)=>{
                 this.$swal({
@@ -169,8 +171,8 @@ export default {
             })
         },
      
-       closeTerms(){
-           this.$emit("closeTerms")
+       closeTerm(){
+           this.$emit("closeTerm")
        }
     }
 

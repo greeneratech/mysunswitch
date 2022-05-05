@@ -36,7 +36,7 @@
     </v-menu>
               </div>
 
-          <div v-for="(user,i) in filteredUsers" :key="i">
+          <div v-for="(user,i) in filteredTeam" :key="i">
             <v-card class="ma-5  pa-5 flexLarge rounded-xl">
               <v-avatar color="#E0E0E0" class="avatarSize">
                 <img :src="user.photo" alt="">
@@ -47,9 +47,32 @@
                 <p>{{user.email}}</p>
                 <p>{{user.position}}</p>
                 
+                 <div>
+                  <v-btn @click="editTeam(user)" small text><v-icon small>mdi-pencil</v-icon>Edit </v-btn>
+                   <v-btn @click="areYouSure(user)" small text color="#EB5757"><v-icon small>mdi-delete-outline</v-icon>Delete</v-btn>
               </div>
+              </div>
+
+             
+              
             </v-card>
           </div>
+
+          <div class="text-right pa-3">
+            <v-btn @click="addteam  = true" large color="#199958" class="white--text rounded-lg"><v-icon>mdi-plus</v-icon>Add Team Member</v-btn>
+          </div>
+
+          <v-dialog fullscreen v-model="addteam">
+      <AddTeam @closeTeam="closeTeam"/>
+    </v-dialog>
+
+    <v-dialog fullscreen v-model="editteam">
+      <EditTeam :singleTeam="singleTeam" @closeTeam="closeTeam" />
+    </v-dialog>
+
+
+
+
           </v-card>
           <div class="mt-5 text-right">
             <v-btn x-large class="rounded-lg black--text" color="white" @click="refresh"><v-icon class="mr-6">mdi-refresh</v-icon>Refresh</v-btn>
@@ -57,15 +80,15 @@
         </v-col>
         </v-row>
       </v-main>
-      <v-overlay v-if="suspendLoading" class="text-center">
+      <v-overlay v-if="teamLoading" class="text-center">
         <v-progress-circular indeterminate :size="50"></v-progress-circular>
         <p>Loading...</p>
       </v-overlay>
       <v-dialog width="400px" v-model="dialog">
         <v-card height="190px" width="400px" class="pt-6 text-center pa-3 white--text" color="#006838">
-          <h2> Delete {{singleUser.firstName}} </h2>
+          <h2> Delete {{singleTeam.name}} </h2>
              <p>{{text}}</p>
-        <v-btn :loading="deleteLoading" @click="deleteUser()">Yes</v-btn> 
+        <v-btn :loading="deleteLoading" @click="deleteTeam()">Yes</v-btn> 
         <v-btn @click="dialog=false" class="ml-3" outlined>No</v-btn>
         </v-card>
      
@@ -81,6 +104,8 @@
 <script>
 import SideNav from '../../components/AdminSideNav.vue'
 import UserMenu from '../../components/AdminUserMenu.vue'
+import AddTeam from "../../components/AddTeam.vue"
+import EditTeam from "../../components/EditTeam.vue"
 import {mapState} from "vuex"
 import axios from "axios"
 
@@ -88,6 +113,8 @@ export default {
     components:{
       SideNav,
       UserMenu,
+      AddTeam,
+      EditTeam
   
     },
     data(){
@@ -109,25 +136,30 @@ export default {
       ],
       suspendLoading:false,
       search:"",
-      singleUser:"",
+      singleTeam:"",
       text:"",
       dialog:false,
-      deleteLoading:false
+      deleteLoading:false,
+      addteam:false,
+      editteam:false
 
         }
     },
     computed:{
         ...mapState({
             user:"user",
-            users:"users"
+            users:"users",
+            team:"team",
+            teamLoading:"teamLoading"
         }),
-         filteredUsers(){
-      const searchUser = this.search.toLowerCase().trim();
-      const users = this.users
-      if (!users) return this.users;
 
-      return this.users.filter(
-        (user) => user.firstName.toLowerCase().indexOf(searchUser) > -1
+      filteredTeam(){
+      const searchTeam = this.search.toLowerCase().trim();
+      const team = this.team
+      if (!team) return this.team;
+
+      return this.team.filter(
+        (user) => user.name.toLowerCase().indexOf(searchTeam) > -1
       );
     },
 
@@ -136,6 +168,7 @@ export default {
     created(){
         this.$store.dispatch("fetchUser")
         this.$store.dispatch("adminUsers")
+        this.$store.dispatch("fetchTeam")
     },
     methods:{
        refresh(){
@@ -169,16 +202,22 @@ export default {
         sortByName(){
       this.$store.dispatch("sortByName")
     },
-    areYouSure(user){
-      this.dialog = true
-      this.text = "Are you sure you want to delete "+ user.firstName +"?"
-      this.singleUser = user
+
+    editTeam(user){
+      this.singleTeam = user
+      this.editteam = true
     },
-    deleteUser(){
+
+    areYouSure(team){
+      this.dialog = true
+      this.text = "Are you sure you want to delete "+ team.name +"?"
+      this.singleTeam= team
+    },
+    deleteTeam(){
       this.deleteLoading = true
       axios({
-        method:"PUT",
-        url:"https://greeneratech.herokuapp.com/api/admin/suspend/user/"+this.singleUser.id,
+        method:"DELETE",
+        url:"https://greeneratech.herokuapp.com/api/admin/team/delete/"+this.singleTeam.id,
         headers:{
               "Authorization":"Bearer "+localStorage.getItem("token")
             }
@@ -187,7 +226,7 @@ export default {
         this.deleteLoading = false
         this.dialog = false
         this.$swal({
-          text:"User has been deleted successfully",
+          text:"Team member has been deleted successfully",
           title:"Success",
           icon:"success",
           type:"success",
@@ -199,7 +238,12 @@ export default {
         })
       })
 
-    }
+    },
+
+    closeTeam(){
+      this.addteam = false
+      this.editteam = false
+    },
     }
 
 }

@@ -61,7 +61,7 @@
         </v-col>
         </v-row>
       </v-main>
-      <v-overlay v-if="loading" class="text-center">
+      <v-overlay v-if="termloading" class="text-center">
         <v-progress-circular indeterminate :size="50"></v-progress-circular>
         <p>Loading...</p>
       </v-overlay>

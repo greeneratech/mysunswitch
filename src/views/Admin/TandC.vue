@@ -51,12 +51,12 @@
                   {{ term.title }} 
                   <div class="d-flex justify-end">
                 
-                   <v-btn @click="editDisclaimer(term)" small text><v-icon small>mdi-pencil</v-icon>Edit </v-btn>
+                   <v-btn @click="editTerm(term)" small text><v-icon small>mdi-pencil</v-icon>Edit </v-btn>
                    <v-btn @click="areYouSure(term)" small text color="#EB5757"><v-icon small>mdi-delete-outline</v-icon>Delete</v-btn>
                   </div>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
-                  {{ term.description}}
+                  {{ term.detail}}
                 </v-expansion-panel-content>
               </v-expansion-panel>
             </v-expansion-panels>
@@ -74,7 +74,7 @@
         </v-col>
       </v-row>
     </v-main>
-    <v-overlay v-if="disclaimerLoading" class="text-center">
+    <v-overlay v-if="termsLoading" class="text-center">
       <v-progress-circular indeterminate :size="50"></v-progress-circular>
       <p>Loading...</p>
     </v-overlay>
@@ -87,17 +87,17 @@
       >
         <h2>Delete</h2>
         <p>{{ text }}</p>
-        <v-btn :loading="deleteLoading" @click="deleteDisclaimer()">Yes</v-btn>
+        <v-btn :loading="deleteLoading" @click="deleteTerm()">Yes</v-btn>
         <v-btn @click="dialog = false" class="ml-3" outlined>No</v-btn>
       </v-card>
     </v-dialog>
 
     <v-dialog fullscreen v-model="addterm">
-      <AddTerms @closeTerms="closeTerms"/>
+      <AddTerms @closeTerm="closeTerm"/>
     </v-dialog>
 
     <v-dialog fullscreen v-model="editterm">
-      <EditTerms :singleTerm="singleTerm" @closeTerms="closeTerms" />
+      <EditTerms :singleTerm="singleTerm" @closeTerm="closeTerm" />
     </v-dialog>
 
 
@@ -191,7 +191,7 @@ export default {
       axios({
         method: "DELETE",
         url:
-          "https://greeneratech.herokuapp.com/api/admin/disclaimers/delete/" +
+          "https://greeneratech.herokuapp.com/api/admin/terms/delete/" +
           this.singleTerm.id,
         headers: {
           ContentType: "application/json",
@@ -202,10 +202,10 @@ export default {
           console.log(res);
           this.deleteLoading = false;
           this.dialog = false;
-          this.$store.dispatch("fetchDisclaimers");
+          this.$store.dispatch("fetchTandC");
           this.$swal({
             title: "Deleted!",
-            text: "Disclaimer has been deleted successfully",
+            text: "Term has been deleted successfully",
             icon: "success",
             button: "Ok",
           });
@@ -222,7 +222,7 @@ export default {
         });
     },
 
-    closeTerms() {
+    closeTerm() {
       this.editterm = false;
       this.addterm = false
     },

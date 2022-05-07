@@ -28,7 +28,9 @@ export default new Vuex.Store({
       termsLoading:false,
       teamLoading:false,
       terms:[],
-      team:[]
+      team:[],
+      banks:[],
+      bankloading:false
   },
   getters: {
     
@@ -67,6 +69,23 @@ export default new Vuex.Store({
           
         })
       },
+
+      fetchBanks(state){
+        state.bankloading = true
+        axios({
+          method:"GET",
+          url:"https://greeneratech.herokuapp.com/api/admin/userBank",
+          headers: {
+            ContentType: "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          }
+        }).then((response)=>{
+          state.banks = response.data.userBank
+          console.log(response)
+          state.bankloading = false
+        })
+      },
+
 
 
       fetchDisclaimers(state){
@@ -200,6 +219,16 @@ export default new Vuex.Store({
         );
       },
 
+      sortByBankName(state) {
+        state.banks.sort((a, b) =>
+          a.user.email > b.user.email
+            ? 1
+            : b.user.email > a.user.email
+            ? -1
+            : 0
+        );
+      },
+
       sortByEmail(state) {
         state.payments.sort((a, b) =>
           a.user.email > b.user.email
@@ -253,6 +282,9 @@ export default new Vuex.Store({
       sortByName: (context) => {
         context.commit("sortByName");
       },
+      sortByBankName: (context) => {
+        context.commit("sortByBankName");
+      },
       sortByEmail:(context)=>{
         context.commit("sortByEmail")
       },
@@ -267,6 +299,9 @@ export default new Vuex.Store({
       },
       fetchFaqs(context){
         context.commit("fetchFaqs")
+      },
+      fetchBanks(context){
+        context.commit("fetchBanks")
       },
       fetchDisclaimers(context){
         context.commit("fetchDisclaimers")

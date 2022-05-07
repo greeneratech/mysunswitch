@@ -15,6 +15,7 @@ import AdminFaqs from "../views/Admin/Faqs.vue"
 import AdminDisclaimers from "../views/Admin/Disclaimer.vue"
 import AdminTandC from "../views/Admin/TandC.vue"
 import AdminTeam from "../views/Admin/TeamMembers.vue"
+import AdminBank from "../views/Admin/Banks.vue"
 import BusinessDashboard from "../views/BusinessOwner/Dashboard.vue"
 import BusinessProfile from "../views/BusinessOwner/Profile.vue"
 import ResetPassword from "../views/ResetPassword.vue"
@@ -106,6 +107,11 @@ const routes = [
     path: '/admin/team',
     name: 'AdminTeam',
     component: AdminTeam
+  },
+  {
+    path: '/admin/bank',
+    name: 'AdminBank',
+    component: AdminBank
   },
   {
     path: '/business/dashboard',

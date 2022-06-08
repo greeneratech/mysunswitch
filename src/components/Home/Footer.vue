@@ -1,6 +1,6 @@
 <template>
     <v-app style="background:#006838">
-        <v-main class="hidden-md-and-down" style="margin:auto;width:80%;padding:70px">
+        <v-main class="hidden-md-and-down" style="margin:auto;width:80%;padding:70px 0px 140px 0px">
            <v-row style="margin-bottom:80px">
                <v-col>
                    <p class="white--text font-weight-bold">SERVICES</p>
@@ -27,7 +27,7 @@
                </v-col>
             </v-row>
             <hr/>
-            <div style="text-align:center;padding:100px;margin:auto">
+            <div style="text-align:center;padding:100px;margin:20px auto">
                 <v-btn x-large icon class="mr-15">
                 <v-icon x-large class="white--text">mdi-twitter</v-icon>
                 </v-btn>
@@ -60,7 +60,7 @@
                 <p style="font-size:20px" class="white--text font-weight-bold">T'S & C'S</p>
                 </div>
                  <hr/>
-            <div style="text-align:center;padding:30px;margin:auto">
+            <div class="d-flex justify-center my-5">
                 <v-btn  icon>
                 <v-icon class="white--text">mdi-twitter</v-icon>
                 </v-btn>
@@ -82,11 +82,6 @@
 
                  <p class="white--text"><v-icon class="white--text">mdi-email</v-icon> greeneratech@gmail.com</p>
             </div>
-            <div class="hidden-md-and-up" style="padding:20px;margin:0px 00px 0px 0px;position:absolute;background:white;bottom:0;width:100%">
-                <div style="margin:auto;width:20%">
-                <img  src="../../assets/images/Greenera_logo_svg.svg"/>
-                </div>
-            </div>
         </v-main>
     </v-app>
 </template>
@@ -97,5 +92,8 @@
 .routerLink{
     color:white !important;
     text-decoration:none !important
+}
+.contactDetails{
+    padding-bottom:40px;
 }
 </style>

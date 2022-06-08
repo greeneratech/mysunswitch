@@ -1,19 +1,75 @@
 <template>
     <v-app>
         <v-sheet color="black" height="730px" width=100%>
-            <v-img src="../../assets/images/capture-png 1.png" height="730px" width=100%>
+            <v-img :src="image" height="730px" width=100%>
             <v-sheet style="background:rgba(0, 0, 0, 0.6)" width=100% height=100%>
             <div class="imageContainer">
-            <h2 class="headingText">Earn from generating Sustainable, Reliable & Affordable Energy</h2>
-            <p  class="white--text">through the financing of solar energy projects.</p>
-            <v-btn x-large to="/signup" style="border-radius:16px" class="white--text" color="#199958">See how it works <v-icon>mdi-chevron-right</v-icon></v-btn>
+            <h2 class="headingText">Earn from clean energy</h2>
+            <p  class="white--text">You can earn from generating sustainable, reliable & affordable energy by financing solar projects.</p>
+            <v-btn to="/signup" style="border-radius:16px" class="ctabutton white--text" color="#FF7B00">See how it works <v-icon>mdi-chevron-right</v-icon></v-btn>
+             
+             <div class="circleContainer">
+                <div @click="setImage1()" id="circle1" class="circle"></div>
+                <div @click="setImage2()" id="circle2" class="circle"></div>
+            </div>
+
             </div>
             </v-sheet>
+
             </v-img>
+            
         </v-sheet>
     </v-app>
 </template>
 
+
+
+<script>
+export default {
+    data(){
+        return{
+            image:""
+        }
+    },
+    created(){
+        setInterval(()=>{
+            this.changeCircle()
+        },2000)
+
+        
+        
+    },
+    methods:{
+        setImage1(){
+            this.image = "https://i.ibb.co/94qq4Hj/capture-png-1.png"
+        },
+        setImage2(){
+            this.image = "https://i.ibb.co/yN67JhS/technician-engineer-checks-mai.jpg"
+        },
+      changeImage(){
+          this.image = "https://i.ibb.co/94qq4Hj/capture-png-1.png"
+      },
+      changeCircle(){
+        var circle1 = document.getElementById("circle1")
+        var circle2 = document.getElementById("circle2")
+        if(circle1.classList.contains("active")){
+             this.image = "https://i.ibb.co/94qq4Hj/capture-png-1.png"
+            circle1.classList.remove("active")
+            circle2.classList.add("active")
+            circle1.classList.remove("active")
+            circle2.classList.add("active")
+        }
+        else{
+            this.image = "https://i.ibb.co/yN67JhS/technician-engineer-checks-mai.jpg"
+            circle2.classList.remove("active")
+            circle1.classList.add("active")
+            circle2.classList.remove("active")
+            circle1.classList.add("active")
+        }
+      }
+    }
+}
+</script>
 
 
 
@@ -27,5 +83,22 @@
 
     .gradient{
         background-image: linear-gradient(rgb(0,0,0,0.8)) !important;
+    }
+
+    .circle{
+        width:18px;
+        height:18px;
+        border-radius:50%;
+        margin:0px 10px;
+        border:2px solid white
+    }
+    .active{
+         background-color:white;
+    }
+    .circleContainer{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        margin-top:20px;
     }
 </style>

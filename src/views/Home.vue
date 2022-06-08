@@ -6,6 +6,7 @@
      <!-- <Projects /> -->
      <Email />
      <Footer />
+     <LogoFooter />
      </v-app>
 </template>
 
@@ -18,6 +19,7 @@ import Cta from "../components/Home/Cta.vue"
 // import Projects from "../components/Home/Projects.vue"
 import Email from "../components/Home/Email.vue"
 import Footer from "../components/Home/Footer.vue"
+import LogoFooter from "../components/Home/LogoFooter.vue"
 
 export default {
   name: 'Home',
@@ -27,7 +29,8 @@ export default {
     Cta,
     // Projects,
     Email,
-    Footer
+    Footer,
+    LogoFooter
   }
 }
 </script>
@@ -38,6 +41,15 @@ export default {
 
 
 @media screen and (min-width: 993px) {
+   .ctabutton{
+    background: #FF7B00;
+    height:66px !important;
+    padding:15px 40px 15px 40px !important;
+    font-size:19px !important;
+    font-weight: 700;
+    margin:50px 0px
+
+  }
   .dashboardCard{
     display:flex
   }
@@ -117,17 +129,21 @@ export default {
   .headingText{
     font-size:64px;
     color:white;
-    width:80%
+    
   }
   .imageContainer{
     padding:79px;
-    position:absolute;
-    top:5%;
-    width:90%;
-    margin:auto
+    top:50%;
+    text-align:center;
+    vertical-align: middle;
+    position: relative;
+    transform: translateY(-50%);
   }
   .imageContainer p{
-    font-size:24px
+    font-size:24px;
+    text-align: center;
+    width:50%;
+    margin:auto
   }
    .dashboard{
     width:50%
@@ -143,8 +159,8 @@ export default {
   }
    .buySolar{
     font-size:20px;
-    width:50%;
-    margin:auto auto 40px auto
+    margin:20px auto 40px auto;
+    color:#000000
   }
 
    .welcomeBack{
@@ -166,20 +182,35 @@ export default {
 }
 
 @media screen and (max-width: 992px) {
+    .ctabutton{
+    background: #FF7B00;
+    height:66px !important;
+    padding:15px 40px 15px 40px !important;
+    font-size:19px !important;
+    font-weight: 700;
+    margin:0px 0px
 
+  }
   .logoPosition {
     padding: 20px;
   }
   .headingText{
-    font-size:50px;
+    font-size:60px;
     color:white;
   }
-  .imageContainer{
-    padding:90px 38px 30px 38px;
-    width:80%
+   .imageContainer{
+    padding:30px;
+    top:50%;
+    text-align:center;
+    vertical-align: middle;
+    position: relative;
+    transform: translateY(-50%);
   }
-   .imageContainer p{
-    font-size:20px
+  .imageContainer p{
+    font-size:24px;
+    text-align: center;
+    width:100%;
+    margin:30px auto
   }
   .dashboard{
     width:80%
@@ -189,12 +220,14 @@ export default {
     font-weight:800;
     font-size:47px;
     width:80%;
+    line-height:47px;
      margin:-100px auto 0px auto;
   }
   .buySolar{
-    font-size:20px;
-    width:80%;
-    margin:auto auto 40px auto
+    font-size:18px;
+    width:100%;
+    margin:20px auto 40px auto;
+     color:#000000
   }
   .statistics{
     margin-top:180px;
@@ -267,6 +300,16 @@ textarea[type=text]:focus{
 
 /* On screens that are 600px wide or less, make the columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
+   .ctabutton{
+    background: #FF7B00;
+    height:66px !important;
+    padding:15px 40px 15px 40px !important;
+    font-size:19px !important;
+    font-weight: 700;
+    margin:0px 0px
+
+  }
+
   .logoPosition {
     padding:20px !important
   }
@@ -275,10 +318,19 @@ textarea[type=text]:focus{
     color:white;
   }
   .imageContainer{
-    padding:90px 0px 30px 30px;
+    top:50%;
+    text-align:center;
+    vertical-align: middle;
+    position: relative;
+    transform: translateY(-50%);
+  }
+   .imageContainer h2{
+    font-size:50px !important;
+    line-height:50px
   }
  .imageContainer p{
-    font-size:20px
+    font-size:19px;
+    margin:32px 0px
   }
   .dashboard{
     width:90%
@@ -305,19 +357,31 @@ textarea[type=text]:focus{
     width:100%;
     padding:20px;
     margin:0px auto 0px auto;
+    line-height:0px !important;
   }
   .buySolar{
-    font-size:20px;
-    width:80%;
-    margin:auto auto 40px auto
+    font-size:18px;
+    width:94%;
+    margin:20px auto 40px auto;
+     color:#000000
   }
 
     .statistics{
-    margin-top:180px;
-    width:80%;
+    margin:180px 30px 0px 30px;
+    width:100%;
     margin:auto;
+    
   }
 
+}
+
+@media screen and (max-width:526px){
+  .statistics{
+    margin:180px 40px 0px 40px;
+    width:100%;
+    margin:auto;
+    display:block
+  }
 }
 
 @media screen and (max-width: 378px) {
@@ -342,7 +406,7 @@ textarea[type=text]:focus{
 
    .statistics{
     margin-top:180px;
-    width:80%;
+    width:100%;
     margin:auto;
     display:block
   }

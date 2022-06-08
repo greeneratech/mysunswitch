@@ -11,7 +11,16 @@
     </div>
     <div class="hidden-md-and-down">
     <div class="d-flex justify-space-around">
-        <div class="ma-4"><p>Welcome, <router-link style="text-decoration:none;color:#FF7B00" to="/profile">Admin ABC</router-link></p></div>
+    <div class="mt-3">
+        <v-btn medium icon class="mr-8">
+            <v-badge color="#C4C4C4" dot overlap>
+            <v-icon>
+            mdi-bell
+            </v-icon>
+            </v-badge>
+            </v-btn>
+    </div>
+
     <div>
         <v-btn medium class="accountBorder" elevation="1" fab><v-icon color="#C4C4C4">mdi-account</v-icon></v-btn>
         <v-menu
@@ -31,11 +40,6 @@
 
             <v-list>
               <v-list-item
-              to="/dashboard"
-              >
-                <v-list-item-title>Go to User</v-list-item-title>
-              </v-list-item>
-              <v-list-item
               @click="logOut"
               >
                 <v-list-item-title>Log out</v-list-item-title>
@@ -43,21 +47,6 @@
             </v-list>
           </v-menu>
     </div>
-
-
-
-
-    <div class="mt-3">
-        <v-btn medium icon class="mr-8">
-            <v-badge color="#C4C4C4" dot overlap>
-            <v-icon>
-            mdi-bell
-            </v-icon>
-            </v-badge>
-            </v-btn>
-    </div>
-
-
     </div>
     </div>
     <div class="hidden-lg-and-up justify-end mt-2">
@@ -78,44 +67,26 @@
         <v-list-item-group
           v-model="group"
         >
-          <v-list-item to="/admin/dashboard">
-             <v-list-item-icon><v-icon>mdi-account-cog</v-icon></v-list-item-icon>
-            <v-list-item-title>Manage Users</v-list-item-title>
+          <v-list-item to="/business/dashboard">
+             <v-list-item-icon><v-icon>mdi-home</v-icon></v-list-item-icon>
+            <v-list-item-title>Dashboard</v-list-item-title>
           </v-list-item>
 
-          <v-list-item to="/admin/projects">
-               <v-list-item-icon><v-icon>mdi-lightning-bolt</v-icon></v-list-item-icon>
-            <v-list-item-title>Projects</v-list-item-title>
+          <v-list-item to="/business/profile">
+               <v-list-item-icon><v-icon>mdi-account</v-icon></v-list-item-icon>
+            <v-list-item-title>Profile</v-list-item-title>
           </v-list-item>
 
-          <v-list-item to="/admin/payments">
+          <v-list-item to="/business/wallet">
              <v-list-item-icon><v-icon>mdi-cash</v-icon></v-list-item-icon>
-            <v-list-item-title>View Payments</v-list-item-title>
+            <v-list-item-title>Balance</v-list-item-title>
           </v-list-item>
 
-          <v-list-item to="/admin/faqs">
-             <v-list-item-icon><v-icon>mdi-frequently-asked-questions</v-icon></v-list-item-icon>
-            <v-list-item-title>Manage FAQs</v-list-item-title>
-          </v-list-item>
+        
 
-          <v-list-item to="/admin/disclaimers">
-             <v-list-item-icon><v-icon>mdi-file-table-box-multiple-outline</v-icon></v-list-item-icon>
-            <v-list-item-title>Manage Disclaimers</v-list-item-title>
-          </v-list-item>
-
-            <v-list-item to="/admin/t-and-c">
-             <v-list-item-icon><v-icon>mdi-file-cog-outline</v-icon></v-list-item-icon>
-            <v-list-item-title>Manage T & C's</v-list-item-title>
-          </v-list-item>
-
-            <v-list-item to="/admin/team">
-             <v-list-item-icon><v-icon>mdi-account-multiple-plus-outline</v-icon></v-list-item-icon>
-            <v-list-item-title>Update Team Details</v-list-item-title>
-          </v-list-item>
-
-           <v-list-item to="/admin/bank">
-             <v-list-item-icon><v-icon>mdi-cash-multiple</v-icon></v-list-item-icon>
-            <v-list-item-title>Manage Bank Account</v-list-item-title>
+           <v-list-item to="/business/history">
+             <v-list-item-icon><v-icon>mdi-history</v-icon></v-list-item-icon>
+            <v-list-item-title>History</v-list-item-title>
           </v-list-item>
 
            <v-list-item @click="logOut">

@@ -182,7 +182,7 @@
 </template>
 
 <script>
-import UserMenu from "../../components/UserMenu.vue";
+import UserMenu from "../../components/BusinessNav.vue";
 import SideNav from "../../components/BusinessSideNav.vue";
 import { mapState } from "vuex";
 import axios from "axios"

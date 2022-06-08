@@ -48,7 +48,7 @@
             
                  <div class="mt-3">
                     
-                    <v-btn @click="buyModal=true" color="#FF7B00" block x-large class="white--text" style="border-radius:10px"><v-icon class="mr-5">mdi-cart</v-icon> Buy solar cells</v-btn>
+                    <v-btn @click="buyModal=true" color="#FF7B00" block x-large class="white--text" style="border-radius:10px"><v-icon class="mr-5">mdi-cart</v-icon> Buy Power</v-btn>
                  </div>
 
             </v-card>
@@ -127,7 +127,7 @@
             
                  <div class="mt-3">
                     
-                    <v-btn @click="buyModal=true" color="#FF7B00" block x-large class="white--text" style="border-radius:10px"><v-icon class="mr-5">mdi-cart</v-icon> Buy solar cells</v-btn>
+                    <v-btn @click="buyModal=true" color="#FF7B00" block x-large class="white--text" style="border-radius:10px"><v-icon class="mr-5">mdi-cart</v-icon> Buy Power</v-btn>
                  </div>
 
             </v-card>
@@ -190,7 +190,7 @@
 
 <script>
 import SideNav from '../../components/BusinessSideNav.vue'
-import UserMenu from '../../components/UserMenu.vue'
+import UserMenu from '../../components/BusinessNav.vue'
 import {mapState} from "vuex"
 import Deposit from "../../components/Payments/BusinessDeposit.vue"
 import BuySolar from "../../components/Payments/BuySolar.vue"

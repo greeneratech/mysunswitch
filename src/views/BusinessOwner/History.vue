@@ -118,7 +118,7 @@
 
 <script>
 import SideNav from '../../components/BusinessSideNav.vue'
-import UserMenu from '../../components/UserMenu.vue'
+import UserMenu from '../../components/BusinessNav.vue'
 import {mapState} from "vuex"
 
 export default {

@@ -11,10 +11,22 @@
       <h1>Balance</h1>
        <div > 
         <div class="rightSpace">
-          <v-card class="cardHeight py-7 gradient text-center">
+          <v-card class="cardHeight pa-7 gradient text-center">
               <p class="white--text walletValue">Wallet Balance </p>
              <h2 class="text-center balanceBalance"> {{user.currency}} {{user.accountBalance}}</h2>
              <p class="balanceName">{{user.firstName}} {{user.lastName}}</p>
+                 <div class="buttonPadding">
+           <div class="d-flex">
+              <v-btn @click="modal=true" color="white" style="color:#006838;width:50%" class="mr-3 radius6" x-large>
+                 
+                 Deposit
+              </v-btn>
+           
+                <v-btn style="width:50%" color="#199958" class="mr-3 white--text radius6" x-large>
+                  Withdrawal
+              </v-btn>
+        </div>
+        </div>
           </v-card>
         </div>
         <div class="dashboardCard">
@@ -23,10 +35,6 @@
               <p class="white--text capText">CAP POINTS </p>
              <h2 class="capValue"> {{user.capPoint}} <span style="float:right;color:white"> CAPS</span></h2>
           </v-card>
-          </div>
-          <div class="moneyColumn">
-            <v-btn  @click="modal = true" block x-large height="64px" elevation=5 color="white mb-5" style="color:#199958;border-radius:12px"><v-icon>mdi-cash</v-icon> Deposit</v-btn>
-            <v-btn block x-large height="64px"  elevation=5 class="gradient" style="color:white;border-radius:12px"><v-icon>mdi-cash</v-icon> Withdraw</v-btn>
           </div>
           
         </div>
@@ -53,7 +61,7 @@
 
 <script>
 import SideNav from '../../components/BusinessSideNav.vue'
-import UserMenu from '../../components/UserMenu.vue'
+import UserMenu from '../../components/BusinessNav.vue'
 import {mapState} from "vuex"
 import Deposit from "../../components/Payments/BusinessDeposit.vue"
 

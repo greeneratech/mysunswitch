@@ -1,7 +1,7 @@
 <template>
     <v-app style="background:#006838">
-        <v-main class="hidden-md-and-down" style="margin:auto;width:80%;padding:70px 0px 140px 0px">
-           <v-row style="margin-bottom:80px">
+        <v-main class="hidden-md-and-down" style="margin:auto auto 80px auto;width:80%;padding:70px 0px 140px 0px">
+           <v-row>
                <v-col>
                    <p class="white--text font-weight-bold">SERVICES</p>
                    <p class=""><router-link class="routerLink" to="/signup">Service 1</router-link></p>

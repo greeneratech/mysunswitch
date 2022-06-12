@@ -43,12 +43,12 @@
 
               <v-form @submit.prevent="signup()">
                 <v-form @submit.prevent="signup()">
-                  <label>First Name</label>
+                  <label>Business Name</label>
                   <v-text-field
                     v-model="fName"
                     outlined
                     single-line
-                    label="First Name"
+                    label="Business Name"
                     type="text"
                     color="#f66c1f"
                     style="border-radius: 8px; margin-bottom: -15px"
@@ -56,19 +56,7 @@
                   />
                 </v-form>
 
-                <v-form @submit.prevent="signup()">
-                  <label>Last Name</label>
-                  <v-text-field
-                    v-model="lName"
-                    outlined
-                    label="Last Name"
-                    single-line
-                    type="text"
-                    color="#f66c1f"
-                    style="border-radius: 8px; margin-bottom: -15px"
-                    @submit.prevent="signup()"
-                  />
-                </v-form>
+
 
                 <v-form @submit.prevent="signup()">
                   <label>Email address</label>

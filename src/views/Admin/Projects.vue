@@ -36,16 +36,16 @@
 
           <div v-for="(project,i) in allProjects" :key="i">
             <v-card class="ma-5  pa-5 flexLarge rounded-xl">
-                <iframe width="280px" style="border-radius:20px;margin:0px 50px 0px 0px"  :src="project.descriptionMediaLink">
+                <iframe width="230px" style="border-radius:20px;margin:0px 50px 0px 0px"  :src="project.descriptionMediaLink">
 </iframe>
               
               <div class="pt-12">
                 <h2>{{project.name}}</h2>
                 <p class="projectDescription">{{project.description}}</p>
                 <div class="d-flex mt-9 justify-end">
-                  <v-btn @click="viewProject(project)" width="10px" class="mr-4" text><v-icon class="mr-2">mdi-eye-outline</v-icon>View</v-btn>
-                   <v-btn @click="editProject(project)" text><v-icon class="mr-2">mdi-square-edit-outline</v-icon>Edit</v-btn>
-                   <v-btn @click="areYouSure(project)" text color="#EB5757"><v-icon class="mr-2">mdi-delete-outline</v-icon>Delete</v-btn>
+                  <v-btn x-small @click="viewProject(project)" width="10px" class="mr-4" text><v-icon class="mr-2">mdi-eye-outline</v-icon>View</v-btn>
+                   <v-btn x-small @click="editProject(project)" text><v-icon class="mr-2">mdi-square-edit-outline</v-icon>Edit</v-btn>
+                   <v-btn x-small @click="areYouSure(project)" text color="#EB5757"><v-icon class="mr-2">mdi-delete-outline</v-icon>Delete</v-btn>
                 </div>
               </div>
             </v-card>

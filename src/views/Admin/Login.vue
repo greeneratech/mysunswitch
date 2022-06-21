@@ -194,16 +194,16 @@ export default {
       
       
       })
-      // .catch((error)=>{
-      //   console.log(error)
-      //     this.$swal({
-      //     title: "Error",
-      //     text: "The login details you entered is invalid",
-      //     icon: "error",
-      //     confirmButtonText: "Ok",
-      //   });
-      //   this.loading = false
-      // })
+      .catch((error)=>{
+        console.log(error)
+          this.$swal({
+          title: "Error",
+          text: "The login details you entered is invalid",
+          icon: "error",
+          confirmButtonText: "Ok",
+        });
+        this.loading = false
+      })
       }
     }
   },

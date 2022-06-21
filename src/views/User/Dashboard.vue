@@ -23,7 +23,7 @@
                  Deposit
               </v-btn>
            
-                <v-btn style="width:50%" color="#199958" class="mr-3 white--text radius6" x-large>
+                <v-btn @click="withdraw = true" style="width:50%" color="#199958" class="mr-3 white--text radius6" x-large>
                   Withdrawal
               </v-btn>
         </div>
@@ -40,13 +40,14 @@
 
          <div class="hidden-lg-and-up mt-6">
             <v-card class="pa-6 py-6" style="border-radius:10px" elevation="4">
-                <v-img src="../../assets/images/homepage.png" />
+                <iframe v-if="projects" width="100%" height="250px" style="border-radius:20px;margin:0px auto 0px auto"  :src="projects[0].descriptionMediaLink">
+                      </iframe>
                 
             
                  <div class="mt-3">
                      <div>
-                         <h2>
-                             New Owerri Town
+                         <h2 v-if="projects">
+                             {{projects[0].name}}
                          </h2>
                          <p>To be part of the ongoing project, kindly click the button below</p>
                     </div>
@@ -102,13 +103,14 @@
          <div class="smallColumn hidden-md-and-down">
              <div>
             <v-card class="pa-6 py-6" style="border-radius:10px" elevation="4">
-                <v-img src="../../assets/images/homepage.png" />
+                <iframe v-if="projects" width="100%" height="300px" style="border-radius:20px;margin:0px auto 0px auto"  :src="projects[0].descriptionMediaLink">
+                      </iframe>
                 
             
                  <div class="mt-3">
                      <div>
-                         <h2>
-                             New Owerri Town
+                         <h2 v-if="projects">
+                             {{projects[0].name}}
                          </h2>
                          <p>To be part of the ongoing project, kindly click the button below</p>
                     </div>
@@ -123,6 +125,11 @@
 
         <v-dialog class="pa-3 mx-auto" max-width="400px" height="400px" v-model="modal">
             <Deposit />
+        </v-dialog>
+
+
+          <v-dialog class="pa-3 mx-auto" max-width="400px" height="400px" v-model="withdraw">
+            <Withdrawal />
         </v-dialog>
 
          <!-- My Models -->
@@ -163,13 +170,15 @@ import UserMenu from '../../components/UserMenu.vue'
 import {mapState} from "vuex"
 import Deposit from "../../components/Payments/Deposit.vue"
 import BuySolar from "../../components/Payments/BuySolar.vue"
+import Withdrawal from "../../components/Payments/Withdrawal.vue"
 
 export default {
     components:{
       SideNav,
       UserMenu,
       Deposit,
-      BuySolar
+      BuySolar,
+      Withdrawal
     },
     data(){
         return{
@@ -183,17 +192,20 @@ export default {
           mini: false,
           modal:false,
           buyModal:false,
-          price:200
+          price:200,
+          withdraw:false
 
         }
     },
     computed:{
         ...mapState({
-            user:"user"
+            user:"user",
+            projects:"projects"
         })
     },
     created(){
         this.$store.dispatch("fetchUser")
+         this.$store.dispatch("fetchProjects")
     },
     methods:{
        refresh(){

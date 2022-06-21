@@ -33,14 +33,11 @@
                             style="border-radius: 10px"
                             class="mb-7 pa-4 mr-5"
                           >
-                            <img
-                              style="border-radius: 10px"
-                              :src="project.image"
-                              height="183px"
-                              width="183px"
-                            />
+                      <iframe width="280px" style="border-radius:20px;margin:0px 50px 0px 0px"  :src="project.descriptionMediaLink">
+
+                      </iframe>
                             <p>{{ project.name }}</p>
-                            <v-btn width="60%" text color="#FF7B00"
+                            <v-btn width="40%" text color="#FF7B00"
                             @click="goProject(project.id)"
                               >View Details<v-icon
                                 >mdi-arrow-right</v-icon
@@ -55,21 +52,24 @@
                     <v-card class="pa-7" style="border-radius: 10px">
                       <h2 style="color: #199958">Live Project</h2>
                       <hr />
-                      <div style="margin-bottom: 90px">
+                      <div style="">
                         <h4 style="margin-top: 24px; font-weight: 500">
                           PROJECT NAME
                         </h4>
-                        <h3>OBINZE Crowdsale IV</h3>
+                        <h3 v-if="projects">{{projects[0].name}}</h3>
                       </div>
+                      <iframe v-if="projects" width="100%" style="border-radius:20px;margin:0px auto 0px auto"  :src="projects[0].descriptionMediaLink">
+                      </iframe>
+
                       <h4 class="d-flex justify-space-between mb-3">
                         <span style="font-weight: 500">
                           MONTH<br />
-                          <b>APRIL</b>
+                          <b>{{months[parseFloat(projects[0].startDate.slice(5,7))]}}</b>
                         </span>
 
-                        <span style="font-weight: 500">
+                        <span v-if="projects" style="font-weight: 500">
                           YEAR<br />
-                          <b>2022</b>
+                          <b>{{projects[0].startDate.slice(0,4)}}</b>
                         </span>
                       </h4>
                       <hr />
@@ -596,6 +596,9 @@ export default {
           roi: "20%",
         },
       ],
+       months:[
+        "Year","January","February","March","April","May","June","July","August","September","October","November","December"
+        ]
     };
   },
   computed: {
@@ -614,6 +617,7 @@ export default {
       this.$route.go(-1);
     },
     goProject(i){
+      console.log(this.projects[0].startDate.slice(5,7))
       this.$router.push('/project/'+i);
     },
     closeModal(){

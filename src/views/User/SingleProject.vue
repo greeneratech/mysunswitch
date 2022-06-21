@@ -7,7 +7,7 @@
           <SideNav :url="url" />
         </v-col>
 
-        <v-col lg="9" md="9" class="mx-auto">
+        <v-col lg="10" md="12" sm="12">
           <h1 class="d-flex justify-space-between">
             <v-btn @click="$router.go(-1)" text
               ><v-icon>mdi-arrow-left</v-icon>Back</v-btn
@@ -16,23 +16,23 @@
 
           <div>
         
-                <div class="dashboardCard mt-6 ml-2">
-                  <div class="projectColumn mb-7">
-                    <v-card flat style="border-radius: 10px" class="pa-8">
+                <div>
+                  <div>
+                    <v-card flat style="border-radius: 10px">
                     
-                      <div style="max-width:340px" class="ma-2 text-center mt-4">
+                      <div  class="text-center mt-4">
                         <div v-for="(project, i) in single" :key="i">
                           <v-card
-                            style="border-radius: 10px;max-width:340px"
-                            class="mb-7 pa-4 mr-5 "
+                            style="border-radius: 10px"
+                            class="mb-7 pa-4"
+                            height=690px
+                            max-width=500px
+
+                            
                            
                           >
-                            <img
-                              style="border-radius: 10px"
-                              :src="project.image"
-                              height="183px"
-                              width="183px"
-                            />
+                           <iframe class="videoWidth" style="border-radius:20px;margin:0px 50px 0px 0px"  :src="project.descriptionMediaLink">
+</iframe>
                             <p class="mt-5 ma-0 pa-0">Project Name</p>
                             <h2>{{ project.name }}</h2>
                             <hr style="margin:auto" width="70%"/>
@@ -46,7 +46,7 @@
                             
 
                             <div class="mt-12">
-                            <v-btn @click="buySolar(project.cellPrice)" width="60%" color="#199958" class="white--text">
+                            <v-btn x-large @click="buySolar(project.cellPrice)" width="90%" color="#199958" class="white--text">
                              <v-icon>mdi-cash</v-icon> Buy Solar Cells
                               </v-btn
                             >
@@ -217,3 +217,25 @@ export default {
   },
 };
 </script>
+
+
+
+<style>
+
+@media screen and (min-width:1024px){
+  .videoWidth{
+  width:450px !important;
+  height:300px
+}
+
+}
+
+@media screen and (max-width:992px){
+  .videoWidth{
+  width:240px !important;
+  margin:auto !important
+}
+
+}
+
+</style>

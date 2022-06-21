@@ -117,12 +117,13 @@ export default({
         line-height:48px !important
     }
     .boxshadow{
-        box-shadow:0px 2px 4px 0px;
+        box-shadow:0px 0px 0px 0px;
         height:502px;
         width:80%;
         vertical-align:middle;
         padding:96px 54px;
         border-radius:10px;
+        border: 0.001em solid;
         margin:30px 0px 0px 0px
     }
 

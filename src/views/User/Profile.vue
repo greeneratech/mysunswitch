@@ -20,12 +20,12 @@
               <v-card style="border-radius:10px" class="pa-7 profile mb-7 pb-12">
                 <div class="text-center mb-10">
                   <v-avatar size="160" color="#EBEBEB">
-                    <v-img :src="image" />
+                    <v-img :loading="loading" :src="user.photo" />
                   </v-avatar>
 
                   <div>
 
-                  <v-btn @click="uploadImage" text class="grey--text mt-9"
+                  <v-btn :loading="imgloading" @click="uploadImage" text class="grey--text mt-9"
                     >Change Photo
                     <v-icon color="#FF7B00" class="ml-3"
                       >mdi-camera</v-icon
@@ -95,7 +95,7 @@
                       <input
                         type="text"
                         placeholder="Phone Number"
-                        v-model="user.phone"
+                        v-model="user.phoneNumber"
                         style="width:100%"
                       />
                     </div>
@@ -154,6 +154,7 @@
                 x-large
                 color="white"
                 style="border-radius: 9px; color: #ff7b00;height:66px"
+                @click="emailGreenera()"
                 ><v-icon color="#FF7B00">mdi-headset</v-icon>
                 <span>Help &
                 Feedback</span></v-btn
@@ -197,7 +198,8 @@ export default {
       phone: "",
       location: "",
       image:"",
-      loading:false
+      loading:false,
+      imgloading:false
     };
   },
   computed: {
@@ -216,7 +218,10 @@ export default {
     goBack() {
       this.$router.go(-1);
     },
-    updateProfile(){
+    emailGreenera(){
+      window.location.href = "mailto:hello@greeneratech.com"
+    },
+    updateProfile(image){
       this.loading = true
       axios({
         method: "POST", 
@@ -225,9 +230,9 @@ export default {
           firstName: this.user.firstName,
           lastName: this.user.lastName,
           email:this.user.email,
-          phoneNumber:this.user.phone,
+          phoneNumber:this.user.phoneNumber,
           location:this.user.location,
-          photo:"https://i.ibb.co/PD6B8zm/pngkey-com-avatar-png-1150152.png"
+          photo:image
         },
         headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}` 
@@ -235,6 +240,25 @@ export default {
       }).then((response)=>{
        console.log(response)
        this.loading = false
+
+       if(response.data.error.length != 0){
+        this.$swal({
+        title: "Error",
+        text: "You need to enter your Phone number and Location before you can upload your picture",
+        icon: "error",
+        button: "OK",
+       })
+       } 
+       else{
+        console.log(response.data.user)
+        sessionStorage.setItem("vuex", JSON.stringify(response.data.user))
+        this.$swal({
+        title: "Success",
+        text: "Profile updated successfully",
+        icon: "success",
+        button: "OK",
+       })
+       }
       }).catch((error)=>{
         this.loading = false
         console.log(error)
@@ -248,35 +272,39 @@ export default {
       if (input.files) {
         var reader = new FileReader();
         reader.onload = (e) => {
-          this.image = e.target.result;
+          this.user.photo = e.target.result;
         }
         // this.uploadImage= event.target.files;
         reader.readAsDataURL(input.files[0]);
       }
-      //  this.loading = true
-      //  this.file = this.$refs.file.files[0];
-      //  let formData = new FormData();
-      //  formData.append("file", this.file);
-      //  let token = localStorage.getItem("yududuToken");
-      //  axios.post( 'https://yududu-api.herokuapp.com/api/v1/profile/upload',
-      //           formData,
-      //           {
-      //           headers: {
-      //               'Content-Type': 'multipart/form-data',
-      //                Authorization:"Bearer " + token
-      //           },
-      //         }
-      //       ).then((response) =>{
-      //     this.loading = false
-      //     this.success = true
-      //     this.title = 'Image Updated!'
-      //     this.message = response.data.message
-      // }).catch((error) =>{
-      //     this.loading = false
-      //     this.failure = true
-      //     this.title = 'Image Not Updated!'
-      //     this.message = error.message
-      //   });
+       this.imgloading = true
+       this.file = this.$refs.image.files[0];
+       console.log(this.file)
+       let formData = new FormData();
+       formData.append("photo", this.file);
+       let token = localStorage.getItem("token");
+       axios.post( 'https://greeneratech.herokuapp.com/api/user/upload-photo',
+                formData,
+                {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                     Authorization:"Bearer " + token
+                },
+              }
+            ).then((response) =>{
+          console.log(response)
+          this.imgloading = false
+          this.success = true
+          this.title = 'Image Updated!'
+          this.message = response.data.message
+          console.log()
+          this.updateProfile(response.data.data.image_url)
+      }).catch((error) =>{
+          this.loading = false
+          this.failure = true
+          this.title = 'Image Not Updated!'
+          this.message = error.message
+        });
        
     },
 

@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Login from '../views/User/Login.vue'
 import BusinessLogin from "../views/BusinessOwner/Login.vue"
 import Signup from "../views/User/Signup.vue"
+import Verify from "../views/User/UserVerification.vue"
 import BusinessSignup from "../views/BusinessOwner/Signup.vue"
 import Dashboard from "../views/User/Dashboard.vue"
 import AdminLogin from "../views/Admin/Login.vue"
@@ -52,6 +53,12 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login
+  },
+
+  {
+    path: '/verify',
+    name: 'Verify',
+    component: Verify
   },
   {
     path: '/business/login',

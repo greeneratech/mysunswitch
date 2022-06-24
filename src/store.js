@@ -53,6 +53,23 @@ export default new Vuex.Store({
         }
       },
 
+      fetchuserAdmin(){
+        if(sessionStorage.getItem("users") == null ){
+        axios({
+          method:"GET",
+          url:"https://greeneratech.herokuapp.com/api/admin",
+          headers:{
+            "Authorization":"Bearer "+localStorage.getItem("token")
+          }
+         }).then((response)=>{
+          console.log(response)
+          sessionStorage.setItem("users",JSON.stringify(response.data.users))
+         })
+      } else{
+        this.adminUsers()
+      }
+    },
+
       fetchFaqs(state){
         state.faqLoading = true
         axios({

@@ -46,7 +46,7 @@
                 <h2>{{user.firstName}} {{user.lastName}}</h2>
                 <p>{{user.email}}</p>
                 <div class="largeFlex mt-9">
-                  <v-btn width="10px" class="mr-4" text><v-icon class="mr-2">mdi-eye-outline</v-icon>View</v-btn>
+                  <!-- <v-btn width="10px" class="mr-4" text><v-icon class="mr-2">mdi-eye-outline</v-icon>View</v-btn> -->
                    <v-btn @click="suspendUser(user)" text color="#FF7B00"><v-icon class="mr-2">mdi-dots-horizontal-circle-outline</v-icon>Suspend</v-btn>
                    <v-btn @click="areYouSure(user)" text color="#EB5757"><v-icon class="mr-2">mdi-delete-outline</v-icon>Delete</v-btn>
                 </div>
@@ -155,14 +155,24 @@ export default {
               "Authorization":"Bearer "+localStorage.getItem("token")
             }
          }).then((response)=>{
-           console.log(response)
-           this.suspendLoading = false
+          console.log(response)
+           axios({
+            method:"GET",
+            url:"https://greeneratech.herokuapp.com/api/admin",
+            headers:{
+              "Authorization":"Bearer "+localStorage.getItem("token")
+            }
+           }).then((response)=>{
+            console.log(response)
+            sessionStorage.setItem("users",JSON.stringify(response.data.users))
+             this.suspendLoading = false
            this.$swal({
               icon:"success",
               title:"User Suspended",
               text:user.firstName+ " has been suspended successfully",
               type:"success",
               showConfirmButton:true,
+           })
            })
          })
        },
@@ -180,16 +190,26 @@ export default {
     deleteUser(){
       this.deleteLoading = true
       axios({
-        method:"PUT",
-        url:"https://greeneratech.herokuapp.com/api/admin/suspend/user/"+this.singleUser.id,
+        method:"DELETE",
+        url:"https://greeneratech.herokuapp.com/api/admin/delete/user/"+this.singleUser.id,
         headers:{
               "Authorization":"Bearer "+localStorage.getItem("token")
             }
       }).then((response)=>{
         console.log(response)
-        this.deleteLoading = false
-        this.dialog = false
-        this.$swal({
+        console.log(response)
+           axios({
+            method:"GET",
+            url:"https://greeneratech.herokuapp.com/api/admin",
+            headers:{
+              "Authorization":"Bearer "+localStorage.getItem("token")
+            }
+           }).then((response)=>{
+            console.log(response)
+            sessionStorage.setItem("users",JSON.stringify(response.data.users))
+            this.deleteLoading = false
+            this.dialog = false
+           this.$swal({
           text:"User has been deleted successfully",
           title:"Success",
           icon:"success",
@@ -200,8 +220,8 @@ export default {
             location.reload()
           }
         })
+           })   
       })
-
     }
     }
 

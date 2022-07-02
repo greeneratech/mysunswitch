@@ -171,7 +171,9 @@ export default {
     // if(this.allProjects.length == 0){
     this.$store.dispatch("fetchDisclaimers");
     //}
-     if(localStorage.getItem('token') == null){
+  },
+  mounted(){
+       if(localStorage.getItem('token') == null){
           this.$router.push('/admin/login')
         }
   },

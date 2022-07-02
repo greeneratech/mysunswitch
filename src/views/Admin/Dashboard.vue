@@ -140,9 +140,12 @@ export default {
     created(){
         this.$store.dispatch("fetchUser")
         this.$store.dispatch("adminUsers")
-        if(localStorage.getItem('token') == null){
-          this.$router.push('/admin/login')
-        }
+    },
+
+      mounted(){
+           if(localStorage.getItem("token") == null){
+          this.$router.push("/admin/login")
+    }
     },
     methods:{
        refresh(){

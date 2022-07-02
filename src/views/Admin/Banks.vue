@@ -143,7 +143,10 @@ export default {
     created(){
         this.$store.dispatch("fetchUser")
         this.$store.dispatch("fetchBanks")
-         if(localStorage.getItem('token') == null){
+    },
+
+    mounted(){
+        if(localStorage.getItem('token') == null){
           this.$router.push('/admin/login')
         }
     },

@@ -132,13 +132,15 @@ export default {
   },
   created() {
     window.scrollTo(0, 0);
-     if(localStorage.getItem('token') != null){
-          this.$router.push('/admin/dashboard')
-        }
+   
   },
   // Signing in with social media accounts
   mounted() {
+      if(localStorage.getItem('token') != null){
+          this.$router.push('/admin/dashboard')
+        }
   },
+
   //signing with social media ends
   ////////
   //signing up with email and password and automatically creating user profile slug

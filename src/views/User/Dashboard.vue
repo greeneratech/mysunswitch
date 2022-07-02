@@ -212,7 +212,7 @@ export default {
 
     mounted(){
            if(localStorage.getItem("token") == null){
-          this.$router.push("/")
+          this.$router.push("/login")
     }
     },
     methods:{

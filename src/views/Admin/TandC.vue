@@ -168,6 +168,11 @@ export default {
         }
     //}
   },
+  mounted(){
+       if(localStorage.getItem('token') == null){
+          this.$router.push('/admin/login')
+        }
+  },
   methods: {
     refresh() {
       alert("page refreshed");

@@ -135,9 +135,7 @@ export default {
                 url:"https://greeneratech.herokuapp.com/api/admin/faqs/create",
                 data:{
                     question:this.title,
-                    answer:this.description,
-                    title:this.title,
-                    description:this.description
+                    answer:this.description
                 },
                 headers:{
             "Content-Type":"application/json",

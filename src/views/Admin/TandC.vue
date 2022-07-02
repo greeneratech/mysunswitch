@@ -163,6 +163,9 @@ export default {
     this.$store.dispatch("adminUsers");
     // if(this.allProjects.length == 0){
     this.$store.dispatch("fetchTandC");
+     if(localStorage.getItem('token') == null){
+          this.$router.push('/admin/login')
+        }
     //}
   },
   methods: {

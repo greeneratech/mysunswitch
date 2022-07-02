@@ -31,6 +31,11 @@ export default {
     Email,
     Footer,
     LogoFooter
+  },
+  created(){
+      if(localStorage.getItem("token") !=null){
+      this.$router.push("/dashboard")
+    }
   }
 }
 </script>

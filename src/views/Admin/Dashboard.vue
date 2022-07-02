@@ -45,9 +45,10 @@
               <div class="pt-12">
                 <h2>{{user.firstName}} {{user.lastName}}</h2>
                 <p>{{user.email}}</p>
+                <v-chip class="white--text" :color='user.status==1?"#fa9746":"#008140"'>{{user.status==1?"Suspended":"Active"}} </v-chip>
                 <div class="largeFlex mt-9">
                   <!-- <v-btn width="10px" class="mr-4" text><v-icon class="mr-2">mdi-eye-outline</v-icon>View</v-btn> -->
-                   <v-btn @click="suspendUser(user)" text color="#FF7B00"><v-icon class="mr-2">mdi-dots-horizontal-circle-outline</v-icon>Suspend</v-btn>
+                   <v-btn @click="suspendUser(user)" text color="#FF7B00"><v-icon class="mr-2">mdi-dots-horizontal-circle-outline</v-icon>{{user.status==1?"unsuspend":"suspend"}}</v-btn>
                    <v-btn @click="areYouSure(user)" text color="#EB5757"><v-icon class="mr-2">mdi-delete-outline</v-icon>Delete</v-btn>
                 </div>
               </div>
@@ -139,11 +140,14 @@ export default {
     created(){
         this.$store.dispatch("fetchUser")
         this.$store.dispatch("adminUsers")
+        if(localStorage.getItem('token') == null){
+          this.$router.push('/admin/login')
+        }
     },
     methods:{
        refresh(){
            alert('page refreshed')
-           this.$store.dispatch("fetchUser")
+           this.$store.dispatch("fetchUserAdmin")
            this.$store.dispatch("adminUsers")
        },
        suspendUser(user){
@@ -156,6 +160,7 @@ export default {
             }
          }).then((response)=>{
           console.log(response)
+          const status = response.data.data
            axios({
             method:"GET",
             url:"https://greeneratech.herokuapp.com/api/admin",
@@ -166,13 +171,18 @@ export default {
             console.log(response)
             sessionStorage.setItem("users",JSON.stringify(response.data.users))
              this.suspendLoading = false
+             console.log(response.data.data)
            this.$swal({
               icon:"success",
-              title:"User Suspended",
-              text:user.firstName+ " has been suspended successfully",
+              title:status+" successfully",
+              text:user.firstName+ " has been " +status+ " successfully",
               type:"success",
               showConfirmButton:true,
-           })
+           }).then((result)=>{
+          if(result.isConfirmed){
+            location.reload()
+          }
+        })
            })
          })
        },

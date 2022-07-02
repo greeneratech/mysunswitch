@@ -3,7 +3,7 @@
     <div class="d-flex justify-space-between  ma-4 mx-9">
     <div>
     <div>
-      <a href="/">
+      <a href="/dashboard">
         <img height="69px"
           width="69px" src="../assets/images/Greenera_logo_svg.svg" />
         </a>

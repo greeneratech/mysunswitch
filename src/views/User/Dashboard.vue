@@ -206,6 +206,14 @@ export default {
     created(){
         this.$store.dispatch("fetchUser")
          this.$store.dispatch("fetchProjects")
+         console.log(localStorage.getItem("token"))
+
+    },
+
+    mounted(){
+           if(localStorage.getItem("token") == null){
+          this.$router.push("/")
+    }
     },
     methods:{
        refresh(){

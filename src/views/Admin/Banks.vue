@@ -39,7 +39,7 @@
           <div v-for="(bank,i) in filteredBanks" :key="i">
             <v-card class="ma-5  pa-4 flexLarge justify-space-between rounded-lg">
               <div class="pa-4 pt-3">
-                <p class="pa-0 ma-0 font-weight-bold">{{bank.user.email}} | {{bank.accountNumber}}</p>
+                <p class="pa-0 ma-0 font-weight-bold" v-if="bank.user">{{bank.user.email}} | {{bank.accountNumber}}</p>
                 <p class="ma-0 pa-0">{{bank.bankName}}</p>
               </div>
                <div class="largeFlex mt-4">
@@ -134,7 +134,7 @@ export default {
       if (!banks) return this.banks;
 
       return this.banks.filter(
-        (bank) => bank.user.email.toLowerCase().indexOf(searchBank) > -1
+        (bank) => bank.accountName.toLowerCase().indexOf(searchBank) > -1
       );
     },
 
@@ -143,6 +143,9 @@ export default {
     created(){
         this.$store.dispatch("fetchUser")
         this.$store.dispatch("fetchBanks")
+         if(localStorage.getItem('token') == null){
+          this.$router.push('/admin/login')
+        }
     },
     methods:{
        refresh(){

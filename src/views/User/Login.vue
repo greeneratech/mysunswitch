@@ -135,6 +135,9 @@ export default {
   },
   // Signing in with social media accounts
   mounted() {
+     if(localStorage.getItem("token") !=null){
+      this.$router.push("/dashboard")
+    }
   },
   //signing with social media ends
   ////////
@@ -170,7 +173,21 @@ export default {
         },
       }).then((response)=>{
         console.log(response)
-        if(response.data.error.length==0){
+        this.loading = false
+        if(response.data.data.message != null){
+          this.$swal({
+            title:"Please verify your account",
+            text:response.data.data.message,
+            icon:"success",
+            confirmButtonText:"Open Email"
+          })
+          .then((result)=>{
+            if(result.isConfirmed){
+              window.open("https://gmail.com",'_blank')
+            }
+          })
+        }
+        else if(response.data.error.length==0){
         //    this.$swal({
         //   title: "Registration Successful!",
         //   text: response.data.data.message,

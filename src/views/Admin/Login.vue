@@ -132,6 +132,9 @@ export default {
   },
   created() {
     window.scrollTo(0, 0);
+     if(localStorage.getItem('token') != null){
+          this.$router.push('/admin/dashboard')
+        }
   },
   // Signing in with social media accounts
   mounted() {

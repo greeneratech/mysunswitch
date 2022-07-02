@@ -235,6 +235,9 @@ export default {
         this.$store.dispatch("fetchUser")
         this.$store.dispatch("adminUsers")
         this.$store.dispatch("fetchAllProjects")
+         if(localStorage.getItem('token') == null){
+          this.$router.push('/admin/login')
+        }
     },
     methods:{
       createProject(){

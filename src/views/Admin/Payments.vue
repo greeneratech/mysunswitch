@@ -39,9 +39,9 @@
           <div v-for="(payment,i) in filteredPayments" :key="i">
             <v-card class="ma-5  pa-5 flexLarge rounded-xl">
               <div class="py-6" style="width:100%">
-                <div class="pa-0 ma-0 flexLarge justify-space-between">
+                <div class="pa-0 ma-0 flexLarge justify-space-between"> 
                     <div>
-                    <p class="pa-0 ma-0">{{payment.user.email}} | {{payment.user.phoneNumber}}</p>
+                    <p class="pa-0 ma-0" v-if="payment.user">{{payment.user.email}} | {{payment.user.phoneNumber}}</p>
                     <p :style="`color:${payment.transaction.type =='WITHDRAW'? '#FF7B00':'#006838'}`" class="pa-0 ma-0 projectDescription">{{payment.transaction.type.toLowerCase()}}</p>
 
                         </div>
@@ -64,7 +64,7 @@
         </v-col>
         </v-row>
       </v-main>
-      <v-overlay v-if="paymentLoading" class="text-center">
+      <v-overlay v-if="loading" class="text-center">
         <v-progress-circular indeterminate :size="50"></v-progress-circular>
         <p>Loading...</p>
       </v-overlay>
@@ -142,26 +142,21 @@ export default {
             user:"user",
             users:"users",
             allProjects:"allProjects",
-            loading:"projectLoading",
             payments:"payments",
-            paymentLoading:"paymentLoading"
+            loading:"paymentLoading"
         }),
 
         filteredPayments(){
-      const searchPayment = this.search.toLowerCase().trim();
-      const payments = this.payments
-      if (!payments) return this.payments;
-
-      return this.payments.filter(
-        (payment) => payment.user.email.toLowerCase().indexOf(searchPayment) > -1
-      );
+       return this.payments
     },
     },
     created(){
         this.$store.dispatch("fetchUser")
         this.$store.dispatch("adminUsers")
-       
         this.$store.dispatch("fetchPayments")
+         if(localStorage.getItem('token') == null){
+          this.$router.push('/admin/login')
+        }
         
     },
     methods:{

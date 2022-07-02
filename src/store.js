@@ -40,6 +40,17 @@ export default new Vuex.Store({
         if(sessionStorage.getItem('vuex')!= null){
           state.user = JSON.parse(sessionStorage.getItem('vuex'))
         } else{
+          axios({
+            method:"GET",
+            url:"https://greeneratech.herokuapp.com/api/user",
+            headers:{
+              "Authorization":"Bearer "+localStorage.getItem("token")
+            }
+          })
+          .then((response)=>{
+            console.log(response)
+            sessionStorage.setItem("vuex",JSON.stringify(response.data))
+           })
         state.user = value
         sessionStorage.setItem('vuex',JSON.stringify(value))
         } 
@@ -53,8 +64,7 @@ export default new Vuex.Store({
         }
       },
 
-      fetchuserAdmin(){
-        if(sessionStorage.getItem("users") == null ){
+      fetchUserAdmin(){
         axios({
           method:"GET",
           url:"https://greeneratech.herokuapp.com/api/admin",
@@ -65,9 +75,6 @@ export default new Vuex.Store({
           console.log(response)
           sessionStorage.setItem("users",JSON.stringify(response.data.users))
          })
-      } else{
-        this.adminUsers()
-      }
     },
 
       fetchFaqs(state){
@@ -99,6 +106,7 @@ export default new Vuex.Store({
         }).then((response)=>{
           state.banks = response.data.userBank
           console.log(response)
+          console.log(state.bankloading)
           state.bankloading = false
         })
       },
@@ -292,6 +300,9 @@ export default new Vuex.Store({
   actions: {
      fetchUser: (context,value) => {
         context.commit("fetchUser",value);
+      },
+      fetchUserAdmin:(context,value) =>{
+        context.commit("fetchUserAdmin",value)
       },
       adminUsers:(context,value) => {
         context.commit("adminUsers",value);

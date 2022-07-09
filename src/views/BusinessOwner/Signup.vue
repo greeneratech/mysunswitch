@@ -223,7 +223,7 @@ export default {
       if(this.fName == ""){
          this.$swal({
           title: "Error",
-          text: "Please enter your first Name",
+          text: "Please enter your Business Name",
           icon: "error",
           confirmButtonText: "Ok",
         })

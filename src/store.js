@@ -193,6 +193,7 @@ export default new Vuex.Store({
           }
         }).then((response)=>{
           state.projects = response.data.data
+          state.projects = state.projects.reverse()
           state.loading = false
         })
       },

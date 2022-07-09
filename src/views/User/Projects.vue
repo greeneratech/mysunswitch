@@ -27,7 +27,7 @@
                   <div class="projectColumn mb-7">
                     <v-card style="border-radius: 10px" class="pa-8">
                       <h2>Ongoing Project</h2>
-                      <div class="ma-2 d-flex mt-4 overflow-auto">
+                      <div v-if="projects" class="ma-2 d-flex mt-4 overflow-auto">
                         <div v-for="(project, i) in projects" :key="i">
                           <v-card
                             style="border-radius: 10px"
@@ -61,7 +61,7 @@
                       <iframe v-if="projects" width="100%" style="border-radius:20px;margin:0px auto 0px auto"  :src="projects[0].descriptionMediaLink">
                       </iframe>
 
-                      <h4 class="d-flex justify-space-between mb-3">
+                      <h4 v-if="projects" class="d-flex justify-space-between mb-3">
                         <span style="font-weight: 500">
                           MONTH<br />
                           <b>{{months[parseFloat(projects[0].startDate.slice(5,7))]}}</b>

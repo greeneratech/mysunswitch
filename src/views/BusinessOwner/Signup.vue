@@ -191,7 +191,6 @@ export default {
     return {
       loading: false,
       fName: "",
-      lName: "",
       email: "",
       displayName: "",
       password: "",
@@ -225,15 +224,6 @@ export default {
          this.$swal({
           title: "Error",
           text: "Please enter your first Name",
-          icon: "error",
-          confirmButtonText: "Ok",
-        })
-         this.loading = false
-      }
-      else if(this.lName == ""){
-          this.$swal({
-          title: "Error",
-          text: "Please enter your last name",
           icon: "error",
           confirmButtonText: "Ok",
         })
@@ -290,7 +280,6 @@ export default {
         url: "https://greeneratech.herokuapp.com/api/authenticate/business/signup",
         data: {
           firstName: this.fName,
-          lastName: this.lName,
           password: this.password,
           phoneNumber:this.phoneNumber,
           businessPower:this.businessPower,

@@ -138,7 +138,7 @@ methods:{
       }
     }).then(()=>{
       localStorage.removeItem("token")
-      this.$router.push("/login")
+      this.$router.push("/business/login")
       sessionStorage.removeItem("vuex")
       this.loading = false
 

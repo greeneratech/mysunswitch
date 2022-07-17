@@ -4,8 +4,8 @@
         <v-text-field color="#006838" type="number" @keyup="enableButton"  outlined label="Enter amount" v-model="amount" />
          <flutterwave
             :is-production="isProduction"
-            name="Toheeb"
-            email="tobilobaojuolape@gmail.com"
+            :name="name"
+            :email="email"
             :amount="amount"
             :reference="referenceFlutter"
             flw-key="FLWPUBK-7162dd26aa9cc5bc0b4d5df920486832-X"
@@ -34,11 +34,19 @@ export default{
             loading:false,
             paymentMethod:"card",
             isProduction:true,
-            disabled:true
+            disabled:true,
+            name:"",
+            email:""
         }
     },
     components:{
         Flutterwave
+    },
+
+     created(){
+      let user = JSON.parse(sessionStorage.getItem('vuex'))
+      this.email = user.email
+      this.name = user.firstName
     },
     computed:{
         referenceFlutter() {

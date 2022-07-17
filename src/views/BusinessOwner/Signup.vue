@@ -296,7 +296,7 @@ export default {
           confirmButtonText: "Open Email",
         }).then((result)=>{
             if(result.isConfirmed){
-                window.location.href="https://gmail.com"
+                window.open("https://gmail.com","_blank")
             }
         })
           this.loading = false
@@ -315,6 +315,14 @@ export default {
         }
       
       
+      }).catch((error)=>{
+        this.loading = false
+        this.$swal({
+          title:"Error",
+          text:error,
+          icon:"error",
+          confirmButtonText:"Ok"
+        })
       })
       }
       

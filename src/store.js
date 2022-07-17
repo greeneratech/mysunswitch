@@ -37,6 +37,7 @@ export default new Vuex.Store({
   },
   mutations: {
       fetchUser(state,value){
+        console.log(state.user)
         if(sessionStorage.getItem('vuex')!= null){
           state.user = JSON.parse(sessionStorage.getItem('vuex'))
         } else{

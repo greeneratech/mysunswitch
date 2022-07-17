@@ -185,7 +185,7 @@ export default {
           this.$router.push("/dashboard")
           }
           console.log(response.data)
-          this.$store.dispatch("fetchUser",response.data)
+          this.$store.dispatch("fetchUser",response.user)
           localStorage.setItem('token',response.data.token)
         }
 
@@ -203,6 +203,7 @@ export default {
       
       
       }).catch((error)=>{
+        this.loading = false
         console.log(error)
           this.$swal({
           title: "Error",
@@ -210,7 +211,7 @@ export default {
           icon: "error",
           confirmButtonText: "Ok",
         });
-        this.loading = false
+        
       })
       }
     }

@@ -12,7 +12,7 @@
           <div>
             <div class="rightSpace">
               <v-card
-                height="650px"
+                height="740px"
                 style="border-radius: 10px"
                 class="px-6 py-7"
                 max-width="600px"
@@ -45,7 +45,7 @@
                       item-value="code"
                       item-text="name"
                       solo
-                      :readonly="readonly"
+                       :readonly="status == 1 ? readonly:false"
                     />
                   </div>
                 </v-card>
@@ -63,7 +63,7 @@
                         v-model="accountNumber"
                         style="width:100%"
                         @keyup="checkBank()"
-                        :readonly="readonly"
+                        :readonly="status == 1 ? readonly:false"
                       />
                     </div>
                   </v-card>
@@ -86,7 +86,7 @@
                     </div>
                   </v-card>
 
-                  <v-btn :disabled="readonly" @click="submitBank()" color="#828282" style="border-radius:10px" class="white--text" x-large block >
+                  <v-btn :disabled="status == 1 ? readonly:false" @click="submitBank()" color="#828282" style="border-radius:10px" class="white--text" x-large block >
                       Submit
                   </v-btn>
               </v-card>
@@ -137,6 +137,7 @@ export default {
       loading:false,
       accountName:"",
       accountNumber:"",
+      status:"",
       readonly:false,
       banks: [
         { id: "1", name: "Access Bank", code: "044" },
@@ -189,6 +190,7 @@ export default {
           this.accountName = response.data.data.accountName
           this.accountNumber = response.data.data.accountNumber
           this.bank = response.data.data.bankCode
+          this.status = response.data.data.status
           console.log(this.accountName)
           if(this.accountName != undefined){
             this.readonly = true

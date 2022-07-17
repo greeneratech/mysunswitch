@@ -33,7 +33,7 @@
                             style="border-radius: 10px"
                             class="mb-7 pa-4 mr-5"
                           >
-                      <iframe width="280px" style="border-radius:20px;margin:0px 50px 0px 0px"  :src="project.descriptionMediaLink">
+                      <iframe v-if="projects" width="280px" style="border-radius:20px;margin:0px 50px 0px 0px"  :src="project.descriptionMediaLink">
 
                       </iframe>
                             <p>{{ project.name }}</p>

@@ -185,7 +185,7 @@ export default {
           this.$router.push("/dashboard")
           }
           console.log(response.data)
-          this.$store.dispatch("fetchUser",response.user)
+          this.$store.dispatch("fetchBusinessUser",response.user)
           localStorage.setItem('token',response.data.token)
         }
 

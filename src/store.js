@@ -57,6 +57,29 @@ export default new Vuex.Store({
         } 
       },
 
+
+      fetchBusinessUser(state,value){
+        console.log(state.user)
+        if(sessionStorage.getItem('vuex')!= null){
+          state.user = JSON.parse(sessionStorage.getItem('vuex'))
+        } else{
+          axios({
+            method:"GET",
+            url:"https://greeneratech.herokuapp.com/api/business",
+            headers:{
+              "Authorization":"Bearer "+localStorage.getItem("token")
+            }
+          })
+          .then((response)=>{
+            console.log(response)
+            sessionStorage.setItem("vuex",JSON.stringify(response.data))
+           })
+        state.user = value
+        sessionStorage.setItem('vuex',JSON.stringify(value))
+        } 
+      },
+
+
       adminUsers(state,value){
         if(sessionStorage.getItem("users") == null ){
           sessionStorage.setItem("users",JSON.stringify(value))
@@ -302,6 +325,10 @@ export default new Vuex.Store({
   actions: {
      fetchUser: (context,value) => {
         context.commit("fetchUser",value);
+      },
+
+      fetchBusinessUser:(context,value) =>{
+        context.commit("fetchBusinessUser",value)
       },
       fetchUserAdmin:(context,value) =>{
         context.commit("fetchUserAdmin",value)

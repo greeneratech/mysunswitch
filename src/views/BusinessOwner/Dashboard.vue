@@ -224,12 +224,12 @@ export default {
         })
     },
     created(){
-        this.$store.dispatch("fetchUser")
+        this.$store.dispatch("fetchBusinessUser")
     },
     methods:{
        refresh(){
            alert('page refreshed')
-           this.$store.dispatch("fetchUser")
+           this.$store.dispatch("fetchBusinessUser")
        },
        closeModal(){
            this.buyModal = false

@@ -222,7 +222,12 @@ export default {
         'Authorization': `Bearer ${localStorage.getItem('token')}` 
         }
       }).then((response)=>{
-       console.log(response)
+      sessionStorage.setItem('vuex',JSON.stringify(response.data.user))
+       this.$swal({
+        title:"Profile Updated successfully",
+        icon:"success",
+        confirmButtonText:"Ok"
+       })
        this.loading = false
       }).catch((error)=>{
         this.loading = false

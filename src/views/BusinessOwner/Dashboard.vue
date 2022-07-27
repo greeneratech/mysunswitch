@@ -226,6 +226,12 @@ export default {
     created(){
         this.$store.dispatch("fetchBusinessUser")
     },
+
+    // mounted(){
+    //      if(localStorage.getItem("token") == null){
+    //       this.$router.push("/business/login")
+    // }
+    // },
     methods:{
        refresh(){
            alert('page refreshed')

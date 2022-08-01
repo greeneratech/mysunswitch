@@ -5,7 +5,7 @@
       <v-row class="noSide" no-gutters style="margin-top:90px">
            <v-col class="text-center">
           <v-img width="463px" height="343px" style="margin:auto" src="../../assets/images/Mobile login-rafiki.svg" />
-          <h2 class="welcomeBack" style="color:#199958">Business Owners</h2>
+          <h2 class="welcomeBack" style="color:#199958">Welcome Back </h2>
         </v-col>
         <v-col>
              <v-card style="margin:auto;max-width:500px;border-radius:20px" class="ma-auto">
@@ -80,7 +80,7 @@
               style="font-size:14px;margin-bottom:0px;padding-bottom:0px"
               to="/login"
             >
-              Don't have an account? <router-link style="text-decoration:none;color:#FF7B00" to="/business/signup">Create Account</router-link>
+              Don't have an account? <router-link style="text-decoration:none;color:#FF7B00" to="/signup">Create Account</router-link>
             </p>
             <v-btn outlined large to="/business/signup" style="border-radius:12px;margin-top:10px" block color="#FF7B00">
              Create Account
@@ -135,6 +135,9 @@ export default {
   },
   // Signing in with social media accounts
   mounted() {
+     if(localStorage.getItem("token") !=null){
+      this.$router.push("/dashboard")
+    }
   },
   //signing with social media ends
   ////////
@@ -170,7 +173,21 @@ export default {
         },
       }).then((response)=>{
         console.log(response)
-        if(response.data.error.length==0){
+        this.loading = false
+        if(response.data.data.message != null){
+          this.$swal({
+            title:"Please verify your account",
+            text:response.data.data.message,
+            icon:"success",
+            confirmButtonText:"Open Email"
+          })
+          .then((result)=>{
+            if(result.isConfirmed){
+              window.open("https://gmail.com",'_blank')
+            }
+          })
+        }
+        else if(response.data.error.length==0){
         //    this.$swal({
         //   title: "Registration Successful!",
         //   text: response.data.data.message,
@@ -178,14 +195,15 @@ export default {
         //   confirmButtonText: "Ok",
         // });
           this.loading = false
-          if(response.data.user.isBusiness==true){
+          console.log(response.data.data.isBusiness)
+         if(response.data.user.isBusiness==true){
           this.$router.push("/business/dashboard")
           }
           else{
           this.$router.push("/dashboard")
           }
           console.log(response.data)
-          this.$store.dispatch("fetchUser",response.user)
+          this.$store.dispatch("fetchUser",response.data.user)
           localStorage.setItem('token',response.data.token)
         }
 
@@ -203,7 +221,6 @@ export default {
       
       
       }).catch((error)=>{
-        this.loading = false
         console.log(error)
           this.$swal({
           title: "Error",
@@ -211,7 +228,7 @@ export default {
           icon: "error",
           confirmButtonText: "Ok",
         });
-        
+        this.loading = false
       })
       }
     }

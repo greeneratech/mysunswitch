@@ -136,7 +136,7 @@ export default {
   // Signing in with social media accounts
   mounted() {
      if(localStorage.getItem("token") !=null){
-      this.$router.push("/dashboard")
+      this.$router.push("/business/dashboard")
     }
   },
   //signing with social media ends

@@ -42,7 +42,7 @@
                     style="margin: 0px 0px 24px 0px; border-radius: 20px"
                   >
                     <div>
-                      <label>First Name</label>
+                      <label>Business Name</label>
                       <br/>
                       <input
                         type="text"

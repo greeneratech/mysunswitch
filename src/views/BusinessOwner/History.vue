@@ -162,7 +162,7 @@ export default {
         }
     },
     created(){
-        this.$store.dispatch("fetchUser")
+        this.$store.dispatch("fetchBusinessUser")
         this.$store.dispatch("fetchBusinessHistory")
     }
 

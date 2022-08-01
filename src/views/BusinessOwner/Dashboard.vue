@@ -224,12 +224,18 @@ export default {
         })
     },
     created(){
-        this.$store.dispatch("fetchUser")
+        this.$store.dispatch("fetchBusinessUser")
     },
+
+    // mounted(){
+    //      if(localStorage.getItem("token") == null){
+    //       this.$router.push("/business/login")
+    // }
+    // },
     methods:{
        refresh(){
            alert('page refreshed')
-           this.$store.dispatch("fetchUser")
+           this.$store.dispatch("fetchBusinessUser")
        },
        closeModal(){
            this.buyModal = false

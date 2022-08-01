@@ -197,7 +197,8 @@ export default {
     SideNav,
   },
   created() {
-    this.$store.dispatch("fetchUser");
+    this.$store.dispatch("fetchBusinessUser");
+    
   },
   methods: {
     goBack() {
@@ -207,20 +208,26 @@ export default {
       this.loading = true
       axios({
         method: "POST", 
-        url: "http://greeneratech.herokuapp.com/api/user/update",
+        url: "http://greeneratech.herokuapp.com/api/business/update",
         data: {
           firstName: this.user.firstName,
           lastName: this.user.lastName,
           email:this.user.email,
-          phoneNumber:this.user.phone,
+          phoneNumber:this.user.phoneNumber,
           location:this.user.location,
+          businessPower:this.user.businessPower,
           photo:image
         },
         headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}` 
         }
       }).then((response)=>{
-       console.log(response)
+      sessionStorage.setItem('vuex',JSON.stringify(response.data.user))
+       this.$swal({
+        title:"Profile Updated successfully",
+        icon:"success",
+        confirmButtonText:"Ok"
+       })
        this.loading = false
       }).catch((error)=>{
         this.loading = false

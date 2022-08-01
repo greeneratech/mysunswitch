@@ -82,7 +82,7 @@
             >
               Don't have an account? <router-link style="text-decoration:none;color:#FF7B00" to="/signup">Create Account</router-link>
             </p>
-            <v-btn outlined large to="/business/signup" style="border-radius:12px;margin-top:10px" block color="#FF7B00">
+            <v-btn outlined large to="/signup" style="border-radius:12px;margin-top:10px" block color="#FF7B00">
              Create Account
 
             </v-btn>

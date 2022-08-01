@@ -208,7 +208,7 @@ export default {
       this.loading = true
       axios({
         method: "POST", 
-        url: "http://greeneratech.herokuapp.com/api/business/update",
+        url: "https://greeneratech.herokuapp.com/api/business/update",
         data: {
           firstName: this.user.firstName,
           lastName: this.user.lastName,

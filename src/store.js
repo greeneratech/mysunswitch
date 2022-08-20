@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import router from './router/index'
 
 
 Vue.use(Vuex)
@@ -52,6 +53,11 @@ export default new Vuex.Store({
             console.log(response)
             sessionStorage.setItem("vuex",JSON.stringify(response.data))
            })
+           .catch((error)=>{
+            console.log(error)
+            sessionStorage.removeItem('vuex')
+            router.push('/login')
+           })
         state.user = value
         sessionStorage.setItem('vuex',JSON.stringify(value))
         } 
@@ -73,6 +79,11 @@ export default new Vuex.Store({
           .then((response)=>{
             console.log(response)
             sessionStorage.setItem("vuex",JSON.stringify(response.data))
+           })
+           .catch((error)=>{
+            console.log(error)
+            sessionStorage.removeItem('vuex')
+            router.push('/login')
            })
         state.user = value
         sessionStorage.setItem('vuex',JSON.stringify(value))
@@ -98,6 +109,11 @@ export default new Vuex.Store({
          }).then((response)=>{
           console.log(response)
           sessionStorage.setItem("users",JSON.stringify(response.data.users))
+         })
+         .catch((error)=>{
+          console.log(error)
+          sessionStorage.removeItem('vuex')
+          router.push('/login')
          })
     },
 

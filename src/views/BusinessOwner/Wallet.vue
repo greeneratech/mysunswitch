@@ -11,19 +11,15 @@
       <h1>Balance</h1>
        <div > 
         <div class="rightSpace">
-          <v-card class="cardHeight pa-7 gradient text-center">
+          <v-card class="pa-7 gradient text-center mb-5">
               <p class="white--text walletValue">Wallet Balance </p>
              <h2 class="text-center balanceBalance"> {{user.currency}} {{user.accountBalance}}</h2>
              <p class="balanceName">{{user.firstName}} {{user.lastName}}</p>
                  <div class="buttonPadding">
-           <div class="d-flex">
+           <div class="d-flex justify-center">
               <v-btn @click="modal=true" color="white" style="color:#006838;width:50%" class="mr-3 radius6" x-large>
                  
                  Deposit
-              </v-btn>
-           
-                <v-btn style="width:50%" color="#199958" class="mr-3 white--text radius6" x-large>
-                  Withdrawal
               </v-btn>
         </div>
         </div>

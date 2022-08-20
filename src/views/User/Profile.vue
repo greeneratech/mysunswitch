@@ -324,6 +324,11 @@ export default {
       this.$router.push("/login")
       sessionStorage.removeItem("vuex")
 
+    }).catch(()=>{
+       localStorage.removeItem("token")
+      this.$router.push("/login")
+      sessionStorage.removeItem("vuex")
+      this.loading = false
     })
 }
 

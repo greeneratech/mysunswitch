@@ -41,7 +41,9 @@ export default new Vuex.Store({
         console.log(state.user)
         if(sessionStorage.getItem('vuex')!= null || sessionStorage.getItem('vuex')!= undefined){
           state.user = JSON.parse(sessionStorage.getItem('vuex'))
+          console.log("if",sessionStorage.getItem('vuex'))
         } else{
+          console.log("else",sessionStorage.getItem('vuex'))
           axios({
             method:"GET",
             url:"https://greeneratech.herokuapp.com/api/user",

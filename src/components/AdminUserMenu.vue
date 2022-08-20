@@ -171,6 +171,11 @@ methods:{
       sessionStorage.removeItem("vuex")
       this.loading = false
 
+    }) .catch(()=>{
+       localStorage.removeItem("token")
+      this.$router.push("/login")
+      sessionStorage.removeItem("vuex")
+      this.loading = false
     })
 }
 }

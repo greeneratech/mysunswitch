@@ -39,7 +39,7 @@ export default new Vuex.Store({
   mutations: {
       fetchUser(state,value){
         console.log(state.user)
-        if(sessionStorage.getItem('vuex')!= null){
+        if(sessionStorage.getItem('vuex')!= null || sessionStorage.getItem('vuex')!= undefined){
           state.user = JSON.parse(sessionStorage.getItem('vuex'))
         } else{
           axios({
@@ -66,7 +66,7 @@ export default new Vuex.Store({
 
       fetchBusinessUser(state,value){
         console.log(state.user)
-        if(sessionStorage.getItem('vuex')!= null){
+        if(sessionStorage.getItem('vuex')!= null || sessionStorage.getItem('vuex')!= undefined){
           state.user = JSON.parse(sessionStorage.getItem('vuex'))
         } else{
           axios({
@@ -92,7 +92,7 @@ export default new Vuex.Store({
 
 
       adminUsers(state,value){
-        if(sessionStorage.getItem("users") == null ){
+        if(sessionStorage.getItem("users") == null || sessionStorage.getItem('vuex')!= undefined ){
           sessionStorage.setItem("users",JSON.stringify(value))
         }else{
           state.users = JSON.parse(sessionStorage.getItem("users"))

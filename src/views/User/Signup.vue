@@ -199,11 +199,11 @@ export default {
     window.scrollTo(0, 0);
   },
   // Signing in with social media accounts
-  mounted() {
-     if(localStorage.getItem("token") !=null){
-      this.$router.push("/dashboard")
-    }
-  },
+  // mounted() {
+  //    if(localStorage.getItem("token") !=null){
+  //     this.$router.push("/dashboard")
+  //   }
+  // },
   methods: {
     signup() {
       this.loading = true

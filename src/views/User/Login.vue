@@ -200,7 +200,7 @@ export default {
           this.$router.push("/business/dashboard")
           }
           else{
-          this.$router.push("/dashboard")
+          window.location.href= "/dashboard"
           }
           console.log(response.data)
           this.$store.dispatch("fetchUser",response.data.user)

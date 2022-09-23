@@ -142,11 +142,11 @@ export default {
         this.$store.dispatch("adminUsers")
     },
 
-      mounted(){
-           if(localStorage.getItem("token") == null){
-          this.$router.push("/admin/login")
-    }
-    },
+    //   mounted(){
+    //        if(localStorage.getItem("token") == null){
+    //       this.$router.push("/admin/login")
+    // }
+    // },
     methods:{
        refresh(){
            alert('page refreshed')

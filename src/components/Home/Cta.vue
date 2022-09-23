@@ -61,7 +61,7 @@
             <div>
               <p style="font-size:18px;position:relative;color:#000000">This kind enables its users finance solar projects, and earn via ROIs.</p>
            
-           <v-btn @click="$router.push('/signup')" class="signupButton mt-9">Sign up now</v-btn>
+           <v-btn @click="$router.push('/signup')" class="signupButton mt-9 mb-4">Sign up now</v-btn>
             </div>
         </div>
        </div>
@@ -128,7 +128,7 @@ export default({
     }
 
     .boxshadowGreen{
-        height:502px;
+        height:545px;
         background:rgba(19, 210, 122, 0.09);
         width:80%;
         vertical-align:middle;

@@ -32,11 +32,6 @@ export default {
     Footer,
     LogoFooter
   },
-  created(){
-      if(localStorage.getItem("token") !=null){
-      this.$router.push("/dashboard")
-    }
-  }
 }
 </script>
 

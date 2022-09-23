@@ -3,8 +3,8 @@
      <div style="margin:50px 0px 0px 0px;position:absolute;background:white;bottom:0;width:100%">
                 <div class="pt-5 d-flex justify-center" style="background:white">
                 <div class="text-center">
-                <img class="footerLogo"  src="../../assets/images/Greenera_logo_svg.svg"/>
-                <p>Greenera Technologies 2022. All Rights Reserved</p>
+                <img class="footerLogo"  src="../../assets/images/sunswitchlogo.png"/>
+                <p>Sunswitch by Greenera Technologies &copy; 2022. All Rights Reserved</p>
                 </div>
                 </div>
             </div>

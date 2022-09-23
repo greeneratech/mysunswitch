@@ -5,7 +5,7 @@
     <div>
       <a href="/dashboard">
         <img height="69px"
-          width="69px" src="../assets/images/Greenera_logo_svg.svg" />
+          width="69px" src="../assets/images/sunswitchlogo.png" />
         </a>
     </div>
     </div>

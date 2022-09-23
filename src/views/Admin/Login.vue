@@ -137,7 +137,7 @@ export default {
   // Signing in with social media accounts
   mounted() {
       if(localStorage.getItem('token') != null){
-          this.$router.push('/admin/dashboard')
+          window.location.href='/admin/dashboard'
         }
   },
 
@@ -183,7 +183,7 @@ export default {
           this.$store.dispatch("adminUsers",response.data.users)
           localStorage.setItem('token',response.data.token)
           this.loading = false
-          this.$router.push("/admin/dashboard")
+          window.location.href="/admin/dashboard"
         }
 
         // else if(response.data.error.length == 0 || response.data.error.email != []){

@@ -176,7 +176,7 @@ export default {
   },
 
   mounted(){
-       if(localStorage.getItem('token') == null){
+       if(sessionStorage.getItem('token') == null){
           this.$router.push('/admin/login')
         }
   },
@@ -210,7 +210,7 @@ export default {
           this.singleFaq.id,
         headers: {
           ContentType: "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + sessionStorage.getItem("token"),
         },
       })
         .then((res) => {

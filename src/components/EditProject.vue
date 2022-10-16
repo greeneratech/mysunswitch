@@ -252,7 +252,7 @@ export default {
           url:"https://greeneratech.herokuapp.com/api/admin/investments/update/"+this.singleProject.id,
           headers:{
             "Content-Type":"application/json",
-            "Authorization":"Bearer "+localStorage.getItem("token")
+            "Authorization":"Bearer "+sessionStorage.getItem("token")
           },
           data:{
             name:this.singleProject.name,

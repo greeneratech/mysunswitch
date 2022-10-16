@@ -143,7 +143,7 @@ export default {
     },
 
     //   mounted(){
-    //        if(localStorage.getItem("token") == null){
+    //        if(sessionStorage.getItem("token") == null){
     //       this.$router.push("/admin/login")
     // }
     // },
@@ -159,7 +159,7 @@ export default {
            method:"PUT",
            url:"https://greeneratech.herokuapp.com/api/admin/suspend/user/"+user.id,
             headers:{
-              "Authorization":"Bearer "+localStorage.getItem("token")
+              "Authorization":"Bearer "+sessionStorage.getItem("token")
             }
          }).then((response)=>{
           console.log(response)
@@ -168,7 +168,7 @@ export default {
             method:"GET",
             url:"https://greeneratech.herokuapp.com/api/admin",
             headers:{
-              "Authorization":"Bearer "+localStorage.getItem("token")
+              "Authorization":"Bearer "+sessionStorage.getItem("token")
             }
            }).then((response)=>{
             console.log(response)
@@ -206,7 +206,7 @@ export default {
         method:"DELETE",
         url:"https://greeneratech.herokuapp.com/api/admin/delete/user/"+this.singleUser.id,
         headers:{
-              "Authorization":"Bearer "+localStorage.getItem("token")
+              "Authorization":"Bearer "+sessionStorage.getItem("token")
             }
       }).then((response)=>{
         console.log(response)
@@ -215,7 +215,7 @@ export default {
             method:"GET",
             url:"https://greeneratech.herokuapp.com/api/admin",
             headers:{
-              "Authorization":"Bearer "+localStorage.getItem("token")
+              "Authorization":"Bearer "+sessionStorage.getItem("token")
             }
            }).then((response)=>{
             console.log(response)

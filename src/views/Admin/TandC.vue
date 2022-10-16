@@ -163,13 +163,13 @@ export default {
     this.$store.dispatch("adminUsers");
     // if(this.allProjects.length == 0){
     this.$store.dispatch("fetchTandC");
-     if(localStorage.getItem('token') == null){
+     if(sessionStorage.getItem('token') == null){
           this.$router.push('/admin/login')
         }
     //}
   },
   mounted(){
-       if(localStorage.getItem('token') == null){
+       if(sessionStorage.getItem('token') == null){
           this.$router.push('/admin/login')
         }
   },
@@ -203,7 +203,7 @@ export default {
           this.singleTerm.id,
         headers: {
           ContentType: "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + sessionStorage.getItem("token"),
         },
       })
         .then((res) => {

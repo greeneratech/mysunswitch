@@ -41,14 +41,13 @@ export default new Vuex.Store({
         console.log(state.user)
         if(sessionStorage.getItem('vuex')!= null || sessionStorage.getItem('vuex')!= undefined){
           state.user = JSON.parse(sessionStorage.getItem('vuex'))
-          console.log("if",sessionStorage.getItem('vuex'))
+         
         } else{
-          console.log("else",sessionStorage.getItem('vuex'))
           axios({
             method:"GET",
             url:"https://greeneratech.herokuapp.com/api/user",
             headers:{
-              "Authorization":"Bearer "+localStorage.getItem("token")
+              "Authorization":"Bearer "+sessionStorage.getItem("token")
             }
           })
           .then((response)=>{
@@ -65,6 +64,25 @@ export default new Vuex.Store({
         } 
       },
 
+      fetchUserData(state,value){
+        if(sessionStorage.getItem('vuex')!= null || sessionStorage.getItem('vuex')!= undefined){
+          state.user = JSON.parse(sessionStorage.getItem('vuex'))
+        } 
+        else{
+        axios({
+          method:"GET",
+          url:"https://greeneratech.herokuapp.com/api/dashboard",
+          headers:{
+            Authorization:"Bearer "+value
+          }
+        }).then((response)=>{
+          sessionStorage.setItem("vuex",JSON.stringify(response.data.user))
+          state.user = response.data.user
+        })
+      }
+      },
+
+
 
       fetchBusinessUser(state,value){
         console.log(state.user)
@@ -75,7 +93,7 @@ export default new Vuex.Store({
             method:"GET",
             url:"https://greeneratech.herokuapp.com/api/business",
             headers:{
-              "Authorization":"Bearer "+localStorage.getItem("token")
+              "Authorization":"Bearer "+sessionStorage.getItem("token")
             }
           })
           .then((response)=>{
@@ -106,7 +124,7 @@ export default new Vuex.Store({
           method:"GET",
           url:"https://greeneratech.herokuapp.com/api/admin",
           headers:{
-            "Authorization":"Bearer "+localStorage.getItem("token")
+            "Authorization":"Bearer "+sessionStorage.getItem("token")
           }
          }).then((response)=>{
           console.log(response)
@@ -126,7 +144,7 @@ export default new Vuex.Store({
           url:"https://greeneratech.herokuapp.com/api/admin/faqs",
           headers: {
             ContentType: "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + sessionStorage.getItem("token"),
           }
         }).then((response) =>{
           state.faqLoading = false
@@ -143,7 +161,7 @@ export default new Vuex.Store({
           url:"https://greeneratech.herokuapp.com/api/admin/userBank",
           headers: {
             ContentType: "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + sessionStorage.getItem("token"),
           }
         }).then((response)=>{
           state.banks = response.data.userBank
@@ -162,7 +180,7 @@ export default new Vuex.Store({
           url:"https://greeneratech.herokuapp.com/api/admin/disclaimers",
           headers: {
             ContentType: "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + sessionStorage.getItem("token"),
           }
         }).then((response) =>{
           state.disclaimerLoading = false
@@ -180,7 +198,7 @@ export default new Vuex.Store({
           url:"https://greeneratech.herokuapp.com/api/admin/terms",
           headers: {
             ContentType: "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + sessionStorage.getItem("token"),
           }
         }).then((response) =>{
           state.termsLoading = false
@@ -197,7 +215,7 @@ export default new Vuex.Store({
           url:"https://greeneratech.herokuapp.com/api/admin/team",
           headers: {
             ContentType: "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + sessionStorage.getItem("token"),
           }
         }).then((response) =>{
           state.teamLoading = false
@@ -215,7 +233,7 @@ export default new Vuex.Store({
          url:"https://greeneratech.herokuapp.com/api/admin/userPayments",
          headers: {
           ContentType: "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + sessionStorage.getItem("token"),
         }
        }).then((response)=>{
          console.log(response)
@@ -231,7 +249,7 @@ export default new Vuex.Store({
           url:"https://greeneratech.herokuapp.com/api/user/investments/all",
           headers: {
             ContentType: "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + sessionStorage.getItem("token"),
           }
         }).then((response)=>{
           state.projects = response.data.data
@@ -254,7 +272,7 @@ export default new Vuex.Store({
           url:"https://greeneratech.herokuapp.com/api/user/investments/mine",
           headers: {
             ContentType: "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + sessionStorage.getItem("token"),
           }
         }).then((response)=>{
           state.projects = response.data.data
@@ -268,7 +286,7 @@ export default new Vuex.Store({
           url:"https://greeneratech.herokuapp.com/api/admin/investments/get",
           headers: {
             ContentType: "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + sessionStorage.getItem("token"),
           }
         }).then((response)=>{
           console.log(response)
@@ -314,7 +332,7 @@ export default new Vuex.Store({
           url:"https://greeneratech.herokuapp.com/api/user/history",
           headers: {
             ContentType: "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + sessionStorage.getItem("token"),
           }
         }).then((response)=>{
           state.history = response.data.data.reverse()
@@ -330,7 +348,7 @@ export default new Vuex.Store({
           url:"https://greeneratech.herokuapp.com/api/business/history",
           headers: {
             ContentType: "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + sessionStorage.getItem("token"),
           }
         }).then((response)=>{
           state.history = response.data.data.reverse()
@@ -343,6 +361,10 @@ export default new Vuex.Store({
   actions: {
      fetchUser: (context,value) => {
         context.commit("fetchUser",value);
+      },
+
+      fetchUserData: (context,value) => {
+        context.commit("fetchUserData",value);
       },
 
       fetchBusinessUser:(context,value) =>{

@@ -130,19 +130,19 @@ methods:{
       method:"POST",
       url:"https://greeneratech.herokuapp.com/api/authenticate/signout",
       data:{
-        token:localStorage.getItem("token")
+        token:sessionStorage.getItem("token")
       },
       headers:{
         "Content-Type":"application/json",
-        "Authorization":"Bearer "+localStorage.getItem("token")
+        "Authorization":"Bearer "+sessionStorage.getItem("token")
       }
     }).then(()=>{
-      localStorage.removeItem("token")
+      sessionStorage.removeItem("token")
       this.$router.push("/business/login")
       sessionStorage.removeItem("vuex")
       this.loading = false
     }).catch(()=>{
-       localStorage.removeItem("token")
+       sessionStorage.removeItem("token")
       this.$router.push("/login")
       sessionStorage.removeItem("vuex")
       this.loading = false

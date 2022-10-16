@@ -175,16 +175,17 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch("fetchUser")
+    this.$store.dispatch("fetchUserData",sessionStorage.getItem("token"))
      this.loading = true
         axios({
           method:"GET",
           url:"https://greeneratech.herokuapp.com/api/user/bank-details",
           headers: {
             ContentType: "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + sessionStorage.getItem("token"),
           }
         }).then((response)=>{
+          console.log(response)
           this.loading = false
           console.log(response)
           this.accountName = response.data.data.accountName
@@ -195,6 +196,8 @@ export default {
           if(this.accountName != undefined){
             this.readonly = true
           }
+        }).catch((error)=>{
+          console.log(error)
         })
 
   },
@@ -230,7 +233,7 @@ export default {
          },
          headers: {
           ContentType: "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + sessionStorage.getItem("token"),
         },
       }).then(()=>{
          this.$swal({

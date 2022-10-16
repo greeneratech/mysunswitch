@@ -135,7 +135,7 @@ export default {
   },
   // Signing in with social media accounts
   // mounted() {
-  //    if(localStorage.getItem("token") !=null){
+  //    if(sessionStorage.getItem("token") !=null){
   //     this.$router.push("/business/dashboard")
   //   }
   // },
@@ -204,7 +204,7 @@ export default {
           }
           console.log(response.data)
           this.$store.dispatch("fetchUser",response.data.user)
-          localStorage.setItem('token',response.data.token)
+          sessionStorage.setItem('token',response.data.token)
         }
 
 

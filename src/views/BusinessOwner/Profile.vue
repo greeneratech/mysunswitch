@@ -219,7 +219,7 @@ export default {
           photo:image
         },
         headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}` 
+        'Authorization': `Bearer ${sessionStorage.getItem('token')}` 
         }
       }).then((response)=>{
       sessionStorage.setItem('vuex',JSON.stringify(response.data.user))
@@ -253,7 +253,7 @@ export default {
        console.log(this.file)
        let formData = new FormData();
        formData.append("photo", this.file);
-       let token = localStorage.getItem("token");
+       let token = sessionStorage.getItem("token");
        axios.post( 'https://greeneratech.herokuapp.com/api/user/upload-photo',
                 formData,
                 {
@@ -285,19 +285,19 @@ export default {
       method:"POST",
       url:"https://greeneratech.herokuapp.com/api/authenticate/signout",
       data:{
-        token:localStorage.getItem("token")
+        token:sessionStorage.getItem("token")
       },
       headers:{
         "Content-Type":"application/json",
-        "Authorization":"Bearer "+localStorage.getItem("token")
+        "Authorization":"Bearer "+sessionStorage.getItem("token")
       }
     }).then(()=>{
-      localStorage.removeItem("token")
+      sessionStorage.removeItem("token")
       this.$router.push("/business/login")
       sessionStorage.removeItem("vuex")
 
     }).catch(()=>{
-       localStorage.removeItem("token")
+       sessionStorage.removeItem("token")
       this.$router.push("/login")
       sessionStorage.removeItem("vuex")
       this.loading = false

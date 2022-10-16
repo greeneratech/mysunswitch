@@ -228,7 +228,7 @@ export default {
     },
 
     // mounted(){
-    //      if(localStorage.getItem("token") == null){
+    //      if(sessionStorage.getItem("token") == null){
     //       this.$router.push("/business/login")
     // }
     // },

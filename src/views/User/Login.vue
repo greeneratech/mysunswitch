@@ -135,7 +135,7 @@ export default {
   },
   // Signing in with social media accounts
   // mounted() {
-  //    if(localStorage.getItem("token") !=null){
+  //    if(sessionStorage.getItem("token") !=null){
   //     this.$router.push("/dashboard")
   //   }
   // },
@@ -171,8 +171,8 @@ export default {
           email: this.email,
           password: this.password,
         },
-      }).then((response)=>{
-        console.log(response)
+      }).then( async (response)=>{
+        await this.$store.dispatch("fetchUserData",response.data.token)
         this.loading = false
         if(response.data.data.message != null){
           this.$swal({
@@ -188,23 +188,16 @@ export default {
           })
         }
         else if(response.data.error.length==0){
-        //    this.$swal({
-        //   title: "Registration Successful!",
-        //   text: response.data.data.message,
-        //   icon: "success",
-        //   confirmButtonText: "Ok",
-        // });
           this.loading = false
-          console.log(response.data.data.isBusiness)
+
          if(response.data.user.isBusiness==true){
-          this.$router.push("/business/dashboard")
+          window.location.href = "/business/dashboard"
           }
           else{
           window.location.href= "/dashboard"
           }
           console.log(response.data)
-          this.$store.dispatch("fetchUser",response.data.user)
-          localStorage.setItem('token',response.data.token)
+          sessionStorage.setItem('token',response.data.token)
         }
 
 

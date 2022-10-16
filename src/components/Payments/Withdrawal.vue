@@ -64,7 +64,7 @@ export default{
             method: "POST",
             url: "https://greeneratech.herokuapp.com/api/user/withdraw",
             headers:{
-                Authorization:"Bearer "+localStorage.getItem('token')
+                Authorization:"Bearer "+sessionStorage.getItem('token')
             },
             data:{
                 amount:this.amount
@@ -74,7 +74,7 @@ export default{
                 method:"GET",
                 url:"https://greeneratech.herokuapp.com/api/user",
                  headers:{
-                Authorization:"Bearer "+localStorage.getItem('token')
+                Authorization:"Bearer "+sessionStorage.getItem('token')
             },
             }).then((response)=>{
                  this.loading = false

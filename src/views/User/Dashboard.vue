@@ -204,14 +204,14 @@ export default {
         })
     },
     created(){
-        this.$store.dispatch("fetchUser")
+        this.$store.dispatch("fetchUserData",sessionStorage.getItem("token"))
          this.$store.dispatch("fetchProjects")
-         console.log(localStorage.getItem("token"))
+         console.log(sessionStorage.getItem("token"))
 
     },
 
     mounted(){
-           if(localStorage.getItem("token") == null){
+           if(sessionStorage.getItem("token") == null){
           this.$router.push("/login")
     }
     },

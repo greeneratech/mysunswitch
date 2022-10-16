@@ -235,7 +235,7 @@ export default {
         this.$store.dispatch("fetchUser")
         this.$store.dispatch("adminUsers")
         this.$store.dispatch("fetchAllProjects")
-         if(localStorage.getItem('token') == null){
+         if(sessionStorage.getItem('token') == null){
           this.$router.push('/admin/login')
         }
     },
@@ -247,7 +247,7 @@ export default {
           url:"https://greeneratech.herokuapp.com/api/admin/investments/create",
           headers:{
             "Content-Type":"application/json",
-            "Authorization":"Bearer "+localStorage.getItem("token")
+            "Authorization":"Bearer "+sessionStorage.getItem("token")
           },
           data:{
             name:this.projectName,

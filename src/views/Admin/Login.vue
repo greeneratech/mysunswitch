@@ -136,7 +136,7 @@ export default {
   },
   // Signing in with social media accounts
   mounted() {
-      if(localStorage.getItem('token') != null){
+      if(sessionStorage.getItem('token') != null){
           window.location.href='/admin/dashboard'
         }
   },
@@ -181,7 +181,7 @@ export default {
           console.log(response.data.token)
           this.$store.dispatch("fetchUser",response.data.admin)
           this.$store.dispatch("adminUsers",response.data.users)
-          localStorage.setItem('token',response.data.token)
+          sessionStorage.setItem('token',response.data.token)
           this.loading = false
           window.location.href="/admin/dashboard"
         }

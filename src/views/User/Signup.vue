@@ -200,7 +200,7 @@ export default {
   },
   // Signing in with social media accounts
   // mounted() {
-  //    if(localStorage.getItem("token") !=null){
+  //    if(sessionStorage.getItem("token") !=null){
   //     this.$router.push("/dashboard")
   //   }
   // },

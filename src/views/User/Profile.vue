@@ -185,8 +185,9 @@
 <script>
 import UserMenu from "../../components/UserMenu.vue";
 import SideNav from "../../components/SideNav.vue";
-import { mapState } from "vuex";
+// import { mapState } from "vuex";
 import axios from "axios"
+
 
 export default {
   data() {
@@ -199,13 +200,12 @@ export default {
       location: "",
       image:"",
       loading:false,
-      imgloading:false
+      imgloading:false,
+      user:""
     };
   },
   computed: {
-    ...mapState({
-      user: "user",
-    }),
+
   },
   components: {
     UserMenu,
@@ -213,16 +213,42 @@ export default {
   },
   created() {
     this.$store.dispatch("fetchUser");
+    this.fetchUser()
   },
   methods: {
     goBack() {
       this.$router.go(-1);
     },
+
+    fetchUser(){
+      axios({
+            method:"GET",
+            url:"https://greeneratech.herokuapp.com/api/user",
+            headers:{
+              "Authorization":"Bearer "+sessionStorage.getItem("token")
+            }
+          })
+          .then((response)=>{
+            console.log(response)
+            this.user = response.data.user
+            // sessionStorage.setItem("vuex",JSON.stringify(response.data.user))
+           })
+           .catch((error)=>{
+            console.log(error)
+            sessionStorage.removeItem('vuex')
+            this.$router.push('/login')
+           })
+    },
+
+
+
     emailGreenera(){
       window.location.href = "mailto:hello@greeneratech.com"
     },
     updateProfile(image){
+      console.log(image)
       this.loading = true
+      console.log(this.user.email)
       axios({
         method: "POST", 
         url: "https://greeneratech.herokuapp.com/api/user/update",
@@ -274,16 +300,20 @@ export default {
         var reader = new FileReader();
         reader.onload = (e) => {
           this.user.photo = e.target.result;
+          this.image = e.target.result;
+
         }
         // this.uploadImage= event.target.files;
         reader.readAsDataURL(input.files[0]);
+  
       }
        this.imgloading = true
        this.file = this.$refs.image.files[0];
-       console.log(this.file)
-       let formData = new FormData();
-       formData.append("photo", this.file);
+       console.log("the file",this.image)
+       let formData = {"photo":this.file}
+       console.log(formData)
        let token = sessionStorage.getItem("token");
+       console.log(formData)
        axios.post( 'https://greeneratech.herokuapp.com/api/user/upload-photo',
                 formData,
                 {

@@ -52,7 +52,7 @@ export default new Vuex.Store({
           })
           .then((response)=>{
             console.log(response)
-            sessionStorage.setItem("vuex",JSON.stringify(response.data))
+            sessionStorage.setItem("vuex",JSON.stringify(response.data.user))
            })
            .catch((error)=>{
             console.log(error)

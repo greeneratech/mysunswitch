@@ -194,10 +194,11 @@ export default {
           window.location.href = "/business/dashboard"
           }
           else{
+          sessionStorage.setItem('token',response.data.token)
+          await this.$store.dispatch('fetchUser')
           window.location.href= "/dashboard"
           }
-          console.log(response.data)
-          sessionStorage.setItem('token',response.data.token)
+      
         }
 
 

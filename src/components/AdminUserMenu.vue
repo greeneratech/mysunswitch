@@ -4,8 +4,8 @@
     <div>
     <div>
       <a href="/admin/dashboard">
-        <img height="69px"
-          width="69px" src="../assets/images/sunswitchlogo.png" />
+        <img 
+          width="120px" src="../assets/images/sunswitchlogo.png" />
         </a>
     </div>
     </div>

@@ -2,15 +2,15 @@
   <v-card flat color="#E5E5E5">
     <div class="d-flex justify-space-between  ma-4 mx-9">
     <div>
-    <div>
+    <div class="positionIcon">
       <a href="/">
-        <img height="69px"
-          width="69px" src="../assets/images/sunswitchlogo.png" />
+        <img 
+          width="120px" src="../assets/images/sunswitchlogo.png" />
         </a>
     </div>
     </div>
     <div class="hidden-md-and-down">
-    <div class="d-flex justify-center mt-5">
+    <div class="d-flex justify-center">
     <div>
         <v-btn text>SERVICES</v-btn>
     </div>
@@ -24,7 +24,7 @@
     </div>
     </div>
     </div>
-    <div class="hidden-lg-and-up justify-end mt-2">
+    <div class="hidden-lg-and-up justify-end">
     <v-btn icon x-large color="black" @click="drawer =! drawer"><v-icon>mdi-menu</v-icon></v-btn>
     </div>
     </div>
@@ -79,5 +79,11 @@ export default {
 </script>
 
 <style>
+@media only screen and (max-width:765px){
+.positionIcon{
+  margin-top:20px !important
+}
+}
 
 </style>
+

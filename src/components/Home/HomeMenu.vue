@@ -1,24 +1,23 @@
 <template>
   <v-card tile elevation="12" class="logoPosition">
     <div class="d-flex justify-space-between">
-      <div>
+      <div class="positionIcon">
         <a href="/">
         <v-img
           style="margin-left:14.6px"
-          height="69px"
-          width="69px"
+          width="120px"
           src="../../assets/images/sunswitchlogo.png"
         />
         </a>
       </div>
-      <div class="mt-3 hidden-md-and-down">
+      <div class="hidden-md-and-down">
         <v-btn text>SERVICES</v-btn>
         <v-btn text>PROJECTS</v-btn>
         <v-btn text>ABOUT US</v-btn>
       </div>
 
       <div
-        class="mt-3 hidden-md-and-down"
+        class="-mt-2 hidden-md-and-down"
         style="margin-right: 48px; margin-top: 10px"
       >
         <v-btn to="/signup" color="#FF7B00">Sign up</v-btn>

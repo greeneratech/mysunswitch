@@ -5,8 +5,6 @@
 </template>
 
 
-
-
 <script>
 import { unslugify } from "unslugify"
 export default {
@@ -18,7 +16,7 @@ export default {
   }),
   computed:{
    pageTitle() {
-      return unslugify(this.$route.params.id);
+      return unslugify(this.$route.params.id ?? '');
     },
   },
  metaInfo() {

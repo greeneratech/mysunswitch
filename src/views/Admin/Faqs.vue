@@ -111,6 +111,7 @@ import { mapState } from "vuex";
 import axios from "axios";
 import AddFaq from "../../components/AddFaq.vue";
 import EditFaq from "../../components/EditFaq.vue"
+import { apiHeaders, apiURL } from "../../configs";
 
 export default {
   components: {
@@ -205,13 +206,8 @@ export default {
       this.deleteLoading = true;
       axios({
         method: "DELETE",
-        url:
-          "https://greeneratech.herokuapp.com/api/admin/faqs/delete/" +
-          this.singleFaq.id,
-        headers: {
-          ContentType: "application/json",
-          Authorization: "Bearer " + sessionStorage.getItem("token"),
-        },
+        url: apiURL("admin/faqs/delete/" +this.singleFaq.id),
+        headers: apiHeaders.contentTypeAndAuth(),
       })
         .then((res) => {
           console.log(res);

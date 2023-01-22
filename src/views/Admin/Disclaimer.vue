@@ -111,6 +111,7 @@ import { mapState } from "vuex";
 import axios from "axios";
 import AddDisclaimer from "../../components/AddDisclaimer.vue";
 import EditDisclaimer from "../../components/EditDisclaimer.vue"
+import { apiHeaders, apiURL } from "../../configs";
 
 export default {
   components: {
@@ -196,19 +197,12 @@ export default {
         this.text = "Are you sure you want to delete " + disclaimer.title + "?";
     },
 
-   
-
     deleteDisclaimer() {
       this.deleteLoading = true;
       axios({
         method: "DELETE",
-        url:
-          "https://greeneratech.herokuapp.com/api/admin/disclaimers/delete/" +
-          this.singleDisclaimer.id,
-        headers: {
-          ContentType: "application/json",
-          Authorization: "Bearer " + sessionStorage.getItem("token"),
-        },
+        url: apiURL("admin/disclaimers/delete/" +this.singleDisclaimer.id),
+        headers: apiHeaders.contentTypeAndAuth(),
       })
         .then((res) => {
           console.log(res);

@@ -101,6 +101,7 @@
 <script>
 import axios from 'axios'
 import NavMenu from "../components/NavMenu.vue";
+import { apiURL } from '../configs';
 
 export default {
   name: "ForgotPassword",
@@ -145,7 +146,7 @@ export default {
       else{
         axios({
         method: "POST", 
-        url: "https://greeneratech.herokuapp.com/api/password/email",
+        url: apiURL("password/email"),
         data: {
           email: this.email,
         },

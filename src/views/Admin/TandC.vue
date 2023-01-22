@@ -111,6 +111,7 @@ import { mapState } from "vuex";
 import axios from "axios";
 import AddTerms from "../../components/AddTerms.vue";
 import EditTerms from "../../components/EditTerms.vue"
+import { apiHeaders, apiURL } from "../../configs";
 
 export default {
   components: {
@@ -192,19 +193,12 @@ export default {
         this.text = "Are you sure you want to delete " + term.title + "?";
     },
 
-   
-
     deleteTerm() {
       this.deleteLoading = true;
       axios({
         method: "DELETE",
-        url:
-          "https://greeneratech.herokuapp.com/api/admin/terms/delete/" +
-          this.singleTerm.id,
-        headers: {
-          ContentType: "application/json",
-          Authorization: "Bearer " + sessionStorage.getItem("token"),
-        },
+        url: apiURL("admin/terms/delete/" +this.singleTerm.id),
+        headers: apiHeaders.contentTypeAndAuth(),
       })
         .then((res) => {
           console.log(res);

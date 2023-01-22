@@ -108,6 +108,7 @@ import AddTeam from "../../components/AddTeam.vue"
 import EditTeam from "../../components/EditTeam.vue"
 import {mapState} from "vuex"
 import axios from "axios"
+import { apiHeaders, apiURL } from '../../configs'
 
 export default {
     components:{
@@ -183,10 +184,8 @@ export default {
          this.suspendLoading= true
          axios({
            method:"PUT",
-           url:"https://greeneratech.herokuapp.com/api/admin/suspend/user/"+user.id,
-            headers:{
-              "Authorization":"Bearer "+sessionStorage.getItem("token")
-            }
+           url: apiURL("admin/suspend/user/"+user.id),
+           headers: apiHeaders.auth(),
          }).then((response)=>{
            console.log(response)
            this.suspendLoading = false
@@ -220,10 +219,8 @@ export default {
       this.deleteLoading = true
       axios({
         method:"DELETE",
-        url:"https://greeneratech.herokuapp.com/api/admin/team/delete/"+this.singleTeam.id,
-        headers:{
-              "Authorization":"Bearer "+sessionStorage.getItem("token")
-            }
+        url: apiURL("admin/team/delete/"+this.singleTeam.id),
+        headers: apiHeaders.auth(),
       }).then((response)=>{
         console.log(response)
         this.deleteLoading = false
@@ -250,9 +247,6 @@ export default {
     }
 
 }
-
-
-
 
 </script>
 

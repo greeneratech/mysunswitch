@@ -87,6 +87,7 @@ import SideNav from '../../components/AdminSideNav.vue'
 import UserMenu from '../../components/AdminUserMenu.vue'
 import {mapState} from "vuex"
 import axios from "axios"
+import { apiHeaders, apiURL } from '../../configs'
 
 export default {
     components:{
@@ -157,19 +158,15 @@ export default {
          this.suspendLoading= true
          axios({
            method:"PUT",
-           url:"https://greeneratech.herokuapp.com/api/admin/suspend/user/"+user.id,
-            headers:{
-              "Authorization":"Bearer "+sessionStorage.getItem("token")
-            }
+           url: apiURL("admin/suspend/user/"+user.id),
+           headers: apiHeaders.auth(),
          }).then((response)=>{
           console.log(response)
           const status = response.data.data
            axios({
             method:"GET",
-            url:"https://greeneratech.herokuapp.com/api/admin",
-            headers:{
-              "Authorization":"Bearer "+sessionStorage.getItem("token")
-            }
+            url: apiURL("admin"),
+            headers: apiHeaders.auth()
            }).then((response)=>{
             console.log(response)
             sessionStorage.setItem("users",JSON.stringify(response.data.users))
@@ -204,19 +201,15 @@ export default {
       this.deleteLoading = true
       axios({
         method:"DELETE",
-        url:"https://greeneratech.herokuapp.com/api/admin/delete/user/"+this.singleUser.id,
-        headers:{
-              "Authorization":"Bearer "+sessionStorage.getItem("token")
-            }
+        url: apiURL("admin/delete/user/"+this.singleUser.id),
+        headers: apiHeaders.auth()
       }).then((response)=>{
         console.log(response)
         console.log(response)
            axios({
             method:"GET",
-            url:"https://greeneratech.herokuapp.com/api/admin",
-            headers:{
-              "Authorization":"Bearer "+sessionStorage.getItem("token")
-            }
+            url: apiURL("admin"),
+            headers: apiHeaders.auth(),
            }).then((response)=>{
             console.log(response)
             sessionStorage.setItem("users",JSON.stringify(response.data.users))

@@ -25,6 +25,7 @@
 <script>
 import Flutterwave from "./FlutterwaveModal.vue"
 import axios from "axios"
+import { apiHeaders, apiURL } from "../../configs"
 
 export default{
     data(){
@@ -82,14 +83,11 @@ export default{
        this.loading = true
        axios({
          method:"POST",
-         url:"https://greeneratech.herokuapp.com/api/business/deposit",
+         url: apiURL("business/deposit"),
          data:{
            amount:this.amount
          },
-         headers: {
-          ContentType: "application/json",
-          Authorization: "Bearer " + sessionStorage.getItem("token"),
-        },
+         headers: apiHeaders.contentTypeAndAuth(),
        }).then((response)=>{
          console.log(response)
          sessionStorage.setItem('vuex',JSON.stringify(response.data.user))

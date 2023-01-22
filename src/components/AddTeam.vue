@@ -98,6 +98,7 @@
 // import UserMenu from '../../components/AdminUserMenu.vue'
 // import {mapState} from "vuex"
 import axios from "axios"
+import { apiHeaders, apiURL } from "../configs"
 
 export default {
     components:{
@@ -148,16 +149,13 @@ export default {
             this.teamloading = true
             axios({
                 method:"POST",
-                url:"https://greeneratech.herokuapp.com/api/admin/team/create",
+                url: apiURL("admin/team/create"),
                 data:{
                     name:this.name,
                     email:this.email,
                     position:this.position
                 },
-                headers:{
-            "Content-Type":"application/json",
-            "Authorization":"Bearer "+sessionStorage.getItem("token")
-          },
+                headers: apiHeaders.contentTypeAndAuth(),
             }).then((response)=>{
                 console.log(response)
                 this.teamloading = false
@@ -189,9 +187,6 @@ export default {
     }
 
 } 
-
-
-
 
 </script>
 

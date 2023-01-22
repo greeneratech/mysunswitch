@@ -188,6 +188,7 @@
 import UserMenu from '../../components/AdminUserMenu.vue'
 import {mapState} from "vuex"
 import axios from "axios"
+import { apiHeaders, apiURL } from '../../configs'
 
 export default {
     components:{
@@ -244,11 +245,8 @@ export default {
         this.createLoading = true
         axios({
           method:"POST",
-          url:"https://greeneratech.herokuapp.com/api/admin/investments/create",
-          headers:{
-            "Content-Type":"application/json",
-            "Authorization":"Bearer "+sessionStorage.getItem("token")
-          },
+          url: apiURL("admin/investments/create"),
+          headers: apiHeaders.contentTypeAndAuth(),
           data:{
             name:this.projectName,
             description:this.projectDescription,

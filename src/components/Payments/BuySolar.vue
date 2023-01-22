@@ -45,6 +45,7 @@
 
 <script>
 import axios from "axios"
+import { apiHeaders, apiURL } from "../../configs"
 
 
 export default {
@@ -74,15 +75,12 @@ export default {
                 this.loading = true
                 axios({
                     method:"POST",
-                    url:"https://greeneratech.herokuapp.com/api/user/investments/invest",
+                    url: apiURL("user/investments/invest"),
                     data:{
                         investmentId:2,
                         numberOfCells:this.cells
                     },
-                    headers: {
-                    ContentType: "application/json",
-                    Authorization: "Bearer " + sessionStorage.getItem("token"),
-          }
+                    headers: apiHeaders.contentTypeAndAuth()
                 
         }).then((response)=>{
           console.log(response)

@@ -97,6 +97,7 @@ import EditProject from "../../components/EditProject.vue"
 import ViewProject from "../../components/ViewProject.vue"
 import {mapState} from "vuex"
 import axios from "axios"
+import { apiHeaders, apiURL } from '../../configs'
 
 export default {
     components:{
@@ -191,11 +192,8 @@ export default {
           this.deleteLoading = true
           axios({
             method:"DELETE",
-            url:"https://greeneratech.herokuapp.com/api/admin/investments/delete/"+this.singleProject.id,
-            headers:{
-              ContentType: "application/json",
-              Authorization:"Bearer "+sessionStorage.getItem("token")
-            }
+            url: apiURL("admin/investments/delete/"+this.singleProject.id),
+            headers: apiHeaders.contentTypeAndAuth(),
           })
           .then(res=>{
             console.log(res)

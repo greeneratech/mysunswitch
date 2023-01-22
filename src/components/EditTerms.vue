@@ -47,19 +47,7 @@
                     </div>
                   </v-card>
 
-                
-
-                 
-
-                  
-        
-
                   <v-btn :loading="termloading" @click="editTerm" class="rounded-lg white--text mt-5" block x-large color="#199958"><v-icon class="mr-5">mdi-pen</v-icon>Edit Term</v-btn>
-
-
-
-
-
 
             </v-form>
 
@@ -75,14 +63,12 @@
 </template>
 
 
-
-
-
 <script>
 //import SideNav from '../../components/AdminSideNav.vue'
 // import UserMenu from '../../components/AdminUserMenu.vue'
 // import {mapState} from "vuex"
 import axios from "axios"
+import { apiHeaders, apiURL } from "../configs"
 
 export default {
     components:{
@@ -132,15 +118,12 @@ export default {
             this.termloading = true
             axios({
                 method:"PUT",
-                url:"https://greeneratech.herokuapp.com/api/admin/terms/update/"+this.singleTerm.id,
+                url: apiURL("admin/terms/update/"+this.singleTerm.id),
                 data:{
                     title:this.singleTerm.title,
                     detail:this.singleTerm.detail
                 },
-                headers:{
-            "Content-Type":"application/json",
-            "Authorization":"Bearer "+sessionStorage.getItem("token")
-          },
+                headers: apiHeaders.contentTypeAndAuth(),
             }).then((response)=>{
                 console.log(response)
                 this.termloading = false
@@ -163,11 +146,7 @@ export default {
 
 } 
 
-
-
-
 </script>
-
 
 
 <style>

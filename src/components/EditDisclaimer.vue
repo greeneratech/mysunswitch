@@ -83,6 +83,7 @@
 // import UserMenu from '../../components/AdminUserMenu.vue'
 // import {mapState} from "vuex"
 import axios from "axios"
+import { apiHeaders, apiURL } from "../configs"
 
 export default {
     components:{
@@ -132,17 +133,14 @@ export default {
             this.faqloading = true
             axios({
                 method:"PUT",
-                url:"https://greeneratech.herokuapp.com/api/admin/disclaimers/update/"+this.singleDisclaimer.id,
+                url: apiURL("admin/disclaimers/update/"+this.singleDisclaimer.id),
                 data:{
                     question:this.singleDisclaimer.title,
                     answer:this.singleDisclaimer.description,
                     title:this.singleDisclaimer.title,
                     description:this.singleDisclaimer.description
                 },
-                headers:{
-            "Content-Type":"application/json",
-            "Authorization":"Bearer "+sessionStorage.getItem("token")
-          },
+                headers: apiHeaders.contentTypeAndAuth(),
             }).then((response)=>{
                 console.log(response)
                 this.faqloading = false

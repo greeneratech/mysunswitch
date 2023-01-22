@@ -115,6 +115,7 @@ import UserMenu from "../../components/UserMenu.vue";
 import { mapState } from "vuex";
 import Deposit from "../../components/Payments/Deposit.vue";
 import axios from 'axios'
+import { apiHeaders, apiURL } from "../../configs";
 
 export default {
   components: {
@@ -179,7 +180,7 @@ export default {
      this.loading = true
         axios({
           method:"GET",
-          url:"https://greeneratech.herokuapp.com/api/user/bank-details",
+          url: apiURL("user/bank-details"),
           headers: {
             ContentType: "application/json",
             Authorization: "Bearer " + sessionStorage.getItem("token"),
@@ -224,17 +225,14 @@ export default {
       this.loading = true
       axios({
         method:"POST",
-        url:"https://greeneratech.herokuapp.com/api/user/bank",
+        url: apiURL("user/bank"),
          data:{
            bankName:this.bankName, 
            bankCode:this.bank, 
            accountName:this.accountName, 
            accountNumber:this.accountNumber
          },
-         headers: {
-          ContentType: "application/json",
-          Authorization: "Bearer " + sessionStorage.getItem("token"),
-        },
+         headers: apiHeaders.contentTypeAndAuth(),
       }).then(()=>{
          this.$swal({
           title: "Account added successfully",

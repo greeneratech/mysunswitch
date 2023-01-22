@@ -187,6 +187,7 @@ import UserMenu from "../../components/UserMenu.vue";
 import SideNav from "../../components/SideNav.vue";
 // import { mapState } from "vuex";
 import axios from "axios"
+import { apiURL, apiHeaders } from "../../configs";
 
 
 export default {
@@ -223,10 +224,8 @@ export default {
     fetchUser(){
       axios({
             method:"GET",
-            url:"https://greeneratech.herokuapp.com/api/user",
-            headers:{
-              "Authorization":"Bearer "+sessionStorage.getItem("token")
-            }
+            url: apiURL("user"),
+            headers: apiHeaders.auth(),
           })
           .then((response)=>{
             console.log(response)
@@ -251,7 +250,7 @@ export default {
       console.log(this.user.email)
       axios({
         method: "POST", 
-        url: "https://greeneratech.herokuapp.com/api/user/update",
+        url: apiURL("user/update"),
         data: {
           firstName: this.user.firstName,
           lastName: this.user.lastName,
@@ -260,10 +259,7 @@ export default {
           location:this.user.location,
           photo:image
         },
-        headers: {
-        Authorization: `Bearer ${sessionStorage.getItem('token')}` ,
-        ContentType:"application/json"
-        }
+        headers: apiHeaders.contentTypeAndAuth(),
       }).then((response)=>{
        console.log(response)
        this.loading = false
@@ -314,13 +310,10 @@ export default {
        console.log(formData)
        let token = sessionStorage.getItem("token");
        console.log(formData)
-       axios.post( 'https://greeneratech.herokuapp.com/api/user/upload-photo',
+       axios.post( apiURL('user/upload-photo'),
                 formData,
                 {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                     Authorization:"Bearer " + token
-                },
+                headers: apiHeaders.contentTypeAndAuth('multipart/form-data', token)
               }
             ).then((response) =>{
           console.log(response)
@@ -342,14 +335,11 @@ export default {
      logOut(){
     axios({
       method:"POST",
-      url:"https://greeneratech.herokuapp.com/api/authenticate/signout",
+      url: apiURL("authenticate/signout"),
       data:{
         token:sessionStorage.getItem("token")
       },
-      headers:{
-        "Content-Type":"application/json",
-        "Authorization":"Bearer "+sessionStorage.getItem("token")
-      }
+      headers: apiHeaders.contentTypeAndAuth(),
     }).then(()=>{
       sessionStorage.removeItem("token")
       this.$router.push("/login")

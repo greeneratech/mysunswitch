@@ -99,6 +99,7 @@
 import axios from 'axios'
 import NavMenu from "../../components/NavMenu.vue";
 import {mapState} from "vuex"
+import { apiURL } from '../../configs';
 
 export default {
   name: "Signup",
@@ -168,7 +169,7 @@ export default {
       else{
         axios({
         method: "POST", 
-        url: "https://greeneratech.herokuapp.com/api/authenticate/signin",
+        url: apiURL("authenticate/signin"),
         data: {
           email: this.email,
           password: this.password,

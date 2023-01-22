@@ -91,14 +91,12 @@
 </template>
 
 
-
-
-
 <script>
 //import SideNav from '../../components/AdminSideNav.vue'
 // import UserMenu from '../../components/AdminUserMenu.vue'
 // import {mapState} from "vuex"
 import axios from "axios"
+import { apiHeaders, apiURL } from "../configs"
 
 export default {
     components:{
@@ -148,16 +146,13 @@ export default {
             this.teamloading = true
             axios({
                 method:"PUT",
-                url:"https://greeneratech.herokuapp.com/api/admin/team/update/"+this.singleTeam.id,
+                url: apiURL("admin/team/update/"+this.singleTeam.id),
                 data:{
                     name:this.singleTeam.name,
                     email:this.singleTeam.email,
                     position:this.singleTeam.position,
                 },
-                headers:{
-            "Content-Type":"application/json",
-            "Authorization":"Bearer "+sessionStorage.getItem("token")
-          },
+                headers: apiHeaders.contentTypeAndAuth(),
             }).then((response)=>{
                 console.log(response)
                 this.teamloading = false
@@ -191,11 +186,7 @@ export default {
 
 } 
 
-
-
-
 </script>
-
 
 
 <style>

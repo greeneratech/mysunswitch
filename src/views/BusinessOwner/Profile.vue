@@ -171,6 +171,7 @@ import UserMenu from "../../components/BusinessNav.vue";
 import SideNav from "../../components/BusinessSideNav.vue";
 import { mapState } from "vuex";
 import axios from "axios"
+import { apiHeaders, apiURL } from "../../configs";
 
 export default {
   data() {
@@ -208,7 +209,7 @@ export default {
       this.loading = true
       axios({
         method: "POST", 
-        url: "https://greeneratech.herokuapp.com/api/business/update",
+        url: apiURL("business/update"),
         data: {
           firstName: this.user.firstName,
           lastName: this.user.lastName,
@@ -218,9 +219,7 @@ export default {
           businessPower:this.user.businessPower,
           photo:image
         },
-        headers: {
-        'Authorization': `Bearer ${sessionStorage.getItem('token')}` 
-        }
+        headers: apiHeaders.auth(),
       }).then((response)=>{
       sessionStorage.setItem('vuex',JSON.stringify(response.data.user))
        this.$swal({
@@ -253,14 +252,11 @@ export default {
        console.log(this.file)
        let formData = new FormData();
        formData.append("photo", this.file);
-       let token = sessionStorage.getItem("token");
-       axios.post( 'https://greeneratech.herokuapp.com/api/user/upload-photo',
+
+       axios.post( apiURL('user/upload-photo'),
                 formData,
                 {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                     Authorization:"Bearer " + token
-                },
+                headers: apiHeaders.contentTypeAndAuth('multipart/form-data'),
               }
             ).then((response) =>{
           console.log(response)
@@ -283,14 +279,11 @@ export default {
       this.btnloading = true
     axios({
       method:"POST",
-      url:"https://greeneratech.herokuapp.com/api/authenticate/signout",
+      url: apiURL("authenticate/signout"),
       data:{
         token:sessionStorage.getItem("token")
       },
-      headers:{
-        "Content-Type":"application/json",
-        "Authorization":"Bearer "+sessionStorage.getItem("token")
-      }
+      headers: apiHeaders.contentTypeAndAuth()
     }).then(()=>{
       sessionStorage.removeItem("token")
       this.$router.push("/business/login")

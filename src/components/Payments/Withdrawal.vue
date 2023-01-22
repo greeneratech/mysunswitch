@@ -12,6 +12,7 @@
 
 <script>
 import axios from "axios"
+import { apiHeaders, apiURL } from "../../configs";
 
 export default{
     data(){
@@ -62,20 +63,16 @@ export default{
         this.loading = true
         axios({
             method: "POST",
-            url: "https://greeneratech.herokuapp.com/api/user/withdraw",
-            headers:{
-                Authorization:"Bearer "+sessionStorage.getItem('token')
-            },
+            url: apiURL("user/withdraw"),
+            headers: apiHeaders.auth(),
             data:{
                 amount:this.amount
             }
         }).then(()=>{
             axios({
                 method:"GET",
-                url:"https://greeneratech.herokuapp.com/api/user",
-                 headers:{
-                Authorization:"Bearer "+sessionStorage.getItem('token')
-            },
+                url: apiURL("user"),
+                 headers: apiHeaders.auth(),
             }).then((response)=>{
                  this.loading = false
                   this.$swal({

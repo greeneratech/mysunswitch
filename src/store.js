@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
 import router from './router/index';
+import { apiURL, apiHeaders } from './configs';
 
 Vue.use(Vuex);
 
@@ -41,10 +42,8 @@ export default new Vuex.Store({
       } else {
         axios({
           method: 'GET',
-          url: 'https://greeneratech.herokuapp.com/api/user',
-          headers: {
-            Authorization: 'Bearer ' + sessionStorage.getItem('token'),
-          },
+          url: apiURL('user'),
+          headers: apiHeaders.auth(),
         })
           .then((response) => {
             console.log(response);
@@ -69,7 +68,7 @@ export default new Vuex.Store({
       } else {
         axios({
           method: 'GET',
-          url: 'https://greeneratech.herokuapp.com/api/dashboard',
+          url: apiURL('dashboard'),
           headers: {
             Authorization: 'Bearer ' + value,
           },
@@ -90,10 +89,8 @@ export default new Vuex.Store({
       } else {
         axios({
           method: 'GET',
-          url: 'https://greeneratech.herokuapp.com/api/business',
-          headers: {
-            Authorization: 'Bearer ' + sessionStorage.getItem('token'),
-          },
+          url: apiURL('business'),
+          headers: apiHeaders.auth(),
         })
           .then((response) => {
             console.log(response);
@@ -123,10 +120,8 @@ export default new Vuex.Store({
     fetchUserAdmin() {
       axios({
         method: 'GET',
-        url: 'https://greeneratech.herokuapp.com/api/admin',
-        headers: {
-          Authorization: 'Bearer ' + sessionStorage.getItem('token'),
-        },
+        url: apiURL('admin'),
+        headers: apiHeaders.auth(),
       })
         .then((response) => {
           console.log(response);
@@ -143,11 +138,8 @@ export default new Vuex.Store({
       state.faqLoading = true;
       axios({
         method: 'GET',
-        url: 'https://greeneratech.herokuapp.com/api/admin/faqs',
-        headers: {
-          ContentType: 'application/json',
-          Authorization: 'Bearer ' + sessionStorage.getItem('token'),
-        },
+        url: apiURL('admin/faqs'),
+        headers: apiHeaders.contentTypeAndAuth(),
       }).then((response) => {
         state.faqLoading = false;
         console.log(state.faqLoading);
@@ -159,11 +151,8 @@ export default new Vuex.Store({
       state.bankloading = true;
       axios({
         method: 'GET',
-        url: 'https://greeneratech.herokuapp.com/api/admin/userBank',
-        headers: {
-          ContentType: 'application/json',
-          Authorization: 'Bearer ' + sessionStorage.getItem('token'),
-        },
+        url: apiURL('admin/userBank'),
+        headers: apiHeaders.contentTypeAndAuth(),
       }).then((response) => {
         state.banks = response.data.userBank;
         console.log(response);
@@ -176,11 +165,8 @@ export default new Vuex.Store({
       state.disclaimerLoading = true;
       axios({
         method: 'GET',
-        url: 'https://api.mysunswitch.com/api/admin/disclaimers',
-        headers: {
-          ContentType: 'application/json',
-          Authorization: 'Bearer ' + sessionStorage.getItem('token'),
-        },
+        url: apiURL('admin/disclaimers'),
+        headers: apiHeaders.contentTypeAndAuth(),
       }).then((response) => {
         state.disclaimerLoading = false;
         console.log(response);
@@ -192,11 +178,8 @@ export default new Vuex.Store({
       state.termsLoading = true;
       axios({
         method: 'GET',
-        url: 'https://api.mysunswitch.com/api/admin/terms',
-        headers: {
-          ContentType: 'application/json',
-          Authorization: 'Bearer ' + sessionStorage.getItem('token'),
-        },
+        url: apiURL('admin/terms'),
+        headers: apiHeaders.contentTypeAndAuth(),
       }).then((response) => {
         state.termsLoading = false;
         console.log(response);
@@ -208,11 +191,8 @@ export default new Vuex.Store({
       state.teamLoading = true;
       axios({
         method: 'GET',
-        url: 'https://api.mysunswitch.com/api/admin/team',
-        headers: {
-          ContentType: 'application/json',
-          Authorization: 'Bearer ' + sessionStorage.getItem('token'),
-        },
+        url: apiURL('admin/team'),
+        headers: apiHeaders.contentTypeAndAuth(),
       }).then((response) => {
         state.teamLoading = false;
         console.log(response);
@@ -224,11 +204,8 @@ export default new Vuex.Store({
       state.paymentLoading = true;
       axios({
         method: 'GET',
-        url: 'https://api.mysunswitch.com/api/admin/userPayments',
-        headers: {
-          ContentType: 'application/json',
-          Authorization: 'Bearer ' + sessionStorage.getItem('token'),
-        },
+        url: apiURL('admin/userPayments'),
+        headers: apiHeaders.contentTypeAndAuth(),
       }).then((response) => {
         console.log(response);
         state.payments = response.data;
@@ -240,11 +217,8 @@ export default new Vuex.Store({
       state.loading = true;
       axios({
         method: 'GET',
-        url: 'https://api.mysunswitch.com/api/user/investments/all',
-        headers: {
-          ContentType: 'application/json',
-          Authorization: 'Bearer ' + sessionStorage.getItem('token'),
-        },
+        url: apiURL('user/investments/all'),
+        headers: apiHeaders.contentTypeAndAuth(),
       }).then((response) => {
         state.projects = response.data.data;
         state.projects = state.projects.reverse();
@@ -264,11 +238,8 @@ export default new Vuex.Store({
       state.loading = true;
       axios({
         method: 'GET',
-        url: 'https://api.mysunswitch.com/api/user/investments/mine',
-        headers: {
-          ContentType: 'application/json',
-          Authorization: 'Bearer ' + sessionStorage.getItem('token'),
-        },
+        url: apiURL('user/investments/mine'),
+        headers: apiHeaders.contentTypeAndAuth(),
       }).then((response) => {
         state.projects = response.data.data;
       });
@@ -278,11 +249,8 @@ export default new Vuex.Store({
       state.projectLoading = true;
       axios({
         method: 'GET',
-        url: 'https://api.mysunswitch.com/api/admin/investments/get',
-        headers: {
-          ContentType: 'application/json',
-          Authorization: 'Bearer ' + sessionStorage.getItem('token'),
-        },
+        url: apiURL('admin/investments/get'),
+        headers: apiHeaders.contentTypeAndAuth(),
       }).then((response) => {
         console.log(response);
         state.allProjects = response.data.data.reverse();
@@ -312,11 +280,8 @@ export default new Vuex.Store({
       state.loading = true;
       axios({
         method: 'GET',
-        url: 'https://api.mysunswitch.com/api/user/history',
-        headers: {
-          ContentType: 'application/json',
-          Authorization: 'Bearer ' + sessionStorage.getItem('token'),
-        },
+        url: apiURL('user/history'),
+        headers: apiHeaders.contentTypeAndAuth(),
       }).then((response) => {
         state.history = response.data.data.reverse();
 
@@ -328,11 +293,8 @@ export default new Vuex.Store({
       state.loading = true;
       axios({
         method: 'GET',
-        url: 'https://api.mysunswitch.com/api/business/history',
-        headers: {
-          ContentType: 'application/json',
-          Authorization: 'Bearer ' + sessionStorage.getItem('token'),
-        },
+        url: apiURL('business/history'),
+        headers: apiHeaders.contentTypeAndAuth(),
       }).then((response) => {
         state.history = response.data.data.reverse();
 

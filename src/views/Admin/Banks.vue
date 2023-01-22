@@ -87,6 +87,7 @@ import SideNav from '../../components/AdminSideNav.vue'
 import UserMenu from '../../components/AdminUserMenu.vue'
 import {mapState} from "vuex"
 import axios from "axios"
+import { apiHeaders, apiURL } from '../../configs'
 
 export default {
     components:{
@@ -169,11 +170,8 @@ export default {
          let newStatus = status == 0 ? 1 : 0
         axios({
           method:"PUT",
-          url:"https://greeneratech.herokuapp.com/api/admin/userBank/activate/"+id,
-          headers: {
-            ContentType: "application/json",
-            Authorization: "Bearer " + sessionStorage.getItem("token"),
-          },
+          url: apiURL("admin/userBank/activate/"+id),
+          headers: apiHeaders.contentTypeAndAuth(),
           data:{
               status:newStatus
           }

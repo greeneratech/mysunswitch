@@ -75,14 +75,12 @@
 </template>
 
 
-
-
-
 <script>
 //import SideNav from '../../components/AdminSideNav.vue'
 // import UserMenu from '../../components/AdminUserMenu.vue'
 // import {mapState} from "vuex"
 import axios from "axios"
+import { apiHeaders, apiURL } from "../configs"
 
 export default {
     components:{
@@ -132,15 +130,12 @@ export default {
             this.faqloading = true
             axios({
                 method:"POST",
-                url:"https://greeneratech.herokuapp.com/api/admin/faqs/create",
+                url: apiURL("admin/faqs/create"),
                 data:{
                     question:this.title,
                     answer:this.description
                 },
-                headers:{
-            "Content-Type":"application/json",
-            "Authorization":"Bearer "+sessionStorage.getItem("token")
-          },
+                headers: apiHeaders.contentTypeAndAuth()
             }).then((response)=>{
                 console.log(response)
                 this.faqloading = false
@@ -161,13 +156,9 @@ export default {
        }
     }
 
-} 
-
-
-
+}
 
 </script>
-
 
 
 <style>

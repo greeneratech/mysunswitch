@@ -107,6 +107,7 @@
 
 <script>
 import axios from 'axios'
+import { apiHeaders, apiURL } from '../configs'
 
 
 export default {
@@ -128,14 +129,11 @@ methods:{
       this.loading = true
     axios({
       method:"POST",
-      url:"https://greeneratech.herokuapp.com/api/authenticate/signout",
+      url: apiURL("authenticate/signout"),
       data:{
         token:sessionStorage.getItem("token")
       },
-      headers:{
-        "Content-Type":"application/json",
-        "Authorization":"Bearer "+sessionStorage.getItem("token")
-      }
+      headers: apiHeaders.contentTypeAndAuth(),
     }).then(()=>{
       sessionStorage.removeItem("token")
       this.$router.push("/business/login")

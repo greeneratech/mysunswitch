@@ -6,11 +6,9 @@
      <!-- <Projects /> -->
      <Email />
      <Footer />
-     <LogoFooter />
+     <!-- <LogoFooter /> -->
      </v-app>
 </template>
-
-
 
 <script>
 import HomeMenu from '../components/Home/HomeMenu.vue'
@@ -19,7 +17,7 @@ import Cta from "../components/Home/Cta.vue"
 // import Projects from "../components/Home/Projects.vue"
 import Email from "../components/Home/Email.vue"
 import Footer from "../components/Home/Footer.vue"
-import LogoFooter from "../components/Home/LogoFooter.vue"
+// import LogoFooter from "../components/Home/LogoFooter.vue"
 
 export default {
   name: 'Home',
@@ -30,16 +28,12 @@ export default {
     // Projects,
     Email,
     Footer,
-    LogoFooter
+    // LogoFooter
   },
 }
 </script>
 
-
-
 <style>
-
-
 @media screen and (min-width: 993px) {
    .ctabutton{
     background: #FF7B00;
@@ -167,7 +161,7 @@ export default {
     font-size:64px
   }
 
-  .statistics{
+  .statistics {
     margin-top:180px;
     width:50%;
     margin:auto;
@@ -175,6 +169,7 @@ export default {
     display:flex;
     justify-content: space-between;
   }
+
   .statCircle{
     height:170px;
     width:170px;

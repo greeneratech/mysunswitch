@@ -9,9 +9,6 @@
     </v-app>
 </template>
 
-
-
-
 <script>
 import NavMenu from "../components/NavMenu.vue"
 

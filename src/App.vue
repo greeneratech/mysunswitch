@@ -75,4 +75,9 @@ export default {
     }
   }
 }
+
+.sr-only {
+  top: -100%;
+  position: absolute;
+}
 </style>

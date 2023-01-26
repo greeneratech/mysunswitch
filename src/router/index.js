@@ -29,7 +29,7 @@ import SingleProject from "../views/User/SingleProject.vue"
 import History from "../views/User/History.vue"
 import BusinessHistory from "../views/BusinessOwner/History.vue"
 import Error from "../views/Error.vue"
-
+import Faq from "../views/Faq.vue"
 
 Vue.use(VueRouter)
 
@@ -38,6 +38,11 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/faq',
+    name: 'Faq',
+    component: Faq
   },
   {
     path: '/signup',

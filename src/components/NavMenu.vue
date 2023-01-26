@@ -1,89 +1,24 @@
 <template>
   <v-card flat color="#E5E5E5">
-    <div class="d-flex justify-space-between  ma-4 mx-9">
-    <div>
-    <div class="positionIcon">
-      <a href="/">
-        <img 
-          width="120px" src="../assets/images/sunswitchlogo.png" />
+    <header>
+      <h1>
+        <a href="/">
+          <img width="120px" src="../assets/images/sunswitchlogo.png" />
+          <span class="sr-only">Sunswitch</span>
         </a>
-    </div>
-    </div>
-    <div class="hidden-md-and-down">
-    <div class="d-flex justify-center">
-    <div>
-        <v-btn text>SERVICES</v-btn>
-    </div>
+      </h1>
 
-    <div>
-        <v-btn text>PROJECTS</v-btn>
-    </div>
-
-    <div>
-        <v-btn text>ABOUT US</v-btn>
-    </div>
-    </div>
-    </div>
-    <div class="hidden-lg-and-up justify-end">
-    <v-btn icon x-large color="black" @click="drawer =! drawer"><v-icon>mdi-menu</v-icon></v-btn>
-    </div>
-    </div>
-
-     <v-navigation-drawer
-      v-model="drawer"
-      fixed
-      temporary
-      right
-    >
-      <v-list
-        nav
-        dense
-      >
-        <v-list-item-group
-          v-model="group"
-        >
-          <v-list-item>
-            <v-list-item-title>Services</v-list-item-title>
-          </v-list-item>
-
-          <v-list-item>
-            <v-list-item-title>Projects</v-list-item-title>
-          </v-list-item>
-
-          <v-list-item>
-            <v-list-item-title>About Us</v-list-item-title>
-          </v-list-item>
-        </v-list-item-group>
-      </v-list>
-    </v-navigation-drawer>
-
-
+      <v-btn to="/login" color="#006838" class="ml-3 white--text">Sign in</v-btn>
+    </header>
   </v-card>
 </template>
 
-<script>
-export default {
-  data(){
-    return{
-      drawer:false,
-      group:null
-    }
-  },
-  watch: {
-      group () {
-        this.drawer = false
-      },
-    },
-
+<style scoped>
+header {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  border: 1px solid gray;
+  justify-content: space-between;
 }
-</script>
-
-<style>
-@media only screen and (max-width:765px){
-.positionIcon{
-  margin-top:20px !important
-}
-}
-
 </style>
-

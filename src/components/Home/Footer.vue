@@ -1,94 +1,96 @@
 <template>
-    <v-app style="background:#006838">
-        <v-main class="hidden-md-and-down" style="margin:auto auto 80px auto;width:80%;padding:70px 0px 140px 0px">
-           <v-row>
-               <v-col>
-                   <p class="white--text font-weight-bold">SERVICES</p>
-                   <p class=""><router-link class="routerLink" to="/signup">Service 1</router-link></p>
-                   <p><router-link class="routerLink" to="/login">Service 2</router-link></p>
-               </v-col>
+    <footer>
+        <ul class="social-contacts">
+            <li v-for="sc in socialContacts" :key="sc.icon">
+                <a :href="sc.link" target="_blank">
+                    <v-icon x-large class="white--text">{{ sc.icon }}</v-icon>
+                </a>
+            </li>
+        </ul>
 
-               <v-col>
-                   <p class="white--text font-weight-bold">PROJECTS</p>
-                   <p class=""><router-link class="routerLink" to="/signup">Recent</router-link></p>
-                   <p><router-link class="routerLink" to="/login">Ongoing</router-link></p>
-               </v-col>
-
-               <v-col>
-                    <p class="white--text font-weight-bold">ABOUT US</p>
-                   <p class=""><router-link class="routerLink" to="/signup">Meet the Team</router-link></p>
-                   <p><router-link class="routerLink" to="/login">Our Story</router-link></p>
-               </v-col>
-
-               <v-col>
-                   <p class="white--text font-weight-bold">T’s & C’s</p>
-                   <p class=""><router-link class="routerLink" to="/signup">Privacy Policy</router-link></p>
-                   <p><router-link class="routerLink" to="/login">Terms of Use</router-link></p>
-               </v-col>
-            </v-row>
-            <hr/>
-            <div style="text-align:center;padding:100px;margin:20px auto">
-                <v-btn x-large icon class="mr-15">
-                <v-icon x-large class="white--text">mdi-twitter</v-icon>
-                </v-btn>
-
-                <v-btn x-large icon class="mr-15">
-                <v-icon x-large class="white--text">mdi-instagram</v-icon>
-                </v-btn>
-
-                <v-btn x-large icon class="mr-15">
-                <v-icon x-large class="white--text">mdi-linkedin</v-icon>
-                </v-btn>
-
-                <v-btn x-large icon class="mr-15">
-                <v-icon x-large class="white--text">mdi-facebook</v-icon>
-                </v-btn>
-                
+        <div class="call-and-email">
+            <div class="text-xl white--text">
+                <v-icon x-large class="white--text">mdi-phone</v-icon> 
+                <a href="tel:+2347033771639" class="contact-us-link">+234 703 377 1639</a>, 
+                <a href="tel:+2348165533706" class="contact-us-link">+234 816 553 3706</a>
             </div>
-            <div class="d-flex justify-space-between" style="width:96%;margin:auto">
-                <h2 class="text-xl white--text"><v-icon x-large class="white--text">mdi-phone</v-icon> +234 703 377 1639, +234 816 553 3706</h2>
 
-                 <h2 class="white--text"><v-icon x-large class="white--text">mdi-email</v-icon> greeneratech@gmail.com</h2>
+            <div class="text-xl white--text">
+                <v-icon x-large class="white--text">mdi-email</v-icon> 
+                <a href="mailto:greeneratech@gmail.com" class="contact-us-link">greeneratech@gmail.com</a>
             </div>
-        </v-main>
-
-        <v-main style="margin-top:90px" class="hidden-lg-and-up mx-auto">
-            <div class="text-center mb-9">
-             <p style="font-size:20px" class="white--text font-weight-bold">SERVICES</p>
-              <p style="font-size:20px" class="white--text font-weight-bold">PROJECTS</p>
-               <p style="font-size:20px" class="white--text font-weight-bold">ABOUT US</p>
-                <p style="font-size:20px" class="white--text font-weight-bold">T'S & C'S</p>
-                </div>
-                 <hr/>
-            <div class="d-flex justify-center my-5">
-                <v-btn  icon>
-                <v-icon class="white--text">mdi-twitter</v-icon>
-                </v-btn>
-
-                <v-btn  icon>
-                <v-icon class="white--text">mdi-instagram</v-icon>
-                </v-btn>
-
-                <v-btn  icon>
-                <v-icon class="white--text">mdi-linkedin</v-icon>
-                </v-btn>
-                <v-btn icon>
-                <v-icon class="white--text">mdi-facebook</v-icon>
-                </v-btn>
-                </div>
-
+        </div>
+    
+        <div class="brand">
+            <div class="d-flex justify-center">
                 <div class="text-center">
-                <p class="white--text mb-3"><v-icon class="white--text">mdi-phone</v-icon> +234 703 377 1639, +234 816 553 3706</p>
-
-                 <p class="white--text"><v-icon class="white--text">mdi-email</v-icon> greeneratech@gmail.com</p>
+                    <v-img width="120px" class="mx-auto my-2" src="../../assets/images/sunswitchlogo.png"/>
+                    <p class="white--text">Sunswitch by Greenera Technologies &copy; 2022. All Rights Reserved</p>
+                </div>
             </div>
-        </v-main>
-    </v-app>
+        </div>
+    </footer>
 </template>
 
+<script>
+export default {
+    data() {
+        return {
+            socialContacts: [
+                {
+                    icon: 'mdi-twitter',
+                    link: 'https://mobile.twitter.com/greeneratech',
+                },
+                {
+                    icon: 'mdi-instagram',
+                    link: 'https://www.instagram.com/greeneratech/?hl=en',
+                },
+                {
+                    icon: 'mdi-linkedin',
+                    link: 'https://www.linkedin.com/company/greeneratechnologies/',
+                },
+                {
+                    icon: 'mdi-facebook',
+                    link: 'https://web.facebook.com/greeneratechnologies/?_rdc=1&_rdr',
+                },
+            ],
+        };
+    }
+};
+</script>
 
+<style scoped>
+footer {
+    padding: 2rem;
+    background-color: #006838;
+}
 
-<style lang="scss">
+.social-contacts {
+    display: flex;
+    column-gap: 2rem;
+    list-style: none;
+    justify-content: center;
+}
+
+.call-and-email {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.call-and-email > div {
+    margin-bottom: 1rem;
+}
+
+.call-and-email a {
+    color: white;
+    text-decoration: none;
+}
+
+.brand {
+    margin-top: 3rem;
+    border-top: 1px solid white;
+}
+
 .routerLink{
     color:white !important;
     text-decoration:none !important

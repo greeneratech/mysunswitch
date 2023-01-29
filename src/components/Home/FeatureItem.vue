@@ -32,7 +32,7 @@ li {
 
 li > div {
   border-radius: 1rem;
-  border: 1px solid #FF7B00;
+  border: 2px solid #FF7B00;
 }
 
 .head {

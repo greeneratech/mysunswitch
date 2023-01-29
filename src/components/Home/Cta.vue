@@ -72,12 +72,12 @@ export default {
             {
                 title: 'Sponsor pre-vetted locations only',
                 body: 'Every community, estate, market unions and companies which apply for the power-up program are rigorously vetted to  prove their technological and economical viability before opening it up for you to sponsor.',
-                imgSrc: '/images/home-feature-1.jpg'
+                imgSrc: '/images/home-feature-1.png'
             },
             {
                 title: 'Start earning within a month ',
                 body: 'The set-up timeline of every generating plant is disclosed. Upon completion, you will immediately begin to receive returns as the community uses it.',
-                imgSrc: '/images/home-feature-2.jpg'
+                imgSrc: '/images/home-feature-2.png'
             },
             {
                 title: 'Full disclosure',

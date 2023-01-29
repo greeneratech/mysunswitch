@@ -21,17 +21,11 @@ export default {
   },
  metaInfo() {
     return {
-      title: this.pageTitle,
-      titleTemplate: "%s | Greenera",
       meta: [
         {
           name: "description",
           content:
             "Invest in Solar energy devices"
-        },
-        {
-          property: "og:title",
-          content:this.pageTitle + "| Greenera"
         },
         { property: "og:site_name", content: "Greenera" },
         {

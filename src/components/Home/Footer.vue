@@ -17,7 +17,7 @@
 
             <div class="text-xl white--text">
                 <v-icon x-large class="white--text">mdi-email</v-icon> 
-                <a href="mailto:greeneratech@gmail.com" class="contact-us-link">greeneratech@gmail.com</a>
+                <a href="mailto:contact@greeneratech.com" class="contact-us-link">contact@greeneratech.com</a>
             </div>
         </div>
     
@@ -25,7 +25,7 @@
             <div class="d-flex justify-center">
                 <div class="text-center">
                     <v-img width="120px" class="mx-auto my-2" src="../../assets/images/sunswitchlogo.png"/>
-                    <p class="white--text">Sunswitch by Greenera Technologies &copy; 2022. All Rights Reserved</p>
+                    <p class="white--text">Sunswitch by Greenera Technologies &copy; {{ currentYear }}. All Rights Reserved</p>
                 </div>
             </div>
         </div>
@@ -36,6 +36,7 @@
 export default {
     data() {
         return {
+            currentYear: new Date().getFullYear(),
             socialContacts: [
                 {
                     icon: 'mdi-twitter',
@@ -55,7 +56,7 @@ export default {
                 },
             ],
         };
-    }
+    },
 };
 </script>
 

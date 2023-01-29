@@ -31,7 +31,7 @@
             </ul>
         </div>
 
-        <div class="x-container">
+        <!-- <div class="x-container">
             <h3 class="cta-h3">AN ACCOUNT THAT SUITS YOU</h3>
 
             <ul class="account-list">
@@ -53,7 +53,7 @@
                    </div>
                 </li>
             </ul>
-        </div>
+        </div> -->
 
     </v-app>
 </template>
@@ -109,14 +109,14 @@ export default {
                 text: 'Allon',
                 imgSrc: '/images/allon-logo.png',
             },
-            {
-                text: 'Bella naija',
-                imgSrc: '/images/bella-naija-logo.png',
-            },
-            {
-                text: '234finance',
-                imgSrc: '/images/234finance-logo.png',
-            },
+            // {
+            //     text: 'Bella naija',
+            //     imgSrc: '/images/bella-naija-logo.png',
+            // },
+            // {
+            //     text: '234finance',
+            //     imgSrc: '/images/234finance-logo.png',
+            // },
           ],
         };
     },
@@ -133,9 +133,13 @@ export default {
 
 <style lang="scss">
     .x-container {
-        padding: 0.5rem;
+        padding: 1rem;
         max-width: 70rem;
         margin: 2rem auto;
+    }
+
+    .x-container > p {
+        text-align: center;
     }
 
     .x-container > ul {
@@ -148,7 +152,9 @@ export default {
     }
 
     .cta-h3 {
+        margin: auto;
         color: white;
+        text-align: center;
         width: fit-content;
         border-radius: 1rem;
         margin-bottom: 1rem;

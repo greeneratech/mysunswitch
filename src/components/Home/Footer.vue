@@ -72,6 +72,11 @@ footer {
     justify-content: center;
 }
 
+.social-contacts a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
 .call-and-email {
     margin-top: 2rem;
     text-align: center;
